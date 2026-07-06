@@ -48,7 +48,7 @@
 
         <!-- MINIMALIST GLOWING CHAT BAR -->
         <div class="ai-chat-bar-container">
-          <div class="ai-chat-bar">
+          <div class="ai-chat-input-wrapper">
             <!-- Hot Tip Notification -->
             <div class="hot-tip-container" onclick="populateCompanyPrompt()">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hot-tip-icon">
@@ -60,6 +60,8 @@
                 Try asking: "How well would Punjaya fit with <span class="hot-tip-highlight">[YOUR COMPANY]</span>?"
               </span>
             </div>
+            
+            <div class="ai-chat-bar">
             <input
               type="text"
               class="chat-bar-input"
@@ -72,6 +74,7 @@
                 <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"></path>
               </svg>
             </button>
+          </div>
           </div>
 
           <!-- Minimal Starter Prompts -->

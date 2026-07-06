@@ -705,6 +705,13 @@ section {
   pointer-events: none;
 }
 
+.ai-chat-input-wrapper {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
 /* HOT TIP NOTIFICATION */
 .hot-tip-container {
   position: absolute;
@@ -731,7 +738,7 @@ section {
   transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.hot-tip-container:hover + .chat-bar-input::placeholder {
+.hot-tip-container:hover + .ai-chat-bar .chat-bar-input::placeholder {
   color: transparent;
 }
 
@@ -1642,7 +1649,29 @@ footer p {
     padding: 100px 5% 50px;
   }
   #profile {
-    padding-top: 110px;
+    padding-top: 80px;
+  }
+  .ai-chat-input-wrapper {
+    align-items: flex-start;
+  }
+  .hot-tip-container {
+    position: relative;
+    top: auto;
+    left: auto;
+    transform: none;
+    max-width: 100%;
+    height: auto;
+    white-space: normal;
+    padding: 8px 16px;
+    margin-bottom: 0.5rem;
+    margin-left: 0.5rem;
+  }
+  .hot-tip-text {
+    opacity: 1;
+    transition: none;
+  }
+  .ai-chat-bar {
+    padding-left: 1.5rem;
   }
   .hero-container .title {
     font-size: 2.75rem;
