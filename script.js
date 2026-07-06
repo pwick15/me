@@ -357,6 +357,19 @@ async function sendMessage() {
   const query = chatInput.value.trim();
   if (query === "") return;
 
+  if (query.toLowerCase().includes("[your org]") || query.toLowerCase().includes("[your company]")) {
+    const origPlaceholder = chatInput.placeholder;
+    chatInput.value = "";
+    chatInput.placeholder = "Hey, just fill in your organization's name as you ask the question for a better response!";
+    chatInput.classList.add("input-error");
+    setTimeout(() => {
+      chatInput.placeholder = origPlaceholder;
+      chatInput.value = "What makes Punjaya a good fit for [your org]?";
+      chatInput.classList.remove("input-error");
+    }, 3000);
+    return;
+  }
+
   // Show response panel
   const panel = document.getElementById("ai-response-panel");
   if (panel) panel.style.display = "block";

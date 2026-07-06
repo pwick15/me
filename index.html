@@ -48,13 +48,25 @@
 
         <!-- MINIMALIST GLOWING CHAT BAR -->
         <div class="ai-chat-bar-container">
+          <!-- Hot Tip Notification -->
+          <div class="hot-tip-container">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hot-tip-icon">
+              <path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/>
+            </svg>
+            <span class="hot-tip-text">
+              Curious how I'd fit <span class="hot-tip-highlight">your org</span>? Just ask.
+            </span>
+          </div>
+
           <div class="ai-chat-bar">
             <input
               type="text"
               class="chat-bar-input"
               id="chat-input"
+              value="What makes Punjaya a good fit for [your org]?"
               placeholder="Ask any question about my work..."
               onkeypress="handleKeyPress(event)"
+              onclick="this.select()"
             />
             <button class="chat-bar-send" onclick="sendMessage()">
               <svg viewBox="0 0 24 24">
@@ -81,6 +93,8 @@
               >What robotics projects have you built?</span
             >
           </div>
+
+
 
           <!-- Rate Limit Warning (Hidden by default) -->
           <div
