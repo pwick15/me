@@ -352,11 +352,20 @@ function scrapeWebsiteContent() {
 
 function populateCompanyPrompt() {
   const input = document.getElementById("chat-input");
+  const tipContainer = document.querySelector(".hot-tip-container");
   if (!input) return;
   
   const promptStr = "How well would Punjaya fit with [YOUR COMPANY]?";
   input.value = promptStr;
   input.focus();
+  
+  // Force compression by temporarily disabling hover state
+  if (tipContainer) {
+    tipContainer.style.pointerEvents = 'none';
+    setTimeout(() => {
+      tipContainer.style.pointerEvents = 'auto';
+    }, 500);
+  }
   
   const start = promptStr.indexOf("[YOUR COMPANY]");
   const end = start + "[YOUR COMPANY]".length;

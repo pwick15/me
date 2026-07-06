@@ -608,7 +608,7 @@ section {
   background: rgba(255, 255, 255, 0.03);
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 9999px;
-  padding: 0.6rem 0.8rem 0.6rem 1.5rem;
+  padding: 0.6rem 0.8rem 0.6rem 3.5rem;
   transition: var(--transition-smooth);
   box-shadow:
     0 10px 30px rgba(0, 0, 0, 0.5),
@@ -707,35 +707,68 @@ section {
 
 /* HOT TIP NOTIFICATION */
 .hot-tip-container {
+  position: absolute;
+  left: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
   display: inline-flex;
-  align-self: center;
-  justify-content: center;
   align-items: center;
-  gap: 0.4rem;
-  margin-bottom: 0.1rem;
-  padding: 0.35rem 1rem;
-  background-color: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  gap: 0.6rem;
+  padding: 8px;
+  height: 34px;
+  max-width: 34px;
+  overflow: hidden;
+  white-space: nowrap;
+  background-color: rgba(28, 37, 65, 0.95); /* Opaque base matching theme */
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 215, 0, 0.4);
+  box-shadow: 0 0 10px rgba(255, 215, 0, 0.2);
   border-radius: 9999px;
   font-size: 0.8rem;
-  color: var(--White);
-  animation: fadeSlideDown 0.8s ease-out;
+  color: var(--text-primary);
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hot-tip-container:hover + .chat-bar-input::placeholder {
+  color: transparent;
 }
 
 .hot-tip-container:hover {
-  background-color: rgba(255, 255, 255, 0.08);
-  border-color: rgba(255, 255, 255, 0.2);
+  max-width: 500px;
+  padding: 8px 16px;
+  background-color: rgba(28, 37, 65, 0.98);
+  border-color: rgba(255, 215, 0, 0.8);
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.4);
 }
 
 .hot-tip-icon {
-  color: var(--accent);
-  animation: pulse-icon 2.5s infinite;
+  min-width: 16px;
+  min-height: 16px;
+  color: #ffd700;
+  filter: drop-shadow(0 0 6px rgba(255, 215, 0, 0.6));
+  animation: bulbPulse 2s infinite alternate;
+  transition: all 0.3s ease;
+}
+
+.hot-tip-container:hover .hot-tip-icon {
+  filter: drop-shadow(0 0 12px rgba(255, 215, 0, 1));
+}
+
+.hot-tip-text {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  transition-delay: 0s;
+}
+
+.hot-tip-container:hover .hot-tip-text {
+  opacity: 1;
+  transition-delay: 0.15s;
 }
 
 .hot-tip-highlight {
-  color: var(--accent);
+  color: #ffd700;
   font-weight: 500;
 }
 
@@ -750,19 +783,9 @@ section {
   }
 }
 
-@keyframes pulse-icon {
-  0% {
-    transform: scale(1);
-    opacity: 0.7;
-  }
-  50% {
-    transform: scale(1.2);
-    opacity: 1;
-  }
-  100% {
-    transform: scale(1);
-    opacity: 0.7;
-  }
+@keyframes bulbPulse {
+  0% { filter: drop-shadow(0 0 4px rgba(255, 215, 0, 0.4)); opacity: 0.8; }
+  100% { filter: drop-shadow(0 0 12px rgba(255, 215, 0, 0.9)); opacity: 1; }
 }
 
 .chat-bar-input.input-error {

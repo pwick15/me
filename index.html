@@ -48,31 +48,18 @@
 
         <!-- MINIMALIST GLOWING CHAT BAR -->
         <div class="ai-chat-bar-container">
-          <!-- Hot Tip Notification -->
-          <div class="hot-tip-container" onclick="populateCompanyPrompt()">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="14"
-              height="14"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              class="hot-tip-icon"
-            >
-              <path
-                d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"
-              />
-            </svg>
-            <span class="hot-tip-text">
-              Try asking: "How well would Punjaya fit with
-              <span class="hot-tip-highlight">[your org]</span>?"
-            </span>
-          </div>
-
           <div class="ai-chat-bar">
+            <!-- Hot Tip Notification -->
+            <div class="hot-tip-container" onclick="populateCompanyPrompt()">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hot-tip-icon">
+                <path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.9 1.2 1.5 1.5 2.5"/>
+                <path d="M9 18h6"/>
+                <path d="M10 22h4"/>
+              </svg>
+              <span class="hot-tip-text">
+                Try asking: "How well would Punjaya fit with <span class="hot-tip-highlight">[YOUR COMPANY]</span>?"
+              </span>
+            </div>
             <input
               type="text"
               class="chat-bar-input"
@@ -99,8 +86,8 @@
             <span class="divider">•</span>
             <span
               class="starter-link"
-              onclick="sendPrompt('What robotics projects have you built?')"
-              >What robotics projects have you built?</span
+              onclick="sendPrompt('Experience with robotics systems')"
+              >Experience with robotics systems</span
             >
           </div>
 
