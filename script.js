@@ -350,25 +350,27 @@ function scrapeWebsiteContent() {
   return contentText.trim();
 }
 
+function populateCompanyPrompt() {
+  const input = document.getElementById("chat-input");
+  if (!input) return;
+  
+  const promptStr = "How well would Punjaya fit with [YOUR COMPANY]?";
+  input.value = promptStr;
+  input.focus();
+  
+  const start = promptStr.indexOf("[YOUR COMPANY]");
+  const end = start + "[YOUR COMPANY]".length;
+  setTimeout(() => {
+    input.setSelectionRange(start, end);
+  }, 10);
+}
+
 async function sendMessage() {
   const chatInput = document.getElementById("chat-input");
   if (!chatInput) return;
 
   const query = chatInput.value.trim();
   if (query === "") return;
-
-  if (query.toLowerCase().includes("[your org]") || query.toLowerCase().includes("[your company]")) {
-    const origPlaceholder = chatInput.placeholder;
-    chatInput.value = "";
-    chatInput.placeholder = "Hey, just fill in your organization's name as you ask the question for a better response!";
-    chatInput.classList.add("input-error");
-    setTimeout(() => {
-      chatInput.placeholder = origPlaceholder;
-      chatInput.value = "What makes Punjaya a good fit for [your org]?";
-      chatInput.classList.remove("input-error");
-    }, 3000);
-    return;
-  }
 
   // Show response panel
   const panel = document.getElementById("ai-response-panel");
