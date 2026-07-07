@@ -630,25 +630,13 @@ section {
 }
 
 .ai-search-title {
-  font-family: 'Caveat', cursive;
+  font-family: "Caveat", cursive;
   font-size: 4rem;
   font-weight: 700;
-  margin-bottom: 3.5rem;
+  padding: 3rem;
   text-align: center;
-  background: linear-gradient(
-    135deg,
-    #4285f4 0%,
-    #a259ff 40%,
-    #4285f4 80%,
-    #a259ff 100%
-  );
-  background-size: 300% 300%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: titleShimmer 6s ease-in-out infinite;
-  filter: drop-shadow(0 0 30px rgba(66, 133, 244, 0.4))
-    drop-shadow(0 0 60px rgba(162, 89, 255, 0.2));
+  color: #ffffff;
+  text-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
   letter-spacing: 0.02em;
   clip-path: inset(0 100% 0 0);
   transition: clip-path 1.4s cubic-bezier(0.22, 1, 0.36, 1) 0.3s;
@@ -656,18 +644,6 @@ section {
 
 #ai-search-segment.visible .ai-search-title {
   clip-path: inset(0 0% 0 0);
-}
-
-@keyframes titleShimmer {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
 }
 
 /* FLOATING PROMPTS */
@@ -717,39 +693,49 @@ section {
 }
 
 .prompt-1 {
-  top: 8%;
+  top: 0%;
   left: 2%;
   animation-delay: 0s;
 }
 
 .prompt-2 {
-  top: 4%;
+  top: 15%;
   right: 5%;
-  animation-delay: 1.5s;
+  left: auto;
+  bottom: auto;
+  animation-delay: 2s;
 }
 
 .prompt-3 {
-  bottom: 8%;
+  bottom: -5%;
   left: 5%;
-  animation-delay: 3s;
+  top: auto;
+  right: auto;
+  animation-delay: 4s;
 }
 
 .prompt-4 {
-  top: 45%;
-  right: 0%;
-  animation-delay: 4.5s;
+  bottom: 0%;
+  right: 2%;
+  top: auto;
+  left: auto;
+  animation-delay: 6s;
 }
 
 .prompt-5 {
-  bottom: 4%;
-  right: 8%;
+  top: 0%;
+  left: 2%;
+  bottom: auto;
+  right: auto;
   animation-delay: 6s;
 }
 
 .prompt-6 {
-  top: 50%;
-  left: 0%;
-  animation-delay: 7s;
+  top: 15%;
+  right: 5%;
+  left: auto;
+  bottom: auto;
+  animation-delay: 8s;
 }
 
 @keyframes floatInAndOut {
@@ -1831,19 +1817,22 @@ footer p {
     top: auto;
   }
   .prompt-4 {
-    top: 35%;
-    right: 3%;
+    bottom: 5%;
+    right: 5%;
+    top: auto;
     left: auto;
   }
   .prompt-5 {
-    bottom: 2%;
-    right: 5%;
-    left: auto;
-    top: auto;
+    top: 2%;
+    left: 5%;
+    bottom: auto;
+    right: auto;
   }
   .prompt-6 {
-    top: 40%;
-    left: 3%;
+    top: 2%;
+    right: 5%;
+    left: auto;
+    bottom: auto;
   }
   .section-container {
     grid-template-columns: 1fr;

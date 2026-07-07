@@ -50,6 +50,20 @@ document.addEventListener("DOMContentLoaded", () => {
     aiObserver.observe(aiSegment);
   }
 
+  // Randomize floating prompt positions
+  const prompts = Array.from(document.querySelectorAll(".floating-prompt"));
+  if (prompts.length > 0) {
+    // Fisher-Yates shuffle
+    for (let i = prompts.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [prompts[i], prompts[j]] = [prompts[j], prompts[i]];
+    }
+    // Assign classes prompt-1 to prompt-N
+    prompts.forEach((prompt, index) => {
+      prompt.classList.add(`prompt-${index + 1}`);
+    });
+  }
+
 });
 
 // ==========================================
