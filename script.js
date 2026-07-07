@@ -29,6 +29,27 @@ document.addEventListener("DOMContentLoaded", () => {
   );
 
   revealElements.forEach((el) => revealObserver.observe(el));
+
+  // Dedicated scroll-driven observer for AI search segment
+  const aiSegment = document.getElementById("ai-search-segment");
+  if (aiSegment) {
+    const aiObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            aiSegment.classList.add("visible");
+            aiObserver.unobserve(aiSegment);
+          }
+        });
+      },
+      {
+        threshold: 0.15,
+        rootMargin: "0px 0px -80px 0px",
+      },
+    );
+    aiObserver.observe(aiSegment);
+  }
+
 });
 
 // ==========================================
@@ -350,36 +371,18 @@ function scrapeWebsiteContent() {
   return contentText.trim();
 }
 
-function populateCompanyPrompt() {
-  const input = document.getElementById("chat-input");
-  const tipContainer = document.querySelector(".hot-tip-container");
-  if (!input) return;
-
-  const promptStr = "How well would Punjaya fit with [YOUR COMPANY]?";
-  input.value = promptStr;
-  input.focus();
-
-  // Force compression by temporarily disabling hover state
-  if (tipContainer) {
-    tipContainer.style.pointerEvents = "none";
-    setTimeout(() => {
-      tipContainer.style.pointerEvents = "auto";
-    }, 500);
-  }
-
-  const start = promptStr.indexOf("[YOUR COMPANY]");
-  const end = start + "[YOUR COMPANY]".length;
-  setTimeout(() => {
-    input.setSelectionRange(start, end);
-  }, 10);
-}
-
 async function sendMessage() {
   const chatInput = document.getElementById("chat-input");
   if (!chatInput) return;
 
   const query = chatInput.value.trim();
   if (query === "") return;
+
+  // Hide floating prompts after first search
+  const floatingPrompts = document.querySelector(".floating-prompts-container");
+  if (floatingPrompts) {
+    floatingPrompts.style.display = "none";
+  }
 
   // Show response panel
   const panel = document.getElementById("ai-response-panel");

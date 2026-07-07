@@ -75,36 +75,33 @@
     </section>
 
     <!-- AI SEARCH SEGMENT -->
-    <section id="ai-search-segment" class="reveal">
+    <section id="ai-search-segment">
       <div class="ai-search-wrapper">
-        <h2 class="ai-search-title">Ask Punjaya AI</h2>
+        <h2 class="ai-search-title">Ask AI</h2>
         
         <div class="floating-prompts-container">
-          <div class="floating-prompt prompt-left" onclick="sendPrompt('Want to know what experience Punjaya has with robotics?')">
-            Want to know what experience Punjaya has with robotics?
+          <div class="floating-prompt prompt-1" onclick="sendPrompt('Want to know what experience Punjaya has with robotics?')">
+            What experience does Punjaya have with robotics?
           </div>
-          <div class="floating-prompt prompt-right" onclick="sendPrompt('Wondering what AI tools I\'ve worked with?')">
-            Wondering what AI tools I've worked with?
+          <div class="floating-prompt prompt-2" onclick="sendPrompt('What AI and computer vision tools has Punjaya worked with?')">
+            What AI &amp; computer vision tools has he worked with?
           </div>
-          <div class="floating-prompt prompt-bottom" onclick="sendPrompt('How well would I fit your organisation?')">
-            How well would I fit your organisation?
+          <div class="floating-prompt prompt-3" onclick="sendPrompt('How well would Punjaya fit my organisation?')">
+            How well would he fit my organisation?
+          </div>
+          <div class="floating-prompt prompt-4" onclick="sendPrompt('What research papers has Punjaya published?')">
+            What research papers has he published?
+          </div>
+          <div class="floating-prompt prompt-5" onclick="sendPrompt('Tell me about Punjaya\\'s engineering projects')">
+            Tell me about his engineering projects
+          </div>
+          <div class="floating-prompt prompt-6" onclick="sendPrompt('What programming languages and frameworks does Punjaya know?')">
+            What languages &amp; frameworks does he know?
           </div>
         </div>
 
         <div class="ai-chat-bar-container">
           <div class="ai-chat-input-wrapper">
-            <!-- Hot Tip Notification -->
-            <div class="hot-tip-container" onclick="populateCompanyPrompt()">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hot-tip-icon">
-                <path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.9 1.2 1.5 1.5 2.5"/>
-                <path d="M9 18h6"/>
-                <path d="M10 22h4"/>
-              </svg>
-              <span class="hot-tip-text">
-                <span class="hot-tip-prefix">Try asking:</span> <span class="hot-tip-quote">"How well would Punjaya fit with <span class="hot-tip-highlight">[YOUR COMPANY]</span>?"</span>
-              </span>
-            </div>
-            
             <div class="ai-chat-bar">
               <input
                 type="text"

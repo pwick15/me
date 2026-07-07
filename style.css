@@ -4,7 +4,7 @@
    Fonts: Outfit (Titles), Inter (Body)
 */
 
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&display=swap");
 
 :root {
   /* Obsidian Theme Palette */
@@ -281,30 +281,33 @@ section {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 80vh;
-  padding-top: 100px;
+  min-height: 100vh;
+  padding-top: 60px;
+  position: relative;
 }
 
 .hero-container {
   display: flex;
   flex-direction: row;
+  justify-content: center;
   align-items: center;
-  gap: 5rem;
+  gap: 7rem;
   max-width: 1000px;
   width: 100%;
 }
 
 .section__text {
-  text-align: left;
+  text-align: center;
+  width: 450px;
 }
 
 .section__text .btn-container,
 .section__text #socials-container {
-  justify-content: flex-start;
+  justify-content: center;
 }
 
 .profile-title {
-  text-align: left;
+  text-align: center;
   margin-bottom: 1rem;
 }
 
@@ -476,6 +479,7 @@ section {
 .hero-container .section__text__p1 {
   text-align: center;
   margin-bottom: 0.5rem;
+  margin-top: 4rem;
 }
 
 .hero-container .title {
@@ -491,7 +495,7 @@ section {
   font-weight: 500;
   color: var(--text-secondary);
   min-height: 35px; /* prevent layout shift during typing */
-  margin-bottom: 1.5rem;
+  margin-bottom: 2.5rem;
 }
 
 /* Typing cursor */
@@ -598,9 +602,11 @@ section {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 60px 5%;
-  min-height: 80vh;
+  padding: 30px 5% 80px;
+  min-height: 70vh;
   position: relative;
+  overflow: visible;
+  margin-top: -60px;
 }
 
 .ai-search-wrapper {
@@ -611,77 +617,162 @@ section {
   max-width: 800px;
   position: relative;
   z-index: 2;
+  opacity: 0;
+  transform: scale(0.6) translateY(60px);
+  transition:
+    opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+#ai-search-segment.visible .ai-search-wrapper {
+  opacity: 1;
+  transform: scale(1) translateY(0);
 }
 
 .ai-search-title {
-  font-size: 2.2rem;
-  color: var(--primary);
-  margin-bottom: 4rem;
+  font-family: 'Caveat', cursive;
+  font-size: 4rem;
   font-weight: 700;
+  margin-bottom: 3.5rem;
   text-align: center;
-  text-shadow: 0 0 20px rgba(66, 133, 244, 0.3);
+  background: linear-gradient(
+    135deg,
+    #4285f4 0%,
+    #a259ff 40%,
+    #4285f4 80%,
+    #a259ff 100%
+  );
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: titleShimmer 6s ease-in-out infinite;
+  filter: drop-shadow(0 0 30px rgba(66, 133, 244, 0.4))
+    drop-shadow(0 0 60px rgba(162, 89, 255, 0.2));
+  letter-spacing: 0.02em;
+  clip-path: inset(0 100% 0 0);
+  transition: clip-path 1.4s cubic-bezier(0.22, 1, 0.36, 1) 0.3s;
+}
+
+#ai-search-segment.visible .ai-search-title {
+  clip-path: inset(0 0% 0 0);
+}
+
+@keyframes titleShimmer {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 /* FLOATING PROMPTS */
 .floating-prompts-container {
   position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
+  width: 150%;
+  height: 120%;
+  top: -10%;
+  left: -25%;
   pointer-events: none;
   z-index: 0;
 }
 
 .floating-prompt {
   position: absolute;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  padding: 0.8rem 1.5rem;
+  background: linear-gradient(
+    135deg,
+    rgba(66, 133, 244, 0.15),
+    rgba(162, 89, 255, 0.15)
+  );
+  border: 1px solid rgba(162, 89, 255, 0.3);
+  backdrop-filter: blur(12px);
+  padding: 0.9rem 1.6rem;
   border-radius: 9999px;
-  font-size: 0.9rem;
-  color: var(--text-secondary);
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #f1f1f1;
   pointer-events: auto;
   cursor: pointer;
-  transition: all 0.3s ease;
-  animation: floatInAndOut 8s infinite ease-in-out;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  animation: floatInAndOut 12s infinite ease-in-out;
   opacity: 0;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 20px rgba(162, 89, 255, 0.15);
   white-space: nowrap;
 }
 
 .floating-prompt:hover {
-  background: rgba(255, 255, 255, 0.1);
-  border-color: rgba(66, 133, 244, 0.5);
-  color: var(--text-primary);
+  background: linear-gradient(
+    135deg,
+    rgba(66, 133, 244, 0.25),
+    rgba(162, 89, 255, 0.25)
+  );
+  border-color: rgba(162, 89, 255, 0.6);
+  color: #fff;
   transform: scale(1.05) !important;
+  box-shadow: 0 6px 25px rgba(162, 89, 255, 0.3);
 }
 
-.prompt-left {
-  top: 15%;
-  left: -25%;
+.prompt-1 {
+  top: 8%;
+  left: 2%;
   animation-delay: 0s;
 }
 
-.prompt-right {
-  top: 5%;
-  right: -25%;
-  animation-delay: 2.5s;
+.prompt-2 {
+  top: 4%;
+  right: 5%;
+  animation-delay: 1.5s;
 }
 
-.prompt-bottom {
-  bottom: 10%;
-  left: 10%;
-  animation-delay: 5s;
+.prompt-3 {
+  bottom: 8%;
+  left: 5%;
+  animation-delay: 3s;
+}
+
+.prompt-4 {
+  top: 45%;
+  right: 0%;
+  animation-delay: 4.5s;
+}
+
+.prompt-5 {
+  bottom: 4%;
+  right: 8%;
+  animation-delay: 6s;
+}
+
+.prompt-6 {
+  top: 50%;
+  left: 0%;
+  animation-delay: 7s;
 }
 
 @keyframes floatInAndOut {
-  0% { opacity: 0; transform: translateY(20px) scale(0.95); }
-  10% { opacity: 1; transform: translateY(0) scale(1); }
-  40% { opacity: 1; transform: translateY(-10px) scale(1); }
-  50% { opacity: 0; transform: translateY(-20px) scale(0.95); }
-  100% { opacity: 0; transform: translateY(20px) scale(0.95); }
+  0% {
+    opacity: 0;
+    transform: translateY(15px) scale(0.92);
+  }
+  8% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  30% {
+    opacity: 1;
+    transform: translateY(-8px) scale(1.01);
+  }
+  38% {
+    opacity: 0;
+    transform: translateY(-15px) scale(0.95);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(15px) scale(0.92);
+  }
 }
 
 @keyframes pulseGlow {
@@ -816,73 +907,6 @@ section {
   flex-direction: column;
 }
 
-/* HOT TIP NOTIFICATION */
-.hot-tip-container {
-  position: absolute;
-  left: 8px;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 10;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.6rem;
-  padding: 8px;
-  height: 34px;
-  max-width: 34px;
-  overflow: hidden;
-  white-space: nowrap;
-  background-color: rgba(28, 37, 65, 0.95); /* Opaque base matching theme */
-  backdrop-filter: blur(8px);
-  border: 1px solid rgba(255, 215, 0, 0.4);
-  box-shadow: 0 0 10px rgba(255, 215, 0, 0.2);
-  border-radius: 9999px;
-  font-size: 0.8rem;
-  color: var(--text-primary);
-  cursor: pointer;
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.hot-tip-container:hover + .ai-chat-bar .chat-bar-input::placeholder {
-  color: transparent;
-}
-
-.hot-tip-container:hover {
-  max-width: 500px;
-  padding: 8px 16px;
-  background-color: rgba(28, 37, 65, 0.98);
-  border-color: rgba(255, 215, 0, 0.8);
-  box-shadow: 0 0 15px rgba(255, 215, 0, 0.4);
-}
-
-.hot-tip-icon {
-  min-width: 16px;
-  min-height: 16px;
-  color: #ffd700;
-  filter: drop-shadow(0 0 6px rgba(255, 215, 0, 0.6));
-  animation: bulbPulse 2s infinite alternate;
-  transition: all 0.3s ease;
-}
-
-.hot-tip-container:hover .hot-tip-icon {
-  filter: drop-shadow(0 0 12px rgba(255, 215, 0, 1));
-}
-
-.hot-tip-text {
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  transition-delay: 0s;
-}
-
-.hot-tip-container:hover .hot-tip-text {
-  opacity: 1;
-  transition-delay: 0.15s;
-}
-
-.hot-tip-highlight {
-  color: #ffd700;
-  font-weight: 500;
-}
-
 @keyframes fadeSlideDown {
   0% {
     opacity: 0;
@@ -895,8 +919,14 @@ section {
 }
 
 @keyframes bulbPulse {
-  0% { filter: drop-shadow(0 0 4px rgba(255, 215, 0, 0.4)); opacity: 0.8; }
-  100% { filter: drop-shadow(0 0 12px rgba(255, 215, 0, 0.9)); opacity: 1; }
+  0% {
+    filter: drop-shadow(0 0 4px rgba(255, 215, 0, 0.4));
+    opacity: 0.8;
+  }
+  100% {
+    filter: drop-shadow(0 0 12px rgba(255, 215, 0, 0.9));
+    opacity: 1;
+  }
 }
 
 .chat-bar-input.input-error {
@@ -1755,30 +1785,6 @@ footer p {
   .ai-chat-input-wrapper {
     align-items: flex-start;
   }
-  .hot-tip-container {
-    position: relative;
-    top: auto;
-    left: auto;
-    transform: none;
-    max-width: 100%;
-    height: auto;
-    white-space: normal;
-    padding: 8px 16px;
-    margin-bottom: 0.5rem;
-    margin-left: 0.5rem;
-    align-items: flex-start; /* Align icon with first line */
-  }
-  .hot-tip-text {
-    opacity: 1;
-    transition: none;
-    display: flex;
-    flex-direction: column;
-    gap: 0.1rem;
-    padding-top: 1px; /* Slight optical adjustment with icon */
-  }
-  .ai-chat-bar {
-    padding-left: 1.5rem;
-  }
   #profile {
     padding-top: 100px;
   }
@@ -1786,8 +1792,10 @@ footer p {
     flex-direction: column;
     gap: 2rem;
   }
-  .section__text, .profile-title {
+  .section__text,
+  .profile-title {
     text-align: center;
+    width: 100%;
   }
   .section__text .btn-container,
   .section__text #socials-container {
@@ -1800,21 +1808,42 @@ footer p {
   }
   .floating-prompt {
     white-space: normal;
-    font-size: 0.8rem;
-    padding: 0.6rem 1rem;
-    max-width: 80%;
+    font-size: 0.75rem;
+    padding: 0.5rem 0.9rem;
+    max-width: 70%;
   }
-  .prompt-left {
-    top: 0%;
-    left: 10%;
+  .floating-prompts-container {
+    width: 120%;
+    left: -10%;
   }
-  .prompt-right {
-    top: 30%;
+  .prompt-1 {
+    top: 2%;
+    left: 5%;
+  }
+  .prompt-2 {
+    top: 2%;
     right: 5%;
+    left: auto;
   }
-  .prompt-bottom {
-    bottom: -10%;
-    left: 15%;
+  .prompt-3 {
+    bottom: 8%;
+    left: 8%;
+    top: auto;
+  }
+  .prompt-4 {
+    top: 35%;
+    right: 3%;
+    left: auto;
+  }
+  .prompt-5 {
+    bottom: 2%;
+    right: 5%;
+    left: auto;
+    top: auto;
+  }
+  .prompt-6 {
+    top: 40%;
+    left: 3%;
   }
   .section-container {
     grid-template-columns: 1fr;
@@ -1843,11 +1872,10 @@ footer p {
     height: 200px;
   }
   .ai-search-title {
-    font-size: 1.8rem;
+    font-size: 2rem;
   }
-  .floating-prompt {
-    font-size: 0.75rem;
-    padding: 0.5rem 0.8rem;
+  .floating-prompts-container {
+    display: none;
   }
   .hero-container .title {
     font-size: 2.2rem;
