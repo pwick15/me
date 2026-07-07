@@ -677,17 +677,17 @@ document.addEventListener("DOMContentLoaded", () => {
   scrollSpy();
 });
 
-// Function to scroll to hero and focus AI chat input
+// Function to scroll to AI segment and focus chat input smoothly
 function focusChat(event) {
   event.preventDefault();
-  const profileSection = document.getElementById("profile");
-  if (profileSection) {
-    profileSection.scrollIntoView({ behavior: "smooth" });
+  const searchSegment = document.getElementById("ai-search-segment");
+  if (searchSegment) {
+    searchSegment.scrollIntoView({ behavior: "smooth", block: "center" });
   }
   const chatInput = document.getElementById("chat-input");
   if (chatInput) {
     setTimeout(() => {
-      chatInput.focus();
+      chatInput.focus({ preventScroll: true });
       const chatBar = document.querySelector(".ai-chat-bar");
       if (chatBar) {
         chatBar.classList.add("pulse-highlight");

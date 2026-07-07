@@ -18,8 +18,12 @@
     <!-- DESKTOP NAVIGATION -->
     <nav id="desktop-nav">
       <ul class="nav-links">
+        <li><a href="#profile">Home</a></li>
         <li>
-          <a href="#profile" class="ask-ai-nav" onclick="focusChat(event)"
+          <a
+            href="#ai-search-segment"
+            class="ask-ai-nav"
+            onclick="focusChat(event)"
             >Ask AI</a
           >
         </li>
@@ -51,7 +55,10 @@
             <button class="btn btn-color-1" id="download-cv-btn">
               Download CV
             </button>
-            <button class="btn btn-color-2" onclick="location.href = '#contact'">
+            <button
+              class="btn btn-color-2"
+              onclick="location.href = '#contact'"
+            >
               Contact Info
             </button>
           </div>
@@ -61,7 +68,9 @@
               src="./assets/icons/icon-linkedin.png"
               alt="My LinkedIn profile"
               class="icon"
-              onclick="window.open('https://www.linkedin.com/in/punjaya/', '_blank')"
+              onclick="
+                window.open('https://www.linkedin.com/in/punjaya/', '_blank')
+              "
             />
             <img
               src="./assets/icons/icon-github.png"
@@ -78,8 +87,10 @@
     <section id="ai-search-segment">
       <div class="ai-search-wrapper">
         <h2 class="ai-search-title">Ask AI</h2>
-        <p class="ai-search-subtitle">Want to know something about my work? Ask away!</p>
-        
+        <p class="ai-search-subtitle">
+          Want to know something about my work? Ask away!
+        </p>
+
         <div class="floating-prompts-container">
           <div class="floating-prompt">
             What experience does Punjaya have with robotics?
@@ -118,8 +129,6 @@
               </button>
             </div>
           </div>
-
-
 
           <!-- Rate Limit Warning (Hidden by default) -->
           <div
