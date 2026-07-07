@@ -687,7 +687,7 @@ section {
   color: rgba(255, 255, 255, 0.75);
   pointer-events: none;
   cursor: default;
-  animation: floatInAndOut 12s infinite ease-in-out;
+  animation: floatInAndOut 24s infinite ease-in-out;
   opacity: 0;
   white-space: nowrap;
 }
@@ -703,7 +703,7 @@ section {
   right: 5%;
   left: auto;
   bottom: auto;
-  animation-delay: 2s;
+  animation-delay: 4s;
 }
 
 .prompt-3 {
@@ -711,7 +711,7 @@ section {
   left: 5%;
   top: auto;
   right: auto;
-  animation-delay: 4s;
+  animation-delay: 8s;
 }
 
 .prompt-4 {
@@ -719,7 +719,7 @@ section {
   right: 2%;
   top: auto;
   left: auto;
-  animation-delay: 6s;
+  animation-delay: 20s;
 }
 
 .prompt-5 {
@@ -727,7 +727,7 @@ section {
   left: 2%;
   bottom: auto;
   right: auto;
-  animation-delay: 6s;
+  animation-delay: 12s;
 }
 
 .prompt-6 {
@@ -735,7 +735,7 @@ section {
   right: 5%;
   left: auto;
   bottom: auto;
-  animation-delay: 8s;
+  animation-delay: 16s;
 }
 
 @keyframes floatInAndOut {
@@ -743,15 +743,15 @@ section {
     opacity: 0;
     transform: translateY(15px) scale(0.92);
   }
-  8% {
+  6% {
     opacity: 1;
     transform: translateY(0) scale(1);
   }
-  30% {
+  22% {
     opacity: 1;
     transform: translateY(-8px) scale(1.01);
   }
-  38% {
+  28% {
     opacity: 0;
     transform: translateY(-15px) scale(0.95);
   }
