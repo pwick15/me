@@ -676,23 +676,19 @@ section {
 
 .floating-prompt {
   position: absolute;
-  background: linear-gradient(
-    135deg,
-    rgba(66, 133, 244, 0.15),
-    rgba(162, 89, 255, 0.15)
-  );
-  border: 1px solid rgba(162, 89, 255, 0.3);
-  backdrop-filter: blur(12px);
-  padding: 0.9rem 1.6rem;
+  padding: 0.5rem 1.1rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(8px);
   border-radius: 9999px;
-  font-size: 0.95rem;
-  font-weight: 500;
-  color: #f1f1f1;
+  font-size: 0.82rem;
+  font-weight: 300;
+  letter-spacing: 0.02em;
+  color: rgba(255, 255, 255, 0.75);
   pointer-events: none;
   cursor: default;
   animation: floatInAndOut 12s infinite ease-in-out;
   opacity: 0;
-  box-shadow: 0 4px 20px rgba(162, 89, 255, 0.15);
   white-space: nowrap;
 }
 
@@ -768,21 +764,21 @@ section {
 @keyframes pulseGlow {
   0% {
     box-shadow:
-      0 15px 35px rgba(0, 0, 0, 0.6),
-      0 0 15px rgba(66, 133, 244, 0.15);
-    border-color: rgba(66, 133, 244, 0.35);
+      0 10px 30px rgba(0, 0, 0, 0.5),
+      0 0 15px rgba(162, 89, 255, 0.15);
+    border-color: rgba(162, 89, 255, 0.25);
   }
   50% {
     box-shadow:
-      0 15px 35px rgba(0, 0, 0, 0.6),
-      0 0 25px rgba(66, 133, 244, 0.35);
-    border-color: rgba(66, 133, 244, 0.6);
+      0 10px 30px rgba(0, 0, 0, 0.5),
+      0 0 25px rgba(162, 89, 255, 0.3);
+    border-color: rgba(162, 89, 255, 0.4);
   }
   100% {
     box-shadow:
-      0 15px 35px rgba(0, 0, 0, 0.6),
-      0 0 15px rgba(66, 133, 244, 0.15);
-    border-color: rgba(66, 133, 244, 0.35);
+      0 10px 30px rgba(0, 0, 0, 0.5),
+      0 0 15px rgba(162, 89, 255, 0.15);
+    border-color: rgba(162, 89, 255, 0.25);
   }
 }
 
@@ -790,24 +786,38 @@ section {
   width: 100%;
   display: flex;
   align-items: center;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: linear-gradient(
+    135deg,
+    rgba(66, 133, 244, 0.08),
+    rgba(162, 89, 255, 0.08)
+  );
+  border: 1px solid rgba(162, 89, 255, 0.2);
+  backdrop-filter: blur(12px);
   border-radius: 9999px;
   padding: 0.6rem 0.8rem 0.6rem 3.5rem;
   transition: var(--transition-smooth);
   box-shadow:
     0 10px 30px rgba(0, 0, 0, 0.5),
-    inset 0 1px 0 rgba(255, 255, 255, 0.03);
+    0 4px 15px rgba(162, 89, 255, 0.1);
   position: relative;
 }
 
 .ai-chat-bar:hover {
-  border-color: rgba(255, 255, 255, 0.18);
-  background: rgba(255, 255, 255, 0.04);
+  background: linear-gradient(
+    135deg,
+    rgba(66, 133, 244, 0.12),
+    rgba(162, 89, 255, 0.12)
+  );
+  border-color: rgba(162, 89, 255, 0.35);
+  box-shadow: 0 6px 20px rgba(162, 89, 255, 0.2);
 }
 
 .ai-chat-bar:focus-within {
-  background: rgba(255, 255, 255, 0.05);
+  background: linear-gradient(
+    135deg,
+    rgba(66, 133, 244, 0.12),
+    rgba(162, 89, 255, 0.12)
+  );
   animation: pulseGlow 2.5s ease-in-out infinite;
   outline: none;
 }
@@ -1798,8 +1808,8 @@ footer p {
   }
   .floating-prompt {
     white-space: normal;
-    font-size: 0.75rem;
-    padding: 0.5rem 0.9rem;
+    font-size: 0.65rem;
+    padding: 0.4rem 0.8rem;
     max-width: 70%;
   }
   .floating-prompts-container {
