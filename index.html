@@ -40,13 +40,57 @@
             alt="Punjaya Wickramasinghe Profile Picture"
           />
         </div>
-        <p class="section__text__p1">Hi, I'm</p>
-        <h1 class="title">Punjaya</h1>
-        <p class="section__text__p2" id="typed-text">
-          <span class="typing-cursor"></span>
-        </p>
+        <div class="section__text">
+          <p class="section__text__p1">Hi, I'm</p>
+          <h1 class="title profile-title">Punjaya</h1>
+          <p class="section__text__p2" id="typed-text">
+            <span class="typing-cursor"></span>
+          </p>
 
-        <!-- MINIMALIST GLOWING CHAT BAR -->
+          <div class="btn-container">
+            <button class="btn btn-color-1" id="download-cv-btn">
+              Download CV
+            </button>
+            <button class="btn btn-color-2" onclick="location.href = '#contact'">
+              Contact Info
+            </button>
+          </div>
+
+          <div id="socials-container">
+            <img
+              src="./assets/icons/icon-linkedin.png"
+              alt="My LinkedIn profile"
+              class="icon"
+              onclick="window.open('https://www.linkedin.com/in/punjaya/', '_blank')"
+            />
+            <img
+              src="./assets/icons/icon-github.png"
+              alt="My GitHub profile"
+              class="icon"
+              onclick="window.open('https://github.com/pwick15', '_blank')"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- AI SEARCH SEGMENT -->
+    <section id="ai-search-segment" class="reveal">
+      <div class="ai-search-wrapper">
+        <h2 class="ai-search-title">Ask Punjaya AI</h2>
+        
+        <div class="floating-prompts-container">
+          <div class="floating-prompt prompt-left" onclick="sendPrompt('Want to know what experience Punjaya has with robotics?')">
+            Want to know what experience Punjaya has with robotics?
+          </div>
+          <div class="floating-prompt prompt-right" onclick="sendPrompt('Wondering what AI tools I\'ve worked with?')">
+            Wondering what AI tools I've worked with?
+          </div>
+          <div class="floating-prompt prompt-bottom" onclick="sendPrompt('How well would I fit your organisation?')">
+            How well would I fit your organisation?
+          </div>
+        </div>
+
         <div class="ai-chat-bar-container">
           <div class="ai-chat-input-wrapper">
             <!-- Hot Tip Notification -->
@@ -57,41 +101,37 @@
                 <path d="M10 22h4"/>
               </svg>
               <span class="hot-tip-text">
-                Try asking: "How well would Punjaya fit with <span class="hot-tip-highlight">[YOUR COMPANY]</span>?"
+                <span class="hot-tip-prefix">Try asking:</span> <span class="hot-tip-quote">"How well would Punjaya fit with <span class="hot-tip-highlight">[YOUR COMPANY]</span>?"</span>
               </span>
             </div>
             
             <div class="ai-chat-bar">
-            <input
-              type="text"
-              class="chat-bar-input"
-              id="chat-input"
-              placeholder="Ask any question about my work..."
-              onkeypress="handleKeyPress(event)"
-            />
-            <button class="chat-bar-send" onclick="sendMessage()">
-              <svg viewBox="0 0 24 24">
-                <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"></path>
-              </svg>
-            </button>
-          </div>
+              <input
+                type="text"
+                class="chat-bar-input"
+                id="chat-input"
+                placeholder="Ask any question about my work..."
+                onkeypress="handleKeyPress(event)"
+              />
+              <button class="chat-bar-send" onclick="sendMessage()">
+                <svg viewBox="0 0 24 24">
+                  <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"></path>
+                </svg>
+              </button>
+            </div>
           </div>
 
           <!-- Minimal Starter Prompts -->
           <div class="starter-links" id="starter-chips">
             <span
               class="starter-link"
-              onclick="
-                sendPrompt('What are Punjaya\'s AI & Computer Vision skills?')
-              "
-              >What are your AI & Computer Vision skills?</span
-            >
+              onclick="sendPrompt('What are Punjaya\'s AI & Computer Vision skills?')"
+            >What are your AI & Computer Vision skills?</span>
             <span class="divider">•</span>
             <span
               class="starter-link"
               onclick="sendPrompt('Experience with robotics systems')"
-              >Experience with robotics systems</span
-            >
+            >Experience with robotics systems</span>
           </div>
 
           <!-- Rate Limit Warning (Hidden by default) -->
@@ -107,35 +147,6 @@
               font-weight: 500;
             "
           ></div>
-        </div>
-
-        <div class="btn-container">
-          <button class="btn btn-color-1" id="download-cv-btn">
-            Download CV
-          </button>
-          <button class="btn btn-color-2" onclick="location.href = '#contact'">
-            Contact Info
-          </button>
-        </div>
-
-        <div id="socials-container">
-          <img
-            src="./assets/icons/icon-linkedin.png"
-            alt="My LinkedIn profile"
-            class="icon"
-            onclick="
-              window.open(
-                'https://www.linkedin.com/in/punjayawick15/',
-                '_blank',
-              )
-            "
-          />
-          <img
-            src="./assets/icons/icon-github.png"
-            alt="My GitHub profile"
-            class="icon"
-            onclick="window.open('https://github.com/pwick15', '_blank')"
-          />
         </div>
 
         <!-- TYPOGRAPHIC AI RESPONSE PANEL -->
@@ -1265,10 +1276,8 @@
               class="icon"
             />
             <p>
-              <a
-                href="https://www.linkedin.com/in/punjayawick15/"
-                target="_blank"
-                >punjayawick15</a
+              <a href="https://www.linkedin.com/in/punjaya/" target="_blank"
+                >punjaya</a
               >
             </p>
           </div>

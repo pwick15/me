@@ -8,7 +8,7 @@ Here is the extracted and structured content of your CV, formatted cleanly in Ma
 * **Role:** Mechatronics Engineer
 * **Phone:** +61 421 164 985
 * **Email:** punjayawick@gmail.com
-* **LinkedIn:** [linkedin.com/in/punjayawick15]
+* **LinkedIn:** [linkedin.com/in/punjaya]
 * **GitHub:** [github.com/pwick15]
 * **Portfolio:** punjaya.com
 * **Location:** ACT, Australia

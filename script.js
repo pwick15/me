@@ -241,7 +241,7 @@ const RAG_DATABASE = [
     response:
       "You can easily connect with Punjaya:\n\n" +
       "• **Email**: [punjayawick@gmail.com](mailto:punjayawick@gmail.com)\n" +
-      "• **LinkedIn**: [linkedin.com/in/punjayawick15](https://www.linkedin.com/in/punjayawick15/)\n" +
+      "• **LinkedIn**: [linkedin.com/in/punjaya](https://www.linkedin.com/in/punjaya/)\n" +
       "• **GitHub**: [github.com/pwick15](https://github.com/pwick15)\n\n" +
       "Feel free to send an email or connect on LinkedIn to discuss collaborations!",
   },
@@ -354,19 +354,19 @@ function populateCompanyPrompt() {
   const input = document.getElementById("chat-input");
   const tipContainer = document.querySelector(".hot-tip-container");
   if (!input) return;
-  
+
   const promptStr = "How well would Punjaya fit with [YOUR COMPANY]?";
   input.value = promptStr;
   input.focus();
-  
+
   // Force compression by temporarily disabling hover state
   if (tipContainer) {
-    tipContainer.style.pointerEvents = 'none';
+    tipContainer.style.pointerEvents = "none";
     setTimeout(() => {
-      tipContainer.style.pointerEvents = 'auto';
+      tipContainer.style.pointerEvents = "auto";
     }, 500);
   }
-  
+
   const start = promptStr.indexOf("[YOUR COMPANY]");
   const end = start + "[YOUR COMPANY]".length;
   setTimeout(() => {
