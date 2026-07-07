@@ -1794,47 +1794,9 @@ footer p {
     height: 250px;
     margin: 0 auto;
   }
+  .floating-prompts-container,
   .floating-prompt {
-    white-space: normal;
-    font-size: 0.65rem;
-    padding: 0.4rem 0.8rem;
-    max-width: 70%;
-  }
-  .floating-prompts-container {
-    width: 120%;
-    left: -10%;
-  }
-  .prompt-1 {
-    top: 2%;
-    left: 5%;
-  }
-  .prompt-2 {
-    top: 2%;
-    right: 5%;
-    left: auto;
-  }
-  .prompt-3 {
-    bottom: -5%;
-    left: 8%;
-    top: auto;
-  }
-  .prompt-4 {
-    bottom: -8%;
-    right: 5%;
-    top: auto;
-    left: auto;
-  }
-  .prompt-5 {
-    top: 2%;
-    left: 5%;
-    bottom: auto;
-    right: auto;
-  }
-  .prompt-6 {
-    top: 2%;
-    right: 5%;
-    left: auto;
-    bottom: auto;
+    display: none !important;
   }
   .section-container {
     grid-template-columns: 1fr;
@@ -1859,11 +1821,25 @@ footer p {
     margin-bottom: 2rem;
   }
   .section__pic-container {
-    width: 200px;
-    height: 200px;
+    width: 240px;
+    height: 240px;
   }
-  .ai-search-title {
-    font-size: 2rem;
+  .ai-search-title,
+  .ai-search-subtitle {
+    display: none;
+  }
+  #profile {
+    min-height: auto;
+    padding-top: 16vh;
+    padding-bottom: 1rem;
+  }
+  .hero-container {
+    gap: 1.2rem;
+  }
+  #ai-search-segment {
+    min-height: auto;
+    padding: 1.5rem 5% 8vh;
+    margin-top: 0;
   }
   .floating-prompts-container {
     display: none;
@@ -1907,7 +1883,7 @@ footer p {
     width: 92%;
     padding: 0;
     height: 54px;
-    top: 15px;
+    top: 45px;
   }
   .nav-links {
     gap: 0.65rem;
