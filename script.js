@@ -165,8 +165,7 @@ const RAG_DATABASE = [
       "• **Computer Vision & AI**: Python, OpenCV (Experienced), PyTorch, TensorFlow, C++ (Intermediate).\n" +
       "• **Embedded Systems**: ROS/ROS2, C, UART | I2C | CAN | UDP (Intermediate), Verilog, Altium Designer.\n" +
       "• **Control Systems**: GPS-Denied Navigation, State Estimation, SLAM, ArduPilot, State Machines.\n" +
-      "• **Software Dev**: Git, Linux, Vim/Neovim, Docker, HTML/CSS/JS.\n" +
-      "• **Data Analysis**: NumPy, Pandas, Plotly, Matplotlib, Seaborn.",
+      "• **Software Dev**: Git, Linux, Vim/Neovim, Docker, HTML/CSS/JS.",
   },
   {
     keywords: [
