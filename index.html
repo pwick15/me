@@ -972,210 +972,49 @@
     <section id="experience">
       <p class="section__text__p1">Explore My</p>
       <h1 class="title">Skills</h1>
-      <div class="skills-grid">
-        <!-- CATEGORY 1 -->
-        <div class="details-container reveal">
-          <h2 class="experience-sub-title">AI & Computer Vision</h2>
-          <div class="article-container">
-            <article>
-              <img
-                src="./assets/icons/tech-claude-code.png"
-                alt="Skill icon"
-                class="icon"
-                loading="lazy"
-              />
-              <div>
-                <h3>Claude Code (& similar)</h3>
-                <p>Intermediate</p>
-              </div>
-            </article>
-            <article>
-              <img
-                src="./assets/icons/tech-langchain.svg"
-                alt="Skill icon"
-                class="icon"
-                loading="lazy"
-              />
-              <div>
-                <h3>LangChain</h3>
-                <p>Experienced</p>
-              </div>
-            </article>
-
-            <article>
-              <img
-                src="./assets/icons/tech-cpp.svg"
-                alt="Skill icon"
-                class="icon"
-                loading="lazy"
-              />
-              <div>
-                <h3>C++</h3>
-                <p>Intermediate</p>
-              </div>
-            </article>
-            <article>
-              <img
-                src="./assets/icons/tech-opencv.svg"
-                alt="Skill icon"
-                class="icon"
-                loading="lazy"
-              />
-              <div>
-                <h3>OpenCV</h3>
-                <p>Experienced</p>
-              </div>
-            </article>
-            <article>
-              <img
-                src="./assets/icons/tech-pytorch.svg"
-                alt="Skill icon"
-                class="icon"
-                loading="lazy"
-              />
-              <div>
-                <h3>PyTorch</h3>
-                <p>Intermediate</p>
-              </div>
-            </article>
+                  <div class="skills-widget" id="skills-widget">
+        <div class="skills-tabs">
+          <button class="tab-btn active animating" data-target="panel-ai">AI & Computer Vision</button>
+          <button class="tab-btn" data-target="panel-robo">Robotics</button>
+          <button class="tab-btn" data-target="panel-soft">Software Development</button>
+        </div>
+        
+        <div class="skills-content">
+          <!-- AI Panel -->
+          <div class="skill-panel active" id="panel-ai">
+            <div class="skill-badge"><img src="./assets/icons/tech-python-color.svg" alt="Python" class="skill-icon"><span>Python</span></div>
+            <div class="skill-badge"><img src="./assets/icons/tech-cpp.svg" alt="C++" class="skill-icon"><span>C++</span></div>
+            <div class="skill-badge"><img src="./assets/icons/tech-opencv.svg" alt="OpenCV" class="skill-icon"><span>OpenCV</span></div>
+            <div class="skill-badge"><img src="./assets/icons/tech-pytorch.svg" alt="PyTorch" class="skill-icon"><span>PyTorch</span></div>
+            <div class="skill-badge"><img src="./assets/icons/tech-numpy.svg" alt="NumPy" class="skill-icon"><span>NumPy</span></div>
+            <div class="skill-badge"><img src="./assets/icons/tech-langchain.svg" alt="LangChain" class="skill-icon"><span>LangChain</span></div>
+            <div class="skill-badge"><img src="./assets/icons/tech-langchain.svg" alt="LangSmith/Evals" class="skill-icon"><span>LangSmith / Evals</span></div>
+            <div class="skill-badge"><img src="./assets/icons/tech-ollama-white.svg" alt="Ollama" class="skill-icon"><span>Ollama</span></div>
+            <div class="skill-badge"><img src="./assets/icons/tech-claude-code.png" alt="Claude Code" class="skill-icon"><span>Claude Code</span></div>
+          </div>
+          
+          <!-- Robotics Panel -->
+          <div class="skill-panel" id="panel-robo">
+            <div class="skill-badge"><img src="./assets/icons/tech-ros-white.svg" alt="ROS" class="skill-icon"><span>ROS</span></div>
+            <div class="skill-badge"><img src="./assets/icons/tech-stm32.png" alt="STM32" class="skill-icon"><span>STM32</span></div>
+            <div class="skill-badge"><img src="./assets/icons/tech-gazebo.svg" alt="Gazebo" class="skill-icon"><span>Gazebo</span></div>
+            <div class="skill-badge"><img src="./assets/icons/tech-altium.png" alt="Altium Designer" class="skill-icon"><span>Altium Designer</span></div>
+            <div class="skill-badge"><img src="./assets/icons/tech-ardupilot.png" alt="ArduPilot" class="skill-icon"><span>ArduPilot</span></div>
+          </div>
+          
+          <!-- Software Panel -->
+          <div class="skill-panel" id="panel-soft">
+            <div class="skill-badge"><img src="./assets/icons/tech-git.svg" alt="Git" class="skill-icon"><span>Git</span></div>
+            <div class="skill-badge"><img src="./assets/icons/tech-linux.svg" alt="Linux" class="skill-icon"><span>Linux</span></div>
+            <div class="skill-badge"><img src="./assets/icons/tech-docker.svg" alt="Docker" class="skill-icon"><span>Docker</span></div>
+            <div class="skill-badge"><img src="./assets/icons/tech-github-actions-color.svg" alt="GitHub Actions" class="skill-icon"><span>CI/CD</span></div>
+            <div class="skill-badge"><img src="./assets/icons/tech-cmake-color.svg" alt="CMake" class="skill-icon"><span>CMake</span></div>
           </div>
         </div>
-
-        <!-- CATEGORY 2 -->
-        <div class="details-container reveal">
-          <h2 class="experience-sub-title">Robotics</h2>
-          <div class="article-container">
-            <article>
-              <img
-                src="./assets/icons/tech-ros-white.svg"
-                alt="Skill icon"
-                class="icon"
-                loading="lazy"
-              />
-              <div>
-                <h3>ROS</h3>
-                <p>Intermediate</p>
-              </div>
-            </article>
-            <article>
-              <img
-                src="./assets/icons/tech-stm32.png"
-                alt="Skill icon"
-                class="icon"
-                loading="lazy"
-              />
-              <div>
-                <h3>STM32</h3>
-                <p>Beginner</p>
-              </div>
-            </article>
-            <article>
-              <img
-                src="./assets/icons/tech-gazebo.svg"
-                alt="Skill icon"
-                class="icon"
-                loading="lazy"
-              />
-              <div>
-                <h3>Gazebo</h3>
-                <p>Intermediate</p>
-              </div>
-            </article>
-            <article>
-              <img
-                src="./assets/icons/tech-altium.png"
-                alt="Skill icon"
-                class="icon"
-                loading="lazy"
-              />
-              <div>
-                <h3>Altium Designer</h3>
-                <p>Entry-Level</p>
-              </div>
-            </article>
-            <article>
-              <img
-                src="./assets/icons/tech-ardupilot.png"
-                alt="Skill icon"
-                class="icon"
-                loading="lazy"
-              />
-              <div>
-                <h3>ArduPilot</h3>
-                <p>Intermediate</p>
-              </div>
-            </article>
-          </div>
+        <!-- Fallback text for ATS and SEO -->
+        <div class="skills-fallback sr-only" style="display: none;">
+          Keywords: Python, C++, OpenCV, PyTorch, NumPy, LangChain, LangSmith, Evals, Ollama, Claude Code, ROS, STM32, Gazebo, Altium Designer, ArduPilot, Git, Linux, Docker, GitHub Actions, CI/CD, CMake
         </div>
-
-        <!-- CATEGORY 4 -->
-        <div class="details-container reveal">
-          <h2 class="experience-sub-title">Software Development</h2>
-          <div class="article-container">
-            <article>
-              <img
-                src="./assets/icons/tech-git.svg"
-                alt="Skill icon"
-                class="icon"
-                loading="lazy"
-              />
-              <div>
-                <h3>Git</h3>
-                <p>Experienced</p>
-              </div>
-            </article>
-            <article>
-              <img
-                src="./assets/icons/tech-linux.svg"
-                alt="Skill icon"
-                class="icon"
-                loading="lazy"
-              />
-              <div>
-                <h3>Linux</h3>
-                <p>Experienced</p>
-              </div>
-            </article>
-            <article>
-              <img
-                src="./assets/icons/tech-nodejs.png"
-                alt="Skill icon"
-                class="icon"
-                loading="lazy"
-              />
-              <div>
-                <h3>Node.js, npm</h3>
-                <p>Intermediate</p>
-              </div>
-            </article>
-            <article>
-              <img
-                src="./assets/icons/tech-docker.svg"
-                alt="Skill icon"
-                class="icon"
-                loading="lazy"
-              />
-              <div>
-                <h3>Docker</h3>
-                <p>Intermediate</p>
-              </div>
-            </article>
-            <article>
-              <img
-                src="./assets/icons/tech-vim.svg"
-                alt="Skill icon"
-                class="icon"
-                loading="lazy"
-              />
-              <div>
-                <h3>Vim</h3>
-                <p>Experienced</p>
-              </div>
-            </article>
-          </div>
-        </div>
-
-
       </div>
     </section>
 
