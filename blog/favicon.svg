@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <style>
+    .text-p {
+      font-family: 'Outfit', 'Inter', system-ui, -apple-system, sans-serif;
+      font-weight: 800;
+      font-size: 78px;
+      fill: #ffffff;
+    }
+    .dot {
+      fill: #ffffff;
+    }
+  </style>
+  <!-- Visually centered letter 'p' and dot -->
+  <text x="42" y="72" text-anchor="middle" class="text-p">p</text>
+  <circle cx="72" cy="65" r="7.5" class="dot" />
+</svg>

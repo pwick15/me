@@ -29,3 +29,7 @@ yarn-error.log*
 snap-scrolling-example
 archive/
 
+
+# Working files (source material, design prototypes)
+sup/
+prototypes/

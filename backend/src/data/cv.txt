@@ -16,11 +16,25 @@ Here is the extracted and structured content of your CV, formatted cleanly in Ma
 
 ---
 
+## Current Work (2026)
+
+* Goes by "Punji".
+* **AI control research** (BlueDot Impact Technical AI Safety Project, since Oct 2026): a like-for-like comparison of AI control methods, scored on safety, usefulness and cost, then research into what to do once a model is caught.
+* **Writing** (since Sep 2026): The Pivot's Archive on Substack (thepivotsarchive.substack.com), explaining AI to non-technical readers, with cut-paper interactive versions at blog.punjaya.com.
+* **Pivotr Studio** (pivotr.studio): his web design studio for small businesses. No ongoing fees, and one free build a month for a non-profit.
+* **Composure** (Oct 2026): a brain-dump, Eisenhower-matrix prioritisation, weekly planning and focus-session app. composure-dpt.pages.dev
+* **Draw Greenr** (Sep 2026): a free garden and landscape planner that lets you upload your own artwork. draw-greenr.pages.dev
+* Early 2026: a deliberate career break, including five months of travel, to work out where he can make the most difference.
+
+---
+
 ## Work Experience
 
 ### AI Engineer
 
-**Phoenix ICT Solutions** | 2025 – Present
+**Phoenix ICT Solutions** | 2025 – 2026
+
+* **Product:** Zara LM, sovereign AI for Australian Government teams
 
 * **Tech Stack:** LangChain, Ollama, FastAPI, Docker, Django, Azure, Flutter
 * Engineering an AI application, leveraging LLMs to implement RAG (LangChain, FastAPI, Flutter, Azure).
@@ -32,7 +46,7 @@ Here is the extracted and structured content of your CV, formatted cleanly in Ma
 
 ### Engineering Fellow
 
-**Engineering for Change & Resham Sutra** | 2025 – Present
+**Engineering for Change & Resham Sutra** | 2025
 
 * **Tech Stack:** React Native, Figma, PHP, Python
 

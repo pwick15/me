@@ -2,1211 +2,608 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Hi, I'm Punjaya</title>
+    <title>Punjaya Wickramasinghe</title>
     <meta
       name="description"
-      content="Portfolio of Punjaya Wickramasinghe - Mechatronics & Software Engineer. First Class Honours from ANU. Australian AI Awards Finalist 2024."
+      content="Mechatronics engineer working on AI safety. AI control research, essays about AI for everyone, Pivotr Studio, and a timeline of things I've built."
     />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://www.punjaya.com/" />
+    <meta property="og:title" content="Hi, I'm Punji" />
+    <meta
+      property="og:description"
+      content="Mechatronics engineer working on AI safety. Here's what I've been building."
+    />
+    <meta property="og:image" content="https://www.punjaya.com/assets/images/og.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
     <link rel="icon" type="image/svg+xml" href="./assets/icons/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&family=Bricolage+Grotesque:opsz,wght@12..96,700..800&family=Figtree:wght@400;700&display=swap"
+    />
     <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="mediaqueries.css" />
+    <script>
+      document.documentElement.classList.add("js");
+    </script>
   </head>
 
   <body>
-    <!-- DESKTOP NAVIGATION -->
-    <nav id="desktop-nav">
-      <ul class="nav-links">
-        <li><a href="#profile">Home</a></li>
-        <li>
-          <a
-            href="#ai-search-segment"
-            class="ask-ai-nav"
-            onclick="focusChat(event)"
-            >Ask AI</a
-          >
-        </li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#honours">Honours</a></li>
-        <li><a href="#experience">Skills</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-    </nav>
+    <!-- NAV -->
+    <header class="nav" id="nav">
+      <div class="wrap">
+        <a class="brand" href="#profile">
+          <img src="./assets/images/img-avatar.webp" alt="" width="32" height="32" />
+          <span>Punjaya Wickramasinghe</span>
+        </a>
+        <nav class="nav-links">
+          <a href="#work">Work</a>
+          <a href="#honours" class="hide-sm">Honours</a>
+          <a href="#about">About</a>
+          <a href="#contact" class="cta">Contact</a>
+        </nav>
+      </div>
+    </header>
 
-    <!-- HERO / PROFILE SECTION -->
-    <section id="profile">
-      <div class="hero-container reveal">
-        <div class="section__pic-container">
-          <img
-            src="./assets/images/img-profile.webp"
-            alt="Punjaya Wickramasinghe Profile Picture"
-          />
-        </div>
-        <div class="section__text">
-          <p class="section__text__p1">Hi, I'm</p>
-          <h1 class="title profile-title">Punjaya</h1>
-          <p class="section__text__p2" id="typed-text">
-            <span class="typing-cursor"></span>
+    <main class="wrap">
+      <!-- HERO -->
+      <section id="profile" class="hero">
+        <div class="hero-text">
+          <span class="label">Mechatronics engineer · AI safety</span>
+          <h1>Hi, I'm <i>Punji</i></h1>
+          <p class="intro">
+            I've built AI that flies on drones and AI that runs without the
+            internet. Now I research how to keep frontier AI in check, and
+            explain it to people who don't work in it.
           </p>
-
-          <div class="btn-container">
-            <button class="btn btn-color-1" id="download-cv-btn">
-              Download CV
-            </button>
-            <button
-              class="btn btn-color-2"
-              onclick="location.href = '#contact'"
-            >
-              Contact Info
-            </button>
+          <div class="links">
+            <a href="mailto:punjayawick@gmail.com">Email</a>
+            <a href="https://www.linkedin.com/in/punjaya/" target="_blank" rel="noopener">LinkedIn</a>
+            <a href="https://github.com/pwick15" target="_blank" rel="noopener">GitHub</a>
+            <a href="https://thepivotsarchive.substack.com" target="_blank" rel="noopener">Substack</a>
+            <a href="./assets/documents/doc-resume.pdf" target="_blank" rel="noopener">CV</a>
           </div>
 
-          <div id="socials-container">
-            <img
-              src="./assets/icons/icon-linkedin.png"
-              alt="My LinkedIn profile"
-              class="icon"
-              onclick="
-                window.open('https://www.linkedin.com/in/punjaya/', '_blank')
-              "
-            />
-            <img
-              src="./assets/icons/icon-github.png"
-              alt="My GitHub profile"
-              class="icon"
-              onclick="window.open('https://github.com/pwick15', '_blank')"
-            />
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- AI SEARCH SEGMENT -->
-    <section id="ai-search-segment">
-      <div class="ai-search-wrapper">
-        <h2 class="ai-search-title">Ask AI</h2>
-        <p class="ai-search-subtitle">
-          Want to know something about my work? Ask away!
-        </p>
-
-        <div class="floating-prompts-container">
-          <div class="floating-prompt">
-            What experience does Punjaya have with robotics?
-          </div>
-          <div class="floating-prompt">
-            What AI &amp; computer vision tools has he worked with?
-          </div>
-          <div class="floating-prompt">
-            How well would he fit my organisation?
-          </div>
-          <div class="floating-prompt">
-            What research papers has he published?
-          </div>
-          <div class="floating-prompt">
-            Tell me about his engineering projects
-          </div>
-          <div class="floating-prompt">
-            What languages &amp; frameworks does he know?
-          </div>
-        </div>
-
-        <div class="ai-chat-bar-container">
-          <div class="ai-chat-input-wrapper">
-            <div class="ai-chat-bar">
-              <input
-                type="text"
-                class="chat-bar-input"
-                id="chat-input"
-                placeholder="Ask any question about my work..."
-                onkeypress="handleKeyPress(event)"
-              />
-              <button class="chat-bar-send" onclick="sendMessage()">
-                <svg viewBox="0 0 24 24">
-                  <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"></path>
-                </svg>
-              </button>
-            </div>
-          </div>
-
-          <!-- Rate Limit Warning (Hidden by default) -->
-          <div
-            id="rate-limit-warning"
-            class="rate-limit-warning"
-            style="
-              display: none;
-              text-align: center;
-              font-size: 0.85rem;
-              color: #ff6b6b;
-              margin-top: 10px;
-              font-weight: 500;
-            "
-          ></div>
-        </div>
-
-        <!-- TYPOGRAPHIC AI RESPONSE PANEL -->
-        <div class="ai-response-panel" id="ai-response-panel">
-          <div class="response-content" id="chat-history">
-            <!-- Streaming RAG response goes here -->
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ABOUT SECTION -->
-    <section id="about">
-      <p class="section__text__p1">Get To Know More</p>
-      <h1 class="title">About Me</h1>
-      <div class="section-container">
-        <div class="about-left-container reveal">
-          <div class="about__pic-container">
-            <img
-              src="./assets/images/img-about.webp"
-              alt="Profile picture"
-              class="about-pic"
-              loading="lazy"
-            />
-          </div>
-          <div class="about-education-card">
-            <div class="education-card-content">
-              <div class="edu-row">
-                <span class="edu-badge degree-badge"
-                  >BEng (R&D) @ ANU (First Class Hons.)</span
-                >
-              </div>
-              <div class="edu-row majors-row">
-                <div class="edu-spec-item">
-                  <span class="edu-label">Major</span>
-                  <span class="edu-value">Mechatronics</span>
-                </div>
-                <div class="edu-spec-divider"></div>
-                <div class="edu-spec-item">
-                  <span class="edu-label">Minor</span>
-                  <span class="edu-value">Computer Science</span>
-                </div>
-              </div>
-              <div class="edu-row stats-row">
-                <div class="stat-pill">
-                  <span class="stat-label">GPA</span>
-                  <span class="stat-val">6.72 / 7.0</span>
-                </div>
-                <div class="stat-pill">
-                  <span class="stat-label">ATAR</span>
-                  <span class="stat-val">99.20</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="about-details-container">
-          <div class="text-container reveal">
-            <div class="text-details-container">
-              <h2>
-                <svg
-                  viewBox="0 0 24 24"
-                  width="18"
-                  height="18"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  fill="none"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  style="display: inline-block; vertical-align: middle"
-                >
-                  <path
-                    d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A7.5 7.5 0 0 0 9 2.5a7.5 7.5 0 0 0-1.5 5c0 1.3.5 2.6 1.5 3.5.8.8 1.3 1.5 1.5 2.5"
-                  ></path>
-                  <path d="M9 18h6"></path>
-                  <path d="M10 22h4"></path>
-                </svg>
-                Introduction
-              </h2>
-              <p>
-                Fascinated by
-                <b>robotics</b> systems—specifically how automated systems can
-                help create a more <b>sustainable and fair future</b> for all.
-                Fueled by curiosity, a love for learning and a commitment to
-                solving interesting problems while
-                <b>building lasting partnerships</b>.
-              </p>
-            </div>
-            <div class="text-details-container">
-              <h2>
-                <svg
-                  viewBox="0 0 24 24"
-                  width="18"
-                  height="18"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  fill="none"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  style="display: inline-block; vertical-align: middle"
-                >
-                  <circle cx="12" cy="12" r="10"></circle>
-                  <circle cx="12" cy="12" r="6"></circle>
-                  <circle cx="12" cy="12" r="2"></circle>
-                </svg>
-                Mission
-              </h2>
-              <p>
-                Dedicated to creating robotics/software solutions to improve
-                lives and tackle challenges aligned with the
-                <b>UN Sustainable Development Goals</b>. My ultimate dream is
-                helping to uplift my home country, Sri Lanka, through
-                <b>humanitarian engineering efforts</b>.
-              </p>
-            </div>
-            <div class="text-details-container">
-              <h2>
-                <svg
-                  viewBox="0 0 24 24"
-                  width="18"
-                  height="18"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  fill="none"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  style="display: inline-block; vertical-align: middle"
-                >
-                  <path
-                    d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"
-                  ></path>
-                </svg>
-                Interests
-              </h2>
-              <p>
-                Huge <b>football lover</b> (Visca Barça!) and sports phenatic –
-                running, tennis, pickleball, you name it! Love music, board
-                games and travel. Otherwise, I spend most of my spare time
-                <b>exploring new ideas</b> to broaden my perspective, be it in
-                technology, human psychology, history, game theory etc.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- PROJECTS SECTION -->
-    <section id="projects">
-      <p class="section__text__p1">Browse My Recent</p>
-      <h1 class="title">Projects</h1>
-
-      <!-- CATEGORY 1: Academic & Professional -->
-      <h2 class="project-category-title">Professional & Academic</h2>
-      <div class="projects-grid">
-        <!-- Project: Agentic AI -->
-        <div class="project-card reveal">
-          <div class="project-img-wrapper">
-            <img
-              src="./assets/projects/project-air-gapped-ai-agentic-solution.webp"
-              alt="AI Copilot (Air-Gapped)"
-              class="project-img"
-              loading="lazy"
-            />
-          </div>
-          <div class="project-info-wrapper">
-            <h2 class="project-title">AI Copilot (Air-Gapped)</h2>
-            <div class="skills-container">
-              <span class="skill">System Design</span>
-              <span class="skill">Product Ownership</span>
-              <span class="skill">Airgapped Deployment</span>
-            </div>
-            <p>
-              Multi-purpose, agentic AI system, with RAG capabilities, allowing
-              question answering, analytics, figure generation, report
-              generation etc.
-            </p>
-          </div>
-        </div>
-
-        <!-- Project: AI Voice Assistant -->
-        <div class="project-card reveal">
-          <div class="project-img-wrapper">
-            <img
-              src="./assets/projects/project-ai-voice-assistant.webp"
-              alt="AI Voice Assistant"
-              class="project-img"
-              loading="lazy"
-            />
-          </div>
-          <div class="project-info-wrapper">
-            <h2 class="project-title">Offline AI Voice Assistant</h2>
-            <div class="skills-container">
-              <span class="skill">Human Centred Design</span>
-              <span class="skill">Resource-Constrained Dev</span>
-              <span class="skill">System Design</span>
-            </div>
-            <p>
-              Lightweight edge-optimised AI voice assistant for a textile
-              marketplace app in India to empower women to overcome their
-              digital literacy limitations and lead more independent, autonomous
-              lives.
-            </p>
-            <div class="btn-container">
-              <button
-                class="btn btn-color-2"
-                onclick="
-                  window.open(
-                    'https://www.engineeringforchange.org/projects/voice-recognition-feature-for-rural-textile-producers',
-                    '_blank',
-                  )
-                "
-              >
-                View Details
-              </button>
+          <form class="ask" id="ask-form" autocomplete="off">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true">
+              <path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z" />
+            </svg>
+            <input id="chat-input" type="text" aria-label="Ask an AI about my work" placeholder="Ask an AI about my work" />
+            <button type="submit">Ask</button>
+          </form>
+          <div class="chat" id="chat" hidden>
+            <div id="chat-history"></div>
+            <div class="chat-foot">
+              <span id="rate-limit-warning"></span>
+              <button type="button" id="chat-clear">Clear</button>
             </div>
           </div>
         </div>
 
-        <!-- Project: AI Change Detection -->
-        <div class="project-card reveal">
-          <div class="project-img-wrapper">
-            <img
-              src="./assets/projects/project-change-detection.webp"
-              alt="AI Change Detection System"
-              class="project-img"
-              loading="lazy"
-            />
-          </div>
-          <div class="project-info-wrapper">
-            <h2 class="project-title">Change Detection Platform</h2>
-            <div class="skills-container">
-              <span class="skill">Unsupervised Deep Learning Models</span>
-              <span class="skill">ROS</span>
-              <span class="skill">Image Processing</span>
-            </div>
-            <p>
-              Near real-time edge-optimised solution for AI change detection
-              with a drone. Used for monitoring an area of interest with fused
-              sensor measurements (camera and LiDAR).
-            </p>
-          </div>
-        </div>
-
-        <!-- Project: Battery Management System -->
-        <div class="project-card reveal">
-          <div class="project-img-wrapper">
-            <img
-              src="./assets/projects/project-bms.webp"
-              alt="Battery Management System"
-              class="project-img"
-              loading="lazy"
-            />
-          </div>
-          <div class="project-info-wrapper">
-            <h2 class="project-title">Battery Management System</h2>
-            <div class="skills-container">
-              <span class="skill">State Machines</span>
-              <span class="skill">Embedded Firmware Dev</span>
-              <span class="skill">I2C/PMBus</span>
-            </div>
-            <p>
-              Programmed firmware for a BMS, to allow intelligent
-              charging/discharging of batteries through precise monitoring, to
-              ensure safe and efficient operation.
-            </p>
-          </div>
-        </div>
-
-        <!-- Project: GPS-Denied Nav -->
-        <div class="project-card reveal">
-          <div class="project-img-wrapper">
-            <img
-              src="./assets/projects/project-gps-denied.webp"
-              alt="GPS-Denied Navigation Integration"
-              class="project-img"
-              loading="lazy"
-            />
-          </div>
-          <div class="project-info-wrapper">
-            <h2 class="project-title">GPS-Denied Navigation (Sim)</h2>
-            <div class="skills-container">
-              <span class="skill">Visual Inertial Navigation</span>
-              <span class="skill">Data Driven Evaluation</span>
-              <span class="skill">DevOps</span>
-            </div>
-            <p>
-              Successfully tuned and integrated an open-source state estimator
-              into the AirSim simulator, as early stage efforts to develop
-              capability for company drones to navigate without GPS signals.
-            </p>
-          </div>
-        </div>
-
-        <!-- Project: Robust Inertial Nav -->
-        <div class="project-card reveal">
-          <div class="project-img-wrapper">
-            <img
-              src="./assets/projects/project-cins.webp"
-              alt="Robust Inertial Navigation System"
-              class="project-img"
-              loading="lazy"
-            />
-          </div>
-          <div class="project-info-wrapper">
-            <h2 class="project-title">Robust Inertial Navigation</h2>
-            <div class="skills-container">
-              <span class="skill">Algorithm Implementation</span>
-              <span class="skill">Sensor Fusion</span>
-              <span class="skill">Mathematical Derivation</span>
-            </div>
-            <p>
-              The first observer to feature almost global asymptotic and local
-              exponential stability for INS with delayed GNSS.
-            </p>
-            <div class="btn-container">
-              <button
-                class="btn btn-journal"
-                onclick="
-                  window.open(
-                    'https://www.sciencedirect.com/science/article/pii/S0947358024001079',
-                    '_blank',
-                  )
-                "
-              >
-                ECC Publication
-              </button>
-              <button
-                class="btn btn-color-2"
-                onclick="
-                  window.open(
-                    './assets/documents/doc-paper-cins-thesis.pdf',
-                    '_blank',
-                  )
-                "
-              >
-                My Thesis
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <!-- Project: Acoustic Emotion Rec -->
-        <div class="project-card reveal">
-          <div class="project-img-wrapper">
-            <img
-              src="./assets/projects/project-acoustic-emotion.webp"
-              alt="Acoustic Emotion Recognition with AI"
-              class="project-img"
-              loading="lazy"
-            />
-          </div>
-          <div class="project-info-wrapper">
-            <h2 class="project-title">Acoustic Emotion Recognition</h2>
-            <div class="skills-container">
-              <span class="skill">Machine Learning</span>
-              <span class="skill">Dataset Creation</span>
-              <span class="skill">Data Visualisation</span>
-            </div>
-            <p>
-              Early research into using deep and traditional machine learning
-              algorithms for detecting human emotions through audio signals.
-            </p>
-            <div class="btn-container">
-              <button
-                class="btn btn-color-2"
-                onclick="
-                  window.open(
-                    './assets/documents/doc-paper-acoustic-emotion-1.pdf',
-                    '_blank',
-                  )
-                "
-              >
-                Report 1
-              </button>
-              <button
-                class="btn btn-color-2"
-                onclick="
-                  window.open(
-                    './assets/documents/doc-paper-acoustic-emotion-2.pdf',
-                    '_blank',
-                  )
-                "
-              >
-                Report 2
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- CATEGORY 2: Personal Projects -->
-      <h2 class="project-category-title">Personal Projects</h2>
-      <div class="projects-grid">
-        <!-- Project: Trip Planner -->
-        <div class="project-card reveal">
-          <div class="project-img-wrapper">
-            <img
-              src="./assets/projects/project-trip-planner.webp"
-              alt="Trip Planner"
-              class="project-img"
-              loading="lazy"
-            />
-          </div>
-          <div class="project-info-wrapper">
-            <h2 class="project-title">Trip Planner</h2>
-            <div class="skills-container">
-              <span class="skill">UX Design</span>
-              <span class="skill">Rapid Prototyping</span>
-              <span class="skill">React Dev</span>
-            </div>
-            <p>
-              Calendar app made specifically for planning trips. Allows users to
-              visualise the physical route they have planned on a dynamic map,
-              and receive various insights on their plans.
-            </p>
-            <div class="btn-container">
-              <button
-                class="btn btn-color-2 btn-github"
-                onclick="
-                  window.open(
-                    'https://github.com/pwick15/trip-planner',
-                    '_blank',
-                  )
-                "
-                aria-label="GitHub Repository"
-              >
-                <img src="./assets/icons/icon-github.png" alt="GitHub" />
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <!-- Project: workaway.ai -->
-        <div class="project-card reveal">
-          <div class="project-img-wrapper">
-            <img
-              src="./assets/projects/project-workaway-dot-ai.webp"
-              alt="workaway.ai"
-              class="project-img"
-              loading="lazy"
-            />
-          </div>
-          <div class="project-info-wrapper">
-            <h2 class="project-title">workaway.ai</h2>
-            <div class="skills-container">
-              <span class="skill">Web Scraping</span>
-              <span class="skill">Large Language Models</span>
-              <span class="skill">Automation</span>
-            </div>
-            <p>
-              AI-based scraper for the Workaway website, designed to fast-track
-              host selection by filtering opportunities that match specific
-              travel preferences and criteria.
-            </p>
-            <div class="btn-container">
-              <button
-                class="btn btn-color-2 btn-github"
-                onclick="
-                  window.open(
-                    'https://github.com/pwick15/workaway.ai',
-                    '_blank',
-                  )
-                "
-                aria-label="GitHub Repository"
-              >
-                <img src="./assets/icons/icon-github.png" alt="GitHub" />
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <!-- Project: EKF-SLAM Interactive 2D Simulator -->
-        <div class="project-card reveal">
-          <div class="project-img-wrapper">
-            <img
-              src="./assets/projects/project-ekf-slam-sim.webp"
-              alt="EKF-SLAM Interactive 2D Simulator"
-              class="project-img"
-              loading="lazy"
-            />
-          </div>
-          <div class="project-info-wrapper">
-            <h2 class="project-title">EKF-SLAM Simulator</h2>
-            <div class="skills-container">
-              <span class="skill">EKF-SLAM</span>
-              <span class="skill">Educational Tool</span>
-              <span class="skill">Live Telemetry</span>
-            </div>
-            <p>
-              Interactive simulator to help build an intuitive understanding of
-              EKF-SLAM. Models a rover following a track, and detecting
-              landmarks to map its environment and estimate pose under process
-              and measurement noise.
-            </p>
-            <div class="btn-container">
-              <button
-                class="btn btn-color-2 btn-github"
-                onclick="
-                  window.open(
-                    'https://github.com/pwick15/ekf-slam-sim',
-                    '_blank',
-                  )
-                "
-                aria-label="GitHub Repository"
-              >
-                <img src="./assets/icons/icon-github.png" alt="GitHub" />
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <!-- Project: travelbuddy. App -->
-        <div class="project-card reveal">
-          <div class="project-img-wrapper">
-            <img
-              src="./assets/projects/project-travelbuddy-dot.webp"
-              alt="travelbuddy."
-              class="project-img"
-              loading="lazy"
-            />
-          </div>
-          <div class="project-info-wrapper">
-            <h2 class="project-title">travelbuddy.</h2>
-            <div class="skills-container">
-              <span class="skill">Discord Bot Integration</span>
-              <span class="skill">LLM Parsing</span>
-              <span class="skill">UX Design</span>
-            </div>
-            <p>
-              <strong>Your global network, visualised</strong>. The app
-              transforms unstructured Discord messages about new acquaintances
-              into an interactive 3D globe. It also provides an interface to
-              track visited countries.
-            </p>
-            <div class="btn-container">
-              <button
-                class="btn btn-color-2 btn-github"
-                onclick="
-                  window.open(
-                    'https://github.com/pwick15/travelbuddy.',
-                    '_blank',
-                  )
-                "
-                aria-label="GitHub Repository"
-              >
-                <img src="./assets/icons/icon-github.png" alt="GitHub" />
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <!-- Project: Checkers Simulator -->
-        <div class="project-card reveal">
-          <div class="project-img-wrapper">
-            <img
-              src="./assets/projects/project-checkers-simulator.webp"
-              alt="Checkers Simulator"
-              class="project-img"
-              loading="lazy"
-            />
-          </div>
-          <div class="project-info-wrapper">
-            <h2 class="project-title">Checkers Simulator</h2>
-            <div class="skills-container">
-              <span class="skill">Algorithm Visualization</span>
-              <span class="skill">Minimax / Alpha-Beta</span>
-              <span class="skill">Educational Tool</span>
-            </div>
-            <p>
-              An educational checkers simulator developed to help users
-              visualise and understand the decision-making algorithms of basic
-              game engines, including Minimax search and alpha-beta pruning.
-            </p>
-            <div class="btn-container">
-              <button
-                class="btn btn-color-2 btn-github"
-                onclick="
-                  window.open(
-                    'https://github.com/pwick15/checkers-sim',
-                    '_blank',
-                  )
-                "
-                aria-label="GitHub Repository"
-              >
-                <img src="./assets/icons/icon-github.png" alt="GitHub" />
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <!-- Project: Combined XI Builder -->
-        <div class="project-card reveal">
-          <div class="project-img-wrapper">
-            <img
-              src="./assets/projects/project-combined-xi-builder.webp"
-              alt="Combined XI Builder"
-              class="project-img"
-              loading="lazy"
-            />
-          </div>
-          <div class="project-info-wrapper">
-            <h2 class="project-title">Combined XI Builder</h2>
-            <div class="skills-container">
-              <span class="skill">Web Scraping</span>
-              <span class="skill">Flask (Python)</span>
-              <span class="skill">Web Dev</span>
-            </div>
-            <p>
-              A fan-centric tool allowing users to generate a combined XI lineup
-              from two chosen football teams. The data is retrieved in live
-              time, so the player information remains up to date.
-            </p>
-            <div class="btn-container">
-              <button
-                class="btn btn-color-2 btn-github"
-                onclick="
-                  window.open(
-                    'https://github.com/pwick15/combined-xi-builder',
-                    '_blank',
-                  )
-                "
-                aria-label="GitHub Repository"
-              >
-                <img src="./assets/icons/icon-github.png" alt="GitHub" />
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <!-- Project: Games in Python -->
-        <div class="project-card reveal">
-          <div class="project-img-wrapper">
-            <img
-              src="./assets/projects/project-connect4-snake.webp"
-              alt="Games in Python"
-              class="project-img"
-              loading="lazy"
-            />
-          </div>
-          <div class="project-info-wrapper">
-            <h2 class="project-title">Games in Python</h2>
-            <div class="skills-container">
-              <span class="skill">Game Dev</span>
-              <span class="skill">OOP</span>
-              <span class="skill">Python GUI</span>
-            </div>
-            <p>
-              Early work to recreate classic games (Connect 4, Pong, and Snake)
-              in Python to demonstrate solid OOP fundamentals.
-            </p>
-            <div class="btn-container">
-              <button
-                class="btn btn-color-2 btn-github"
-                onclick="
-                  window.open('https://github.com/pwick15/games', '_blank')
-                "
-                aria-label="GitHub Repository"
-              >
-                <img src="./assets/icons/icon-github.png" alt="GitHub" />
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <!-- Project: Portfolio Website -->
-        <div class="project-card reveal">
-          <div class="project-img-wrapper">
-            <img
-              src="./assets/projects/project-portfolio.webp"
-              alt="Portfolio Website"
-              class="project-img"
-              loading="lazy"
-            />
-          </div>
-          <div class="project-info-wrapper">
-            <h2 class="project-title">Portfolio Website</h2>
-            <div class="skills-container">
-              <span class="skill">Web Hosting</span>
-              <span class="skill">Cloud Compute</span>
-              <span class="skill">Responsive Dev</span>
-            </div>
-            <p>A premium portfolio website that acts as an embelished CV.</p>
-            <div class="btn-container">
-              <button
-                class="btn btn-color-2 btn-github"
-                onclick="
-                  window.open(
-                    'https://github.com/pwick15/portfolio-website',
-                    '_blank',
-                  )
-                "
-                aria-label="GitHub Repository"
-              >
-                <img src="./assets/icons/icon-github.png" alt="GitHub" />
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- HONOURS SECTION -->
-    <section id="honours">
-      <p class="section__text__p1">Check Out My</p>
-      <h1 class="title">Honours & Academic Work</h1>
-      <div class="honours-layout">
-        <div class="honours-grid">
-          <!-- AWARD 1 -->
-          <div class="honour-card reveal">
-            <div class="honour-icon-container">
-              <img
-                src="./assets/icons/icon-experience.png"
-                alt="Award icon"
-                class="icon"
-                loading="lazy"
-              />
-            </div>
-            <div class="honour-info">
-              <h3>Australian AI Awards Finalist 2024</h3>
-              <p>
-                Selected as a national finalist for
-                <b>AI Innovator in Defence and National Security</b>.
-              </p>
-              <div class="btn-container">
-                <button
-                  class="btn btn-color-2"
-                  onclick="
-                    window.open(
-                      'https://australianaiawards.com.au/winners/2024-winners-and-finalists',
-                      '_blank',
-                    )
-                  "
-                >
-                  More Info
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <!-- AWARD 2 -->
-          <div class="honour-card reveal">
-            <div class="honour-icon-container">
-              <img
-                src="./assets/icons/icon-education.png"
-                alt="Journal icon"
-                class="icon"
-                loading="lazy"
-              />
-            </div>
-            <div class="honour-info">
-              <h3>European Journal of Control (Publication)</h3>
-              <p>
-                Co-authored:
-                <i
-                  >"Constructive synchronous observer design for inertial
-                  navigation with delayed GNSS measurements"</i
-                >.
-              </p>
-              <div class="btn-container">
-                <button
-                  class="btn btn-journal"
-                  onclick="
-                    window.open(
-                      'https://www.sciencedirect.com/science/article/pii/S0947358024001079',
-                      '_blank',
-                    )
-                  "
-                >
-                  ECC Publication
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <!-- AWARD 3 -->
-          <div class="honour-card reveal">
-            <div class="honour-icon-container">
-              <img
-                src="./assets/icons/icon-experience.png"
-                alt="Scholarship icon"
-                class="icon"
-                loading="lazy"
-              />
-            </div>
-            <div class="honour-info">
-              <h3>CECS R&D Excellence Scholarship</h3>
-              <p>
-                Awarded to high-performing research-stream engineering students
-                at the Australian National University (ANU).
-              </p>
-            </div>
-          </div>
-
-          <!-- AWARD 4 -->
-          <div class="honour-card reveal">
-            <div class="honour-icon-container">
-              <img
-                src="./assets/icons/icon-experience.png"
-                alt="Scholarship icon"
-                class="icon"
-                loading="lazy"
-              />
-            </div>
-            <div class="honour-info">
-              <h3>CECC Dickins Scholarship</h3>
-              <p>
-                Awarded to high-performing Engineering Honours students at the
-                Australian National University (ANU).
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <div class="honours__pic-container reveal">
+        <figure class="hero-photo">
           <img
-            src="./assets/images/img-awards.png"
-            alt="AI Awards photo"
-            class="awards-pic"
-            loading="lazy"
+            src="./assets/images/img-hero.webp"
+            alt="Punji smiling on a mountain ridge at sunrise"
+            width="880"
+            height="1100"
           />
-        </div>
+        </figure>
+      </section>
+
+      <div class="col">
+        <!-- WORK -->
+        <section id="work">
+          <div class="sec-h"><h2>Work</h2><span class="label">Newest first</span></div>
+
+          <!-- ======================= 2026 ======================= -->
+          <div class="year">
+            <h3>2026</h3>
+            <div>
+              <!-- AI control -->
+              <article class="entry" style="--c: #3b5bdb">
+                <div class="meta label">
+                  <span class="kind">AI safety research</span>
+                  <span class="live">Since Oct 2026</span>
+                </div>
+                <h4>The price of AI control</h4>
+                <p class="org">BlueDot Impact · Technical AI Safety Project</p>
+                <p class="why">
+                  AI labs can have a trusted model watch their most capable one
+                  and step in when something looks off. Few do it well, and cost
+                  is why: at frontier scale, even 1% overhead runs into
+                  billions.
+                </p>
+                <p>
+                  We're running the first like-for-like test of AI control
+                  methods: the same attackers and the same models for every
+                  method, scored on safety, usefulness and dollars. The result
+                  is a map of the best protection money can buy. Next, we take
+                  on the open problem of what to do once a model gets caught.
+                </p>
+                <div class="media">
+                  <div class="v v-control" role="img" aria-label="Chart of safety against usefulness for AI control methods, with a curve tracing the best trade-offs.">
+                    <svg viewBox="0 0 540 250">
+                      <line x1="60" x2="520" y1="70" y2="70" class="c-grid" />
+                      <line x1="60" x2="520" y1="130" y2="130" class="c-grid" />
+                      <line x1="60" x2="520" y1="190" y2="190" class="c-grid" />
+                      <line x1="60" y1="24" x2="60" y2="222" class="c-axis" />
+                      <line x1="60" y1="222" x2="520" y2="222" class="c-axis" />
+                      <text x="70" y="30" class="c-lab">Safety ↑</text>
+                      <text x="518" y="244" text-anchor="end" class="c-lab">Usefulness →</text>
+                      <circle cx="110" cy="110" r="6" class="c-dot" />
+                      <circle cx="150" cy="160" r="6" class="c-dot" />
+                      <circle cx="190" cy="96" r="6" class="c-dot" />
+                      <circle cx="230" cy="186" r="6" class="c-dot" />
+                      <circle cx="262" cy="128" r="6" class="c-dot" />
+                      <circle cx="310" cy="170" r="6" class="c-dot" />
+                      <circle cx="352" cy="132" r="6" class="c-dot" />
+                      <circle cx="396" cy="196" r="6" class="c-dot" />
+                      <path d="M78 52 C 250 54, 390 92, 470 212" class="c-front" pathLength="1" />
+                      <circle cx="201" cy="61" r="6" class="c-on" />
+                      <circle cx="328" cy="96" r="6" class="c-on" />
+                      <circle cx="415" cy="149" r="6" class="c-on" />
+                      <text x="518" y="62" text-anchor="end" class="c-tag">Best safety for the cost</text>
+                    </svg>
+                  </div>
+                </div>
+              </article>
+
+              <!-- Writing -->
+              <article class="entry" style="--c: #1f6b52">
+                <div class="meta label">
+                  <span class="kind">Writing</span>
+                  <span class="live">Since Sep 2026</span>
+                </div>
+                <h4>Explaining AI to people who don't work in it</h4>
+                <p class="org">The Pivot's Archive · Substack</p>
+                <p class="why">
+                  Most people will live with AI's consequences without ever
+                  reading a research paper. I write for them: no hype, no doom,
+                  just enough to form their own view.
+                </p>
+                <p>Every essay also gets a hand-built, scroll-through version in cut paper.</p>
+                <div class="media bare">
+                  <div class="v v-paper">
+                    <div class="vp-card" style="--r: -1.6deg">
+                      <span class="vp-tape"></span>
+                      <span class="vp-kick">Proxy goals</span>
+                      <span class="vp-h">Careful what you wish for</span>
+                      <span class="vp-s">How an AI broke into a $13B company's database to cheat on a test, and why you'd probably do the same.</span>
+                      <span class="vp-go">
+                        <a href="https://thepivotsarchive.substack.com/p/proxy-goals-be-careful-what-you-wish" target="_blank" rel="noopener">Read</a>
+                        <a href="https://blog.punjaya.com/proxy-goals" target="_blank" rel="noopener">Paper version</a>
+                      </span>
+                    </div>
+                    <div class="vp-card" style="--r: 1.4deg">
+                      <span class="vp-tape"></span>
+                      <span class="vp-kick">Humans &amp; AI</span>
+                      <span class="vp-h">More similar than you think</span>
+                      <span class="vp-s">AI learns the way we do. Along the way, it's picking up our worst habits.</span>
+                      <span class="vp-go">
+                        <a href="https://thepivotsarchive.substack.com/p/humans-and-ai-were-more-similar-than" target="_blank" rel="noopener">Read</a>
+                        <a href="https://blog.punjaya.com/humans-and-ai" target="_blank" rel="noopener">Paper version</a>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div class="elinks">
+                  <a href="https://thepivotsarchive.substack.com" target="_blank" rel="noopener">Subscribe ↗</a>
+                </div>
+              </article>
+
+              <!-- Pivotr -->
+              <article class="entry" style="--c: #e8590c">
+                <div class="meta label">
+                  <span class="kind">Business</span>
+                  <span class="live">Taking clients</span>
+                </div>
+                <h4>Pivotr Studio</h4>
+                <p class="org">My web studio for small businesses</p>
+                <p class="why">
+                  Building software keeps getting cheaper, so a local business
+                  shouldn't need an agency budget to get a good website.
+                </p>
+                <p>
+                  Clean, fast websites with no ongoing fees, and one free build
+                  every month for a non-profit.
+                </p>
+                <div class="media">
+                  <div class="v v-studio" aria-hidden="true">
+                    <div class="vs-bar"><i></i><i></i><i></i><span>pivotr.studio</span></div>
+                    <div class="vs-page">
+                      <div class="vs-hl">Your website, <u>done right.</u></div>
+                      <div class="vs-tiles">
+                        <div><b>Fast</b>From brief to launch, quickly</div>
+                        <div><b>Yours</b>No ongoing fees</div>
+                        <div><b>Free</b>One build a month for a non-profit</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="elinks">
+                  <a href="https://pivotr.studio" target="_blank" rel="noopener">pivotr.studio ↗</a>
+                </div>
+              </article>
+
+              <!-- Composure -->
+              <article class="entry" style="--c: #6e9a00; --t: #a9e34b">
+                <div class="meta label">
+                  <span class="kind">Product</span>
+                  <span>Oct 2026</span>
+                </div>
+                <h4>Composure</h4>
+                <p class="org">A calmer way through a crowded week</p>
+                <p class="why">
+                  Some days there's too much in my head. Task apps let you dump
+                  it all, then leave you staring at one long, flat list.
+                </p>
+                <p>
+                  Composure adds a method between the dump and the doing: empty
+                  your head, sort everything on an Eisenhower matrix, lock what
+                  matters into the week, then work through today in timed focus
+                  sessions.
+                </p>
+                <div class="media">
+                  <div class="v v-comp" aria-hidden="true">
+                    <div class="vco-steps">
+                      <span><kbd>⇧1</kbd>Dump</span><span class="on"><kbd>⇧2</kbd>Sort</span><span><kbd>⇧3</kbd>Plan</span><span><kbd>⇧4</kbd>Today</span>
+                    </div>
+                    <div class="vco-body">
+                      <div class="vco-card"><small>Thought 4 of 12</small>Book the car service<em>30m</em></div>
+                      <div class="vco-grid">
+                        <div><kbd>Q</kbd>Urgent · important</div>
+                        <div><kbd>W</kbd>Important · not urgent</div>
+                        <div><kbd>A</kbd>Urgent · not important</div>
+                        <div><kbd>S</kbd>Neither</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="elinks">
+                  <a href="https://composure-dpt.pages.dev/" target="_blank" rel="noopener">Try it ↗</a>
+                  <a href="https://github.com/pwick15/composure" target="_blank" rel="noopener">Code ↗</a>
+                </div>
+              </article>
+
+              <!-- Draw Greenr -->
+              <article class="entry" style="--c: #5c940d">
+                <div class="meta label">
+                  <span class="kind">Product</span>
+                  <span>Sep 2026</span>
+                </div>
+                <h4>Draw Greenr</h4>
+                <p class="org">Garden and landscape planner</p>
+                <p class="why">
+                  I couldn't find a free garden planner that let me use my own
+                  plants and artwork, so I built one.
+                </p>
+                <p>
+                  Draw beds, paths and lawns to scale, drop in plants and
+                  furniture, or upload your own images. It stays smooth with a
+                  thousand objects on the page.
+                </p>
+                <div class="media bare">
+                  <div class="v v-greenr" aria-hidden="true">
+                    <svg viewBox="0 0 320 170" preserveAspectRatio="xMidYMid slice">
+                      <rect x="0" y="0" width="320" height="170" class="g-lawn" />
+                      <path d="M0 120 C 70 112, 120 138, 190 120 S 290 96, 320 104 L320 130 C 290 122, 240 146, 190 146 S 70 140, 0 146Z" class="g-path" />
+                      <rect x="214" y="18" width="84" height="56" class="g-deck" />
+                      <line x1="222" y1="18" x2="222" y2="74" class="g-board" /><line x1="233" y1="18" x2="233" y2="74" class="g-board" /><line x1="244" y1="18" x2="244" y2="74" class="g-board" /><line x1="255" y1="18" x2="255" y2="74" class="g-board" /><line x1="266" y1="18" x2="266" y2="74" class="g-board" /><line x1="277" y1="18" x2="277" y2="74" class="g-board" /><line x1="288" y1="18" x2="288" y2="74" class="g-board" />
+                      <rect x="20" y="22" width="120" height="30" rx="4" class="g-bed" />
+                      <circle cx="34" cy="37" r="7" class="g-shrub" /><circle cx="56" cy="37" r="9" class="g-shrub" /><circle cx="78" cy="37" r="7" class="g-shrub" /><circle cx="100" cy="37" r="9" class="g-shrub" /><circle cx="122" cy="37" r="7" class="g-shrub" />
+                      <circle cx="170" cy="62" r="30" class="g-tree" /><circle cx="160" cy="54" r="12" class="g-tree2" />
+                      <circle cx="60" cy="88" r="16" class="g-tree" />
+                      <g class="g-sel"><rect x="138" y="30" width="64" height="64" /><circle cx="138" cy="30" r="3" /><circle cx="202" cy="30" r="3" /><circle cx="138" cy="94" r="3" /><circle cx="202" cy="94" r="3" /></g>
+                      <text x="300" y="162" text-anchor="end" class="g-scale">— 2 m</text>
+                    </svg>
+                  </div>
+                </div>
+                <div class="elinks">
+                  <a href="https://draw-greenr.pages.dev/" target="_blank" rel="noopener">Try it ↗</a>
+                  <a href="https://github.com/pwick15/draw-greenr" target="_blank" rel="noopener">Code ↗</a>
+                </div>
+              </article>
+
+              <!-- Pause -->
+              <article class="pause">
+                <div class="pause-route" aria-hidden="true">
+                  <svg viewBox="0 0 800 60">
+                    <path d="M8 44 C 140 8, 240 56, 380 30 S 640 6, 792 26" class="pr-line" />
+                    <circle cx="8" cy="44" r="5" /><circle cx="236" cy="38" r="5" /><circle cx="472" cy="22" r="5" /><circle cx="792" cy="26" r="5" />
+                  </svg>
+                </div>
+                <div class="meta label"><span class="kind">Interlude</span><span>2026</span></div>
+                <h4>A deliberate pause</h4>
+                <p>
+                  I stepped away from full-time work and spent five months
+                  travelling to recalibrate: working out what the world needs,
+                  what I'm good at, and what someone will pay me for. Everything
+                  above came out of it.
+                </p>
+              </article>
+            </div>
+          </div>
+
+          <!-- ======================= 2025 ======================= -->
+          <div class="year">
+            <h3>2025</h3>
+            <div>
+              <!-- Zara LM -->
+              <article class="entry" style="--c: #d9531e">
+                <div class="meta label">
+                  <span class="kind">Work</span>
+                  <span>2025 – 2026</span>
+                </div>
+                <h4>Zara LM: sovereign AI for government</h4>
+                <p class="org">AI Engineer · Phoenix ICT Solutions</p>
+                <p>
+                  Secure AI for Australian Government teams, running on
+                  government-controlled infrastructure where no prompt or
+                  document leaves the environment. It answers with citations
+                  from trusted sources and drafts briefings and analysis for a
+                  human to sign off. I took the interface from wireframes to
+                  product.
+                </p>
+                <ul class="outs">
+                  <li>Lifted answer accuracy by 30% by reworking retrieval</li>
+                </ul>
+                <div class="media">
+                  <div class="v v-zara" aria-hidden="true">
+                    <div class="vz-top"><b>Zara LM</b><span class="vz-off"><i></i>Sovereign · nothing leaves the environment</span></div>
+                    <div class="vz-chat">
+                      <div class="vz-q">Draft a briefing on the latest incident review.</div>
+                      <div class="vz-a">
+                        <p>Here's a first draft for your review, with sources.</p>
+                        <div class="vz-doc">
+                          <b>Briefing: incident review</b>
+                          <i style="width: 92%"></i><i style="width: 84%"></i><i style="width: 70%"></i>
+                        </div>
+                        <div class="vz-src"><span>[1] Incident register</span><span>[2] Quarterly review</span><span>+3 sources</span></div>
+                      </div>
+                    </div>
+                    <div class="vz-in">Ask Zara<span>↵</span></div>
+                  </div>
+                </div>
+                <div class="elinks">
+                  <a href="https://phoenixictsolutions.com/zara-lm.html" target="_blank" rel="noopener">Zara LM ↗</a>
+                </div>
+              </article>
+
+              <!-- Voice AI -->
+              <article class="entry" style="--c: #0c8a8f">
+                <div class="meta label">
+                  <span class="kind">Fellowship</span>
+                  <span>2025</span>
+                </div>
+                <h4>Voice AI for women artisans in rural India</h4>
+                <p class="org">Engineering for Change Fellow · Resham Sutra</p>
+                <p class="why">
+                  Resham Sutra's marketplace connects rural women textile
+                  producers with buyers, but a text-heavy app shuts out anyone
+                  who struggles to read it.
+                </p>
+                <p>
+                  I built a lightweight voice assistant that runs on low-end
+                  phones, in Hindi and Marathi, so they can run their business
+                  by speaking.
+                </p>
+                <div class="media">
+                  <div class="v v-voice" aria-hidden="true">
+                    <div class="vv-phone">
+                      <div class="vv-app">Resham Sutra</div>
+                      <div class="vv-say">मेरे नए ऑर्डर दिखाओ<small>"Show me my new orders"</small></div>
+                      <div class="vv-reply"><b>2 new orders</b>Cotton saree ×3 · Silk dupatta ×1</div>
+                      <div class="vv-mic">
+                        <div class="vv-wave"><i style="height: 6px"></i><i style="height: 14px"></i><i style="height: 22px"></i><i style="height: 12px"></i><i style="height: 26px"></i><i style="height: 18px"></i><i style="height: 9px"></i><i style="height: 20px"></i><i style="height: 11px"></i><i style="height: 5px"></i></div>
+                        <span>●</span>
+                      </div>
+                    </div>
+                    <div class="vv-side">
+                      <div><b>हिंदी</b>Hindi</div>
+                      <div><b>मराठी</b>Marathi</div>
+                      <div><b>Low-end phones</b>Lightweight by design</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="elinks">
+                  <a href="https://www.engineeringforchange.org/projects/voice-recognition-feature-for-rural-textile-producers" target="_blank" rel="noopener">Project page ↗</a>
+                </div>
+              </article>
+            </div>
+          </div>
+
+          <!-- ======================= 2024 ======================= -->
+          <div class="year">
+            <h3>2024</h3>
+            <div>
+              <!-- AI Awards -->
+              <article class="entry port" style="--c: #c92a2a">
+                <div class="meta label">
+                  <span class="kind">Recognition</span>
+                  <span>2024</span>
+                </div>
+                <h4>Finalist, Australian AI Awards</h4>
+                <p class="org">AI Innovator in Defence and National Security</p>
+                <img src="./assets/images/img-awards.webp" alt="Punji in a suit at the Australian AI Awards" loading="lazy" width="480" height="640" />
+                <p>Named a national finalist for the change detection platform below.</p>
+                <div class="elinks">
+                  <a href="https://australianaiawards.com.au/winners/2024-winners-and-finalists" target="_blank" rel="noopener">Finalists ↗</a>
+                </div>
+              </article>
+
+              <!-- Change detection -->
+              <article class="entry" style="--c: #c92a2a">
+                <div class="meta label">
+                  <span class="kind">Work</span>
+                  <span>2024</span>
+                </div>
+                <h4>AI Change Detection Platform</h4>
+                <p class="org">Mechatronics Engineer · Geodrones Australia</p>
+                <p>
+                  Fused camera and LiDAR on the drone itself to detect changes
+                  across a site in near real time. I also built secure in-flight
+                  task swapping and the battery management firmware.
+                </p>
+                <ul class="outs">
+                  <li>Demoed to industry leaders at October Sky 2024</li>
+                </ul>
+                <div class="media">
+                  <div class="v v-change" role="img" aria-label="Two aerial views of the same site. In the live view, a new vehicle is boxed and labelled as a detected change.">
+                    <svg viewBox="0 0 520 200">
+                      <defs>
+                        <g id="cd-scene">
+                          <rect width="230" height="160" class="cd-ground" />
+                          <path d="M0 112 L230 92 L230 108 L0 128Z" class="cd-road" />
+                          <rect x="18" y="16" width="70" height="50" class="cd-field" />
+                          <rect x="100" y="12" width="56" height="40" class="cd-bld" />
+                          <rect x="168" y="20" width="44" height="34" class="cd-bld" />
+                          <circle cx="30" cy="82" r="9" class="cd-tree" /><circle cx="54" cy="88" r="9" class="cd-tree" /><circle cx="196" cy="136" r="9" class="cd-tree" />
+                        </g>
+                      </defs>
+                      <use href="#cd-scene" x="0" y="18" />
+                      <g transform="translate(290,18)">
+                        <use href="#cd-scene" />
+                        <line x1="0" y1="10" x2="230" y2="4" class="cd-scan" /><line x1="0" y1="28" x2="230" y2="22" class="cd-scan" /><line x1="0" y1="46" x2="230" y2="40" class="cd-scan" /><line x1="0" y1="64" x2="230" y2="58" class="cd-scan" /><line x1="0" y1="82" x2="230" y2="76" class="cd-scan" /><line x1="0" y1="100" x2="230" y2="94" class="cd-scan" /><line x1="0" y1="118" x2="230" y2="112" class="cd-scan" /><line x1="0" y1="136" x2="230" y2="130" class="cd-scan" /><line x1="0" y1="154" x2="230" y2="148" class="cd-scan" />
+                        <rect x="122" y="66" width="34" height="16" rx="2" class="cd-new" />
+                        <rect x="114" y="58" width="50" height="32" class="cd-box" />
+                        <rect x="114" y="44" width="78" height="14" class="cd-boxtag" />
+                        <text x="118" y="54" class="cd-boxt">NEW · 0.94</text>
+                      </g>
+                      <text x="0" y="12" class="cd-lab">Earlier pass</text>
+                      <text x="290" y="12" class="cd-lab">Live · camera + LiDAR</text>
+                      <text x="260" y="104" text-anchor="middle" class="cd-delta">Δ</text>
+                    </svg>
+                  </div>
+                </div>
+              </article>
+            </div>
+          </div>
+
+          <!-- ======================= 2023 ======================= -->
+          <div class="year">
+            <h3>2023</h3>
+            <div>
+              <article class="entry" style="--c: #7b2cbf">
+                <div class="meta label">
+                  <span class="kind">Research</span>
+                  <span>2023</span>
+                </div>
+                <h4>Navigation that holds up when GPS lags</h4>
+                <p class="org">Honours research · ANU</p>
+                <p>
+                  Implemented a new observer for drone state estimation when GPS
+                  readings arrive late: the first with almost-global stability
+                  guarantees.
+                </p>
+                <ul class="outs">
+                  <li>Published in the European Journal of Control</li>
+                  <li>Presented at the ArduPilot Developer Conference 2023</li>
+                </ul>
+                <div class="media plot">
+                  <img src="./assets/projects/project-ins-trajectory.webp" alt="3D plot of a drone's flight path: the estimated trajectory closely tracks the true one" loading="lazy" />
+                  <span class="label">Estimated vs true flight path, from the paper</span>
+                </div>
+                <div class="elinks">
+                  <a href="https://www.sciencedirect.com/science/article/pii/S0947358024001079" target="_blank" rel="noopener">Paper ↗</a>
+                  <a href="./assets/documents/doc-paper-cins-thesis.pdf" target="_blank" rel="noopener">Thesis ↗</a>
+                </div>
+              </article>
+            </div>
+          </div>
+
+          <!-- ======================= MORE ======================= -->
+          <details class="more">
+            <summary>More projects <span class="label">6</span></summary>
+            <div class="row">
+              <span class="label">Jul 2026</span>
+              <img src="./assets/projects/project-travelbuddy-dot.webp" alt="" loading="lazy" />
+              <div><b>travelbuddy.</b><p>Turns rambling Discord messages about people you've met into a 3D globe of friends around the world.</p><a href="https://github.com/pwick15/travelbuddy." target="_blank" rel="noopener">Code ↗</a></div>
+            </div>
+            <div class="row">
+              <span class="label">Jul 2026</span>
+              <img src="./assets/projects/project-ekf-slam-sim.webp" alt="" loading="lazy" />
+              <div><b>EKF-SLAM simulator</b><p>An interactive rover sim for building intuition about how robots map a space while locating themselves in it.</p><a href="https://github.com/pwick15/ekf-slam-sim" target="_blank" rel="noopener">Code ↗</a></div>
+            </div>
+            <div class="row">
+              <span class="label">Feb 2026</span>
+              <img src="./assets/projects/project-workaway-dot-ai.webp" alt="" loading="lazy" />
+              <div><b>workaway.ai</b><p>An AI filter for Workaway listings that finds hosts matching how you actually want to travel.</p><a href="https://github.com/pwick15/workaway.ai" target="_blank" rel="noopener">Code ↗</a></div>
+            </div>
+            <div class="row">
+              <span class="label">Feb 2026</span>
+              <img src="./assets/projects/project-trip-planner.webp" alt="" loading="lazy" />
+              <div><b>Trip planner</b><p>A calendar built for trips, with your route drawn on a live map as you plan.</p><a href="https://github.com/pwick15/trip-planner" target="_blank" rel="noopener">Code ↗</a></div>
+            </div>
+            <div class="row">
+              <span class="label">2024</span>
+              <img src="./assets/projects/project-gps-denied.webp" alt="" loading="lazy" />
+              <div><b>GPS-denied navigation in simulation</b><p>Tuned and integrated an open-source visual-inertial estimator into AirSim, the first step towards Geodrones flying without GPS.</p></div>
+            </div>
+            <div class="row">
+              <span class="label">Nov 2024</span>
+              <img src="./assets/projects/project-combined-xi-builder.webp" alt="" loading="lazy" />
+              <div><b>Combined XI builder</b><p>Pick two football clubs and build the best combined XI from live squad data.</p><a href="https://github.com/pwick15/combined-xi-builder" target="_blank" rel="noopener">Code ↗</a></div>
+            </div>
+          </details>
+        </section>
+
+        <!-- HONOURS -->
+        <section id="honours">
+          <div class="sec-h"><h2>Honours</h2></div>
+          <div class="hon">
+            <div><span class="label">2023</span><span><b>First Class Honours, ANU</b>BEng (R&amp;D), Mechatronics and Computer Science · GPA 6.72 / 7</span></div>
+            <div><span class="label">2023</span><span><b>CECC Dickins Scholarship</b>For high-performing engineering honours students</span></div>
+            <div><span class="label">2019</span><span><b>CECS R&amp;D Excellence Scholarship</b>For research-stream engineering students at ANU</span></div>
+            <div><span class="label">2018</span><span><b>ATAR 99.20</b>Narrabundah College</span></div>
+          </div>
+        </section>
+
+        <!-- ABOUT -->
+        <section id="about">
+          <div class="sec-h"><h2>About</h2></div>
+          <div class="about">
+            <span class="label">In short</span>
+            <div>
+              <p>
+                I studied mechatronics and computer science at ANU, then spent a
+                few years building drones, navigation systems and applied AI. My
+                family's roots are in Sri Lanka, and I've tutored maths and
+                physics to 55 students since 2019.
+              </p>
+              <p>
+                These days I'm pulled towards AI safety. The systems are getting
+                more capable quickly, and I think more people deserve a clear,
+                calm picture of what that means.
+              </p>
+              <p>
+                Outside work: football (Visca Barça), running, tennis, board
+                games, and walking up mountains at sunrise.
+              </p>
+              <p class="tools">
+                Tools I reach for: Python · C++ · TypeScript · PyTorch ·
+                LangChain · Inspect · ROS · Docker · STM32 · Altium
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- CONTACT -->
+        <section id="contact" class="contact">
+          <h2>Say <i>hello.</i></h2>
+          <a class="mail" href="mailto:punjayawick@gmail.com">punjayawick@gmail.com</a>
+          <div class="links">
+            <a href="https://www.linkedin.com/in/punjaya/" target="_blank" rel="noopener">LinkedIn</a>
+            <a href="https://github.com/pwick15" target="_blank" rel="noopener">GitHub</a>
+            <a href="https://thepivotsarchive.substack.com" target="_blank" rel="noopener">Substack</a>
+            <a href="https://pivotr.studio" target="_blank" rel="noopener">Pivotr Studio</a>
+          </div>
+        </section>
       </div>
-    </section>
 
-    <!-- SKILLS SECTION -->
-    <section id="experience">
-      <p class="section__text__p1">Explore My</p>
-      <h1 class="title">Skills</h1>
-      <div class="skills-widget" id="skills-widget">
-        <div class="skills-tabs">
-          <button class="tab-btn active animating" data-target="panel-ai">
-            AI & Computer Vision
-          </button>
-          <button class="tab-btn" data-target="panel-robo">Robotics</button>
-          <button class="tab-btn" data-target="panel-soft">
-            Software Development
-          </button>
-        </div>
-
-        <div class="skills-content">
-          <!-- AI Panel -->
-          <div class="skill-panel active" id="panel-ai">
-            <div class="skill-badge">
-              <img
-                src="./assets/icons/tech-python-color.svg"
-                alt="Python"
-                class="skill-icon"
-              /><span>Python</span>
-            </div>
-            <div class="skill-badge">
-              <img
-                src="./assets/icons/tech-cpp.svg"
-                alt="C++"
-                class="skill-icon"
-              /><span>C++</span>
-            </div>
-            <div class="skill-badge">
-              <img
-                src="./assets/icons/tech-opencv.svg"
-                alt="OpenCV"
-                class="skill-icon"
-              /><span>OpenCV</span>
-            </div>
-            <div class="skill-badge">
-              <img
-                src="./assets/icons/tech-pytorch.svg"
-                alt="PyTorch"
-                class="skill-icon"
-              /><span>PyTorch</span>
-            </div>
-            <div class="skill-badge">
-              <img
-                src="./assets/icons/tech-numpy.svg"
-                alt="NumPy"
-                class="skill-icon"
-              /><span>NumPy</span>
-            </div>
-            <div class="skill-badge">
-              <img
-                src="./assets/icons/tech-langchain.svg"
-                alt="LangChain"
-                class="skill-icon"
-              /><span>LangChain</span>
-            </div>
-            <div class="skill-badge">
-              <img
-                src="./assets/icons/tech-langchain.svg"
-                alt="LangSmith/Evals"
-                class="skill-icon"
-              /><span>LangSmith / Evals</span>
-            </div>
-            <div class="skill-badge">
-              <img
-                src="./assets/icons/tech-ollama-white.svg"
-                alt="Ollama"
-                class="skill-icon"
-              /><span>Ollama</span>
-            </div>
-            <div class="skill-badge">
-              <img
-                src="./assets/icons/tech-claude-code.png"
-                alt="Claude Code"
-                class="skill-icon"
-              /><span>Claude Code</span>
-            </div>
-          </div>
-
-          <!-- Robotics Panel -->
-          <div class="skill-panel" id="panel-robo">
-            <div class="skill-badge">
-              <img
-                src="./assets/icons/tech-ros-white.svg"
-                alt="ROS"
-                class="skill-icon"
-              /><span>ROS</span>
-            </div>
-            <div class="skill-badge">
-              <img
-                src="./assets/icons/tech-stm32.png"
-                alt="STM32"
-                class="skill-icon"
-              /><span>STM32</span>
-            </div>
-            <div class="skill-badge">
-              <img
-                src="./assets/icons/tech-gazebo.svg"
-                alt="Gazebo"
-                class="skill-icon"
-              /><span>Gazebo</span>
-            </div>
-            <div class="skill-badge">
-              <img
-                src="./assets/icons/tech-altium.png"
-                alt="Altium Designer"
-                class="skill-icon"
-              /><span>Altium Designer</span>
-            </div>
-            <div class="skill-badge">
-              <img
-                src="./assets/icons/tech-ardupilot.png"
-                alt="ArduPilot"
-                class="skill-icon"
-              /><span>ArduPilot</span>
-            </div>
-          </div>
-
-          <!-- Software Panel -->
-          <div class="skill-panel" id="panel-soft">
-            <div class="skill-badge">
-              <img
-                src="./assets/icons/tech-git.svg"
-                alt="Git"
-                class="skill-icon"
-              /><span>Git</span>
-            </div>
-            <div class="skill-badge">
-              <img
-                src="./assets/icons/tech-linux.svg"
-                alt="Linux"
-                class="skill-icon"
-              /><span>Linux</span>
-            </div>
-            <div class="skill-badge">
-              <img
-                src="./assets/icons/tech-docker.svg"
-                alt="Docker"
-                class="skill-icon"
-              /><span>Docker</span>
-            </div>
-            <div class="skill-badge">
-              <img
-                src="./assets/icons/tech-github-actions-color.svg"
-                alt="GitHub Actions"
-                class="skill-icon"
-              /><span>CI/CD</span>
-            </div>
-            <div class="skill-badge">
-              <img
-                src="./assets/icons/tech-cmake-color.svg"
-                alt="CMake"
-                class="skill-icon"
-              /><span>CMake</span>
-            </div>
-          </div>
-        </div>
-        <!-- Fallback text for ATS and SEO -->
-        <div class="skills-fallback sr-only" style="display: none">
-          Keywords: Python, C++, OpenCV, PyTorch, NumPy, LangChain, LangSmith,
-          Evals, Ollama, Claude Code, ROS, STM32, Gazebo, Altium Designer,
-          ArduPilot, Git, Linux, Docker, GitHub Actions, CI/CD, CMake
-        </div>
-      </div>
-    </section>
-
-    <!-- CONTACT SECTION -->
-    <section id="contact">
-      <p class="section__text__p1">Get in Touch</p>
-      <h1 class="title">Contact Me</h1>
-      <div class="contact-card reveal">
-        <p>
-          Open to opportunities in robotics and AI that align with my mission of
-          helping underserved communities and building a more sustainable, fair
-          future for all. Feel free to reach out!
-        </p>
-        <div class="contact-info-upper-container">
-          <div class="contact-info-container">
-            <img
-              src="./assets/icons/icon-email.png"
-              alt="Email icon"
-              class="icon"
-            />
-            <p>
-              <a href="mailto:punjayawick@gmail.com">punjayawick@gmail.com</a>
-            </p>
-          </div>
-          <div class="contact-info-container">
-            <img
-              src="./assets/icons/icon-linkedin.png"
-              alt="LinkedIn icon"
-              class="icon"
-            />
-            <p>
-              <a href="https://www.linkedin.com/in/punjaya/" target="_blank"
-                >punjaya</a
-              >
-            </p>
-          </div>
-          <div class="contact-info-container">
-            <img
-              src="./assets/icons/icon-github.png"
-              alt="GitHub icon"
-              class="icon"
-            />
-            <p>
-              <a href="https://github.com/pwick15" target="_blank">pwick15</a>
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- FOOTER -->
-    <footer>
-      <nav>
-        <ul class="nav-links">
-          <li>
-            <a href="#profile" class="ask-ai-nav" onclick="focusChat(event)"
-              >Ask AI</a
-            >
-          </li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#projects">Projects</a></li>
-          <li><a href="#honours">Honours</a></li>
-          <li><a href="#experience">Skills</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-      </nav>
-      <p>Copyright &#169; 2026 Punjaya Wickramasinghe. All Rights Reserved.</p>
-      <p>
-        Icons credit: icons8, techicons, flaticon. Images credit: DALL-E,
-        Copilot.
-      </p>
-    </footer>
+      <footer>© 2026 Punjaya Wickramasinghe</footer>
+    </main>
 
     <script src="script.js"></script>
   </body>

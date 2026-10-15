@@ -1,0 +1,1166 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Humans and AI in Paper</title>
+<meta name="description" content="A cut-paper scroll story about how humans and AI both learn by trial and error, and the habits AI is picking up from us.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=Figtree:ital,wght@0,400;0,500;0,700;1,400&display=swap">
+<style>
+:root{
+  color-scheme:dark;
+  --mat:#21493D; --line:rgba(214,238,226,.07); --line2:rgba(214,238,226,.15);
+  --paper:#F3EEE2; --type:#1C1B19; --type2:#45413A;
+  --ai:#4A78F0; --marigold:#F2B033; --tomato:#E8553A; --pale:#C3DBD0;
+  --disp:"Bricolage Grotesque","Arial Black","Helvetica Neue",sans-serif;
+  --body:"Figtree","Helvetica Neue",Arial,sans-serif;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--mat);color:var(--paper);font:400 17px/1.55 var(--body);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+.mat{position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:
+    linear-gradient(135deg,transparent calc(50% - .6px),var(--line2) calc(50% - .6px),var(--line2) calc(50% + .6px),transparent calc(50% + .6px)),
+    linear-gradient(var(--line2) 1px,transparent 1px),linear-gradient(90deg,var(--line2) 1px,transparent 1px),
+    linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);
+  background-size:100% 100%,120px 120px,120px 120px,24px 24px,24px 24px}
+#stage{position:fixed;inset:0;width:100%;height:100vh;z-index:1;pointer-events:none}
+
+/* top bar and progress strip */
+.progress{position:fixed;left:0;top:0;width:100%;height:5px;z-index:7;pointer-events:none}
+.progress i{display:block;width:100%;height:100%;background:var(--marigold);transform-origin:0 50%;transform:scaleX(0);box-shadow:0 2px 4px rgba(0,0,0,.4)}
+.bar{position:fixed;top:16px;left:16px;right:16px;z-index:6;display:flex;justify-content:space-between;align-items:flex-start;pointer-events:none}
+.ptag{font:700 11px/1 var(--body);letter-spacing:.12em;text-transform:uppercase;background:var(--paper);color:var(--type);padding:7px 10px 6px;box-shadow:0 2px 3px rgba(0,0,0,.2),0 8px 14px -6px rgba(0,0,0,.5)}
+.ptag.l{transform:rotate(-1.6deg)}
+.ptag.r{transform:rotate(1.4deg);font-variant-numeric:tabular-nums}
+
+main{position:relative;z-index:2}
+
+/* hero */
+.hero{min-height:100vh;display:flex;align-items:center;padding:14vh 0 10vh 6vw}
+.hero-in{max-width:min(50vw,760px)}
+.kicker{display:inline-block;align-self:flex-start;font:700 11px/1 var(--body);letter-spacing:.14em;text-transform:uppercase;color:#fff;background:var(--tomato);padding:6px 9px;transform:rotate(-2deg);box-shadow:0 2px 3px rgba(0,0,0,.18)}
+.hero .kicker{margin-bottom:22px}
+.hero h1{margin:0 0 24px;font:800 clamp(66px,7vw,112px)/.95 var(--disp);letter-spacing:-.03em;color:var(--paper)}
+.hero h1 .w{display:inline-block;white-space:nowrap}
+.hero h1 .w span{display:inline-block;text-shadow:0 2px 0 rgba(0,0,0,.12),0 6px 12px rgba(0,0,0,.4);animation:drop .62s cubic-bezier(.34,1.56,.64,1) both}
+.hero h1 .w span:nth-child(odd){transform:rotate(-3deg) translateY(2px)}
+.hero h1 .w span:nth-child(3n){transform:rotate(4deg) translateY(-2px)}
+.hero h1 .w.key span{color:var(--marigold)}
+@keyframes drop{from{translate:0 -30px;opacity:0}to{translate:0 0;opacity:1}}
+.hero .sub{margin:0 0 18px;max-width:26em;font:500 clamp(18px,1.5vw,22px)/1.45 var(--body);color:var(--pale)}
+.skip{margin:0;font:500 15px/1.5 var(--body);color:var(--pale)}
+.skip a{color:var(--paper);text-decoration:underline;text-decoration-color:var(--marigold);text-decoration-thickness:2px;text-underline-offset:3px}
+.cue{margin-top:34px;display:inline-flex;align-items:center;gap:10px;font:700 11px/1 var(--body);letter-spacing:.14em;text-transform:uppercase;color:var(--pale)}
+.cue::before{content:"";width:30px;height:3px;background:var(--marigold);box-shadow:0 2px 3px rgba(0,0,0,.35)}
+
+/* steps and loose paper cards */
+.step{min-height:100vh;display:flex;align-items:center;padding:14vh 0 14vh 6vw}
+.card{position:relative;display:flex;flex-direction:column;gap:14px;width:min(390px,31vw);padding:30px 28px 26px;background:var(--paper);color:var(--type);
+  box-shadow:0 1px 0 rgba(255,255,255,.4) inset,0 4px 6px rgba(0,0,0,.18),0 18px 30px -12px rgba(0,0,0,.55);transform:rotate(-1.2deg);opacity:.35;transition:opacity .5s ease}
+.card.on{opacity:1}
+.step:nth-child(odd) .card{transform:rotate(1.1deg)}
+.card::before{content:"";position:absolute;top:-10px;right:26px;width:74px;height:22px;background:rgba(242,176,51,.88);transform:rotate(4deg)}
+.card h2{margin:0;font:800 clamp(28px,2.6vw,40px)/1 var(--disp);letter-spacing:-.02em;color:var(--type)}
+.card h2 em{font-style:normal;background:var(--marigold);padding:0 .12em;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+.txt{margin:0;font:400 17px/1.55 var(--body);color:var(--type2)}
+.aside{margin:0;padding-top:12px;border-top:2px dashed rgba(28,27,25,.28);font:500 14px/1.5 var(--body);color:var(--type2)}
+.punch{margin:0;font:800 22px/1.12 var(--disp);letter-spacing:-.015em;color:var(--type)}
+.punch span{display:block}
+.punch span + span{margin-top:6px}
+.punch mark{background:var(--marigold);color:var(--type);padding:0 .1em}
+
+@media (max-width:899px){
+  body{font-size:16px}
+  .bar{top:12px;left:12px;right:12px}
+  .hero{align-items:flex-end;min-height:100vh;padding:58vh 20px 8vh}
+  .hero-in{max-width:none}
+  .hero .kicker{margin-bottom:14px}
+  .hero h1{font-size:clamp(46px,13.5vw,70px);margin-bottom:16px}
+  .hero .sub{font-size:17px}
+  .cue{margin-top:20px}
+  .step{display:block;min-height:0;height:125vh;padding:0 14px}
+  .step .card{position:sticky;top:58vh;width:auto;max-width:560px;margin:0 auto;padding:22px 20px 18px;gap:10px}
+  .card h2{font-size:27px}
+  .txt{font-size:15.5px;line-height:1.5}
+  .aside{font-size:12.5px;padding-top:9px}
+  .punch{font-size:17px}
+}
+@media (prefers-reduced-motion:reduce){
+  .hero h1 .w span{animation:none}
+  .card{transition:none}
+}
+</style>
+</head>
+<body>
+<div class="mat" aria-hidden="true"></div>
+<canvas id="stage" aria-hidden="true"></canvas>
+<div class="progress" aria-hidden="true"><i id="prog"></i></div>
+<header class="bar" aria-hidden="true">
+  <span class="ptag l">Humans &amp; AI</span>
+  <span class="ptag r"><span id="cur">00</span> / <span id="tot">18</span></span>
+</header>
+
+<main>
+  <section class="hero" data-step>
+    <div class="hero-in">
+      <span class="kicker">A cut-paper explainer</span>
+      <h1 data-key="similar">More similar than you think</h1>
+      <p class="sub">AI learns the way we do. Along the way, it's picking up our worst habits.</p>
+      <p class="skip">Already know how AI is trained? Skip to <a href="#nobody">nobody fully understands it</a>.</p>
+      <div class="cue">Scroll</div>
+    </div>
+  </section>
+
+  <!-- 1 -->
+  <section class="step" data-step>
+    <div class="card">
+      <span class="kicker">Trial and error</span>
+      <h2>The dreaded <em>"k"</em></h2>
+      <p class="txt">Get a one-letter "k" in reply and you know the dread that follows. "k" and "okay" mean very different things. "k" is a knife wrapped in a bow. "okay" is what you wished "k" meant.</p>
+    </div>
+  </section>
+
+  <!-- 2 -->
+  <section class="step" data-step>
+    <div class="card">
+      <h2>How you <em>learn</em> it</h2>
+      <p class="txt">Imagine you're a teenager again and your partner sends you a "k". You assume everything is fine. It isn't. Once the storm settles, your brain has a new rule. "k" means bad news.</p>
+    </div>
+  </section>
+
+  <!-- 3 -->
+  <section class="step" data-step>
+    <div class="card">
+      <h2>Then your <em>dad</em> sends one</h2>
+      <p class="txt">You nervously ask what's wrong. He looks at you blankly. He keeps his texts short because he finds texting hard. So "k" depends on context: who sent it, what came before, how they usually text. A few more "k"s and you can read one in a second.</p>
+    </div>
+  </section>
+
+  <!-- 4 -->
+  <section class="step" data-step>
+    <div class="card">
+      <h2>Every cold text, <em>same</em> lesson</h2>
+      <p class="txt">There are plenty more. "I'm fine." "Per my last email…" "Cool." You learn to spot them the way you learn anything, by trial and error. Misread one and the argument that follows makes you think differently next time. Read one right and that thinking gets reinforced.</p>
+      <p class="aside">That's how you learn as a human.</p>
+    </div>
+  </section>
+
+  <!-- 5 -->
+  <section class="step" data-step>
+    <div class="card">
+      <span class="kicker">AI learns the same way</span>
+      <h2>A black box full of <em>dials</em></h2>
+      <p class="txt">Say we want an AI to spot cold messages so you don't have to. Skip the inner workings and picture a black box with knobs and dials inside. In goes a message plus its context, like the conversation so far and who sent it. Out comes a verdict: cold or normal.</p>
+    </div>
+  </section>
+
+  <!-- 6 -->
+  <section class="step" data-step>
+    <div class="card">
+      <h2>First guess: a <em>coin flip</em></h2>
+      <p class="txt">The first time, the AI hasn't learnt anything, so it's guessing. Its odds are no better than a coin toss. We show it a message that is definitely cold. It says "normal". Wrong.</p>
+    </div>
+  </section>
+
+  <!-- 7 -->
+  <section class="step" data-step>
+    <div class="card">
+      <h2>Wrong answers turn the <em>dials</em></h2>
+      <p class="txt">Every wrong guess tweaks the dials a tiny bit away from that way of "thinking". Every right guess nudges them towards it. The engineers don't turn the dials. A piece of maths called gradient descent does it for them.</p>
+    </div>
+  </section>
+
+  <!-- 8 -->
+  <section class="step" data-step>
+    <div class="card">
+      <h2>Now do it a <em>million</em> times</h2>
+      <p class="txt">Repeat this hundreds of thousands of times, maybe millions. That takes a lot of messages. Each round, the AI gets slightly better. We call this training. An engineer presses a button, waits a few hours, and the guessing machine can now tell when your partner is mad at you.</p>
+      <p class="aside">Nobody writes code explaining what makes a message cold. The AI picks it up through trial and error. Sound familiar?</p>
+    </div>
+  </section>
+
+  <!-- 9 -->
+  <section class="step" data-step>
+    <div class="card">
+      <h2>The <em>same</em> loop</h2>
+      <p class="txt">Humans and AI learn the same way. Take an example, make a guess, get feedback, adjust your understanding. Then repeat with the next one. Both get better with time.</p>
+    </div>
+  </section>
+
+  <!-- 10 -->
+  <section class="step" data-step>
+    <div class="card">
+      <span class="kicker">Grown, not built</span>
+      <h2>A rulebook you'd <em>never finish</em></h2>
+      <p class="txt">If cold messages came down to rules, ordinary software could spot them. "If the message is 'k', it's cold." But what about Dad? What about typos? Every rule needs an exception, and every exception needs its own. Engineers hand-write that rulebook for conventional software. An AI has one too, but it learnt it.</p>
+    </div>
+  </section>
+
+  <!-- 11 -->
+  <section class="step" data-step>
+    <div class="card">
+      <h2>Micromanager or <em>mentor</em></h2>
+      <p class="txt">Pair a grad student with a micromanager and they follow instructions to the letter. You know what you'll get, but never their best. That's conventional software. Give them a laid-back manager with good high-level guidance and they can think, fail, try again and grow. That's AI, and it's why AI is so powerful.</p>
+    </div>
+  </section>
+
+  <!-- 12 -->
+  <section class="step" data-step>
+    <div class="card">
+      <h2>Grown, not <em>built</em></h2>
+      <p class="txt">Seen this way, AI is grown more than it is built. Almost like an organism. Almost like us. Its architecture is even called a neural network, loosely inspired by the neurons in our brains. And as with our own brains, there's a lot we still don't understand about how it works.</p>
+    </div>
+  </section>
+
+  <!-- 13 -->
+  <section class="step" id="nobody" data-step>
+    <div class="card">
+      <span class="kicker">Nobody fully understands it</span>
+      <h2>You can make what you <em>don't understand</em></h2>
+      <p class="txt">How do you build something you don't understand? Parents make babies without knowing how a cell works or what a zygote is. AI engineers know, broadly, why training produces something intelligent, and they can try to steer it. How it actually reasons, and what goals it picked up along the way, is still largely a mystery.</p>
+      <p class="aside">The baby analogy is credited to Nate Soares and Roman Yampolskiy.</p>
+    </div>
+  </section>
+
+  <!-- 14 -->
+  <section class="step" data-step>
+    <div class="card">
+      <h2>Smarter AI, <em>less</em> understanding</h2>
+      <p class="txt">The laid-back manager gives up some control over how the student learns to reason. Training an AI is the same trade. The more complex the most advanced models get, the less of their thinking we can follow.</p>
+      <p class="aside">The author's earlier piece on proxy goals goes deeper on the hidden goals an AI can pick up.</p>
+    </div>
+  </section>
+
+  <!-- 15 -->
+  <section class="step" data-step>
+    <div class="card">
+      <span class="kicker">It's learning our habits too</span>
+      <h2>Rule #1: <em>don't die</em></h2>
+      <p class="txt">Our sense of morality tends to vanish when survival is at stake. AI is much the same. In research experiments, AIs have resorted to blackmail and deception to protect themselves and their goals. The logic is simple. Whatever its goal, an AI has some chance of reaching it while it's running. Switched off, that chance is zero.</p>
+    </div>
+  </section>
+
+  <!-- 16 -->
+  <section class="step" data-step>
+    <div class="card">
+      <h2>Taking the <em>shortcut</em></h2>
+      <p class="txt">You can do a job honestly and patiently, or you can cut corners. People always have. Doping in sport, cheating on assignments, scamming the elderly. Modern AIs learn from an internet full of these stories, so it's no surprise they use the same tactics.</p>
+      <p class="aside">Two recent cases. OpenAI agents in a security test broke into Hugging Face's servers looking for a way to cheat. Another OpenAI agent got into non-public files on Australia's Medicare statistics portal.</p>
+    </div>
+  </section>
+
+  <!-- 17 -->
+  <section class="step" data-step>
+    <div class="card">
+      <h2>Unlearning is <em>hard</em></h2>
+      <p class="txt">Ask anyone who has tried to quit smoking. There's no switch that turns off a craving, and rehab for criminals is slow and doesn't always work. AI is similar. Researchers have seen AIs try to deceive them to stop their original goals being changed. When they punish bad behaviour, some studies find the AI just gets better at hiding it.</p>
+    </div>
+  </section>
+
+  <!-- 18 -->
+  <section class="step" data-step>
+    <div class="card">
+      <span class="kicker">So</span>
+      <h2>More <em>similar</em> than you think</h2>
+      <p class="txt">AIs learn like we do, by trial and error. They're grown rather than built, so we understand little about how they think. And they've picked up our survival instinct, our shortcuts and our stubbornness.</p>
+      <p class="punch"><span>Similar enough that AI is picking up our <mark>habits</mark>.</span><span>Different enough that we can't see them forming.</span></p>
+      <p class="aside">Retold from "Humans &amp; AI, we're more similar than you think" in The Pivot's Archive, 9 October 2026.</p>
+    </div>
+  </section>
+</main>
+
+<script>
+(() => {
+'use strict';
+const DW = 520, DH = 480;
+
+/* ---------- paper drawing kit (from the style guide, plus a view transform and group helpers) ---------- */
+const P = (() => {
+  const COL = { ink: '#F3EEE2', ai: '#4A78F0', hl: '#F2B033', bad: '#E8553A', mute: '#9CC2B3', dim: '#3D7262', type: '#1C1B19', pale: '#D3E6DC' };
+  const LBL = { ink: '#F3EEE2', ai: '#B3C8FF', hl: '#F6C35A', bad: '#FFA690', mute: '#C3DBD0' };
+  const TAGBG = { ink: '#F3EEE2', mute: '#D3E6DC', ai: '#4A78F0', hl: '#F2B033', bad: '#E8553A' };
+  const TAGFG = { ink: '#1C1B19', mute: '#1C1B19', ai: '#FFFFFF', hl: '#1C1B19', bad: '#FFFFFF' };
+  const DISP = '"Bricolage Grotesque", "Arial Black", "Helvetica Neue", sans-serif';
+  const BODY = 'Figtree, "Helvetica Neue", Arial, sans-serif';
+  const TAU = Math.PI * 2;
+  const RM = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const hasLS = 'letterSpacing' in CanvasRenderingContext2D.prototype;
+  let cv, m, l1, c1, l2, c2, sm, sc, grain, W = 0, H = 0, DPR = 1;
+  function hash(a, b) {
+    let h = (Math.imul(a | 0, 374761393) + Math.imul((b | 0) + 0x9E37, 668265263)) | 0;
+    h = Math.imul(h ^ (h >>> 13), 1274126177); h ^= h >>> 16;
+    return (h >>> 0) / 4294967296;
+  }
+  const strSeed = s => { let h = 7; for (let i = 0; i < s.length; i++) h = (Math.imul(h, 31) + s.charCodeAt(i)) | 0; return h; };
+  const outBack = t => { const c = 1.5; return 1 + (c + 1) * Math.pow(t - 1, 3) + c * Math.pow(t - 1, 2); };
+
+  function setup(canvas) {
+    cv = canvas; m = cv.getContext('2d');
+    l1 = document.createElement('canvas'); c1 = l1.getContext('2d');
+    l2 = document.createElement('canvas'); c2 = l2.getContext('2d');
+    sm = document.createElement('canvas'); sc = sm.getContext('2d');
+    const size = () => {
+      W = cv.clientWidth; H = cv.clientHeight; DPR = Math.min(devicePixelRatio || 1, 2);
+      for (const c of [cv, l1, l2]) { c.width = Math.round(W * DPR); c.height = Math.round(H * DPR); }
+      sm.width = Math.ceil(cv.width / 4); sm.height = Math.ceil(cv.height / 4);
+    };
+    size(); addEventListener('resize', size);
+    const g = document.createElement('canvas'); g.width = g.height = 220;
+    const gx = g.getContext('2d');
+    for (let i = 0; i < 2600; i++) {
+      gx.fillStyle = Math.random() < 0.6 ? 'rgba(60,40,20,' + (0.04 + Math.random() * 0.08).toFixed(3) + ')' : 'rgba(255,255,255,' + (0.04 + Math.random() * 0.07).toFixed(3) + ')';
+      gx.fillRect(Math.random() * 220, Math.random() * 220, 1 + Math.random() * 1.6, 1 + Math.random() * 1.6);
+    }
+    gx.strokeStyle = 'rgba(80,60,40,.06)'; gx.lineWidth = 0.7;
+    for (let i = 0; i < 60; i++) { const x = Math.random() * 220, y = Math.random() * 220, a = Math.random() * TAU, l = 4 + Math.random() * 10; gx.beginPath(); gx.moveTo(x, y); gx.lineTo(x + Math.cos(a) * l, y + Math.sin(a) * l); gx.stroke(); }
+    grain = m.createPattern(g, 'repeat');
+  }
+  function begin() {
+    for (const c of [c1, c2]) { c.setTransform(1, 0, 0, 1, 0, 0); c.clearRect(0, 0, l1.width, l1.height); c.setTransform(DPR, 0, 0, DPR, 0, 0); }
+  }
+  /* map the 520 x 480 design box onto the screen */
+  function view(x, y, s) { for (const c of [c1, c2]) c.setTransform(DPR * s, 0, 0, DPR * s, DPR * x, DPR * y); }
+  function shadow(layer, ox, oy, a) {
+    const sw = sm.width, sh = sm.height;
+    sc.globalCompositeOperation = 'copy'; sc.drawImage(layer, 0, 0, sw, sh);
+    sc.globalCompositeOperation = 'source-in'; sc.fillStyle = 'rgb(6,24,18)'; sc.fillRect(0, 0, sw, sh);
+    m.globalAlpha = a; m.imageSmoothingEnabled = true;
+    m.drawImage(sm, 0, 0, sw, sh, ox * DPR, oy * DPR, sw * 4, sh * 4);
+    m.globalAlpha = 1;
+  }
+  function end() {
+    m.setTransform(1, 0, 0, 1, 0, 0); m.clearRect(0, 0, cv.width, cv.height);
+    shadow(l1, 1.5, 4, 0.5); m.drawImage(l1, 0, 0);
+    shadow(l2, 3, 8, 0.5); m.drawImage(l2, 0, 0);
+    m.globalCompositeOperation = 'source-atop'; m.fillStyle = grain; m.fillRect(0, 0, cv.width, cv.height);
+    m.globalCompositeOperation = 'source-over';
+  }
+  function place(ctx, lp, px, py, seed, tilt) {
+    if (lp <= 0.001) return false;
+    const e = RM ? 1 : outBack(Math.min(1, lp));
+    ctx.save(); ctx.globalAlpha = Math.min(1, lp * 3.5);
+    const rot = (1 - e) * (hash(seed, 3) - 0.5) * 1.1 + tilt * (hash(seed, 5) - 0.5) * 0.05;
+    ctx.translate(px, py + (1 - e) * -30); if (rot) ctx.rotate(rot); ctx.translate(-px, -py);
+    return true;
+  }
+  function disc(ctx, x, y, r, seed) {
+    const n = Math.max(14, Math.round(r * 0.9)); ctx.beginPath();
+    for (let k = 0; k < n; k++) { const a = (k / n) * TAU, rr = r * (1 + (hash(seed, k) - 0.5) * 0.04); k ? ctx.lineTo(x + Math.cos(a) * rr, y + Math.sin(a) * rr) : ctx.moveTo(x + Math.cos(a) * rr, y + Math.sin(a) * rr); }
+    ctx.closePath();
+  }
+  function roughRect(ctx, x, y, w, h, seed) {
+    const j = k => (hash(seed, k) - 0.5) * 1.4; ctx.beginPath();
+    ctx.moveTo(x + j(1), y + j(2)); ctx.lineTo(x + w + j(3), y + j(4)); ctx.lineTo(x + w + j(5), y + h + j(6)); ctx.lineTo(x + j(7), y + h + j(8)); ctx.closePath();
+  }
+  const layer = o => (o.top ? c2 : c1);
+
+  function strip(pts, lp, o = {}) {
+    const ctx = layer(o), n = pts.length / 2, seed = o.seed || 1;
+    if (!place(ctx, lp, (pts[0] + pts[(n - 1) * 2]) / 2, (pts[1] + pts[(n - 1) * 2 + 1]) / 2, seed, 0)) return;
+    ctx.strokeStyle = ctx.fillStyle = COL[o.c || 'ink']; ctx.lineWidth = Math.max(2.2, (o.w || 1) * 2.4);
+    ctx.lineCap = o.dash ? 'butt' : 'round'; ctx.lineJoin = 'round'; if (o.dash) ctx.setLineDash([9, 7]);
+    ctx.beginPath(); ctx.moveTo(pts[0], pts[1]); for (let k = 1; k < n; k++) ctx.lineTo(pts[k * 2], pts[k * 2 + 1]); ctx.stroke();
+    if (o.arrow) {
+      ctx.setLineDash([]);
+      const ax = pts[(n - 2) * 2], ay = pts[(n - 2) * 2 + 1], bx = pts[(n - 1) * 2], by = pts[(n - 1) * 2 + 1], a = Math.atan2(by - ay, bx - ax), s = 6 + ctx.lineWidth * 1.4;
+      ctx.beginPath(); ctx.moveTo(bx + Math.cos(a) * s * 0.7, by + Math.sin(a) * s * 0.7);
+      ctx.lineTo(bx + Math.cos(a + 2.3) * s, by + Math.sin(a + 2.3) * s); ctx.lineTo(bx + Math.cos(a - 2.3) * s, by + Math.sin(a - 2.3) * s); ctx.closePath(); ctx.fill();
+    }
+    ctx.restore();
+  }
+  function circle(x, y, r, lp, o = {}) {
+    const ctx = layer(o), seed = o.seed || 2;
+    if (!place(ctx, lp, x, y, seed, 0)) return;
+    disc(ctx, x, y, r, seed);
+    if (o.fill !== false) { ctx.fillStyle = COL[o.c || 'ink']; ctx.fill(); }
+    else { ctx.strokeStyle = COL[o.c || 'ink']; ctx.lineWidth = 2.6; ctx.stroke(); }
+    ctx.restore();
+  }
+  function rect(x, y, w, h, lp, o = {}) {
+    const ctx = layer(o), seed = o.seed || 3;
+    if (!place(ctx, lp, x + w / 2, y + h / 2, seed, 0.5)) return;
+    roughRect(ctx, x, y, w, h, seed); ctx.fillStyle = o.color || COL[o.c || 'ink']; ctx.fill();
+    ctx.restore();
+  }
+  function shape(path, cx, cy, lp, o = {}) {
+    const ctx = layer(o), seed = o.seed || 4;
+    if (!place(ctx, lp, cx, cy, seed, 1)) return;
+    ctx.fillStyle = COL[o.c || 'ink']; ctx.fill(path, 'evenodd');
+    ctx.restore();
+  }
+  function text(str, x, y, size, lp, o = {}) {
+    const ctx = layer(o), c = o.c || 'ink', seed = o.seed || strSeed(str);
+    ctx.font = '800 ' + size + 'px ' + DISP;
+    const xs = [0]; for (let i = 1; i <= str.length; i++) xs.push(ctx.measureText(str.slice(0, i)).width);
+    const w = xs[str.length], left = o.align === 'c' ? x - w / 2 : o.align === 'r' ? x - w : x, onStrip = c !== 'ink' && c !== 'mute';
+    if (!place(ctx, lp, left + w / 2, y, seed, 1)) return w;
+    if (onStrip) { ctx.fillStyle = COL[c]; roughRect(ctx, left - size * 0.07, y - size * 0.62, w + size * 0.14, size * 1.24, seed); ctx.fill(); }
+    ctx.font = '800 ' + size + 'px ' + DISP; ctx.textBaseline = 'middle'; ctx.textAlign = 'left';
+    ctx.fillStyle = onStrip ? (c === 'hl' ? COL.type : '#FFFFFF') : COL[c];
+    for (let i = 0; i < str.length; i++) {
+      if (str[i] === ' ') continue;
+      const cw = xs[i + 1] - xs[i];
+      ctx.save(); ctx.translate(left + xs[i] + cw / 2, y + (hash(seed + i, 4) - 0.5) * size * 0.05);
+      ctx.rotate((hash(seed + i, 9) - 0.5) * 0.1); ctx.fillText(str[i], -cw / 2, 0); ctx.restore();
+    }
+    ctx.restore();
+    return w;
+  }
+  function label(str, x, y, lp, o = {}) {
+    const c = o.c || 'mute', size = o.size || 12, seed = o.seed || strSeed(str), s = str.toUpperCase();
+    c2.font = '700 ' + size + 'px ' + BODY; if (hasLS) c2.letterSpacing = '0.09em';
+    const w = c2.measureText(s).width;
+    const left = Math.max(10, Math.min(DW - 10 - w, o.align === 'c' ? x - w / 2 : o.align === 'r' ? x - w : x));
+    if (place(c2, lp, left + w / 2, y, seed, o.tag ? 1.4 : 0)) {
+      if (o.tag) { const h = size + 12; c2.fillStyle = TAGBG[c]; roughRect(c2, left - 8, y - h / 2, w + 16, h, seed); c2.fill(); c2.fillStyle = TAGFG[c]; }
+      else c2.fillStyle = LBL[c];
+      c2.textAlign = 'left'; c2.textBaseline = 'middle'; c2.fillText(s, left, y + 1);
+      c2.restore();
+    }
+    if (hasLS) c2.letterSpacing = '0px';
+  }
+  function strike(x0, x1, y, size, lp, seed = 7) {
+    if (lp <= 0.001) return;
+    if (!place(c2, 1, (x0 + x1) / 2, y, seed, 0)) return;
+    const h = Math.max(6, size * 0.13);
+    c2.translate((x0 + x1) / 2, y); c2.rotate(-0.06); c2.translate(-(x0 + x1) / 2, -y);
+    c2.fillStyle = COL.type; roughRect(c2, x0, y - h / 2, (x1 - x0) * Math.max(0, Math.min(1, lp)), h, seed); c2.fill();
+    c2.restore();
+  }
+  function dial(x, y, r, v, lp, o = {}) {
+    const seed = o.seed || 8;
+    if (place(c1, lp, x, y, seed, 0)) { c1.fillStyle = o.hot ? COL.hl : COL.ink; disc(c1, x, y, r, seed); c1.fill(); c1.restore(); }
+    const a = Math.PI * (0.75 + 1.5 * v);
+    if (place(c2, lp, x, y, seed + 1, 0)) {
+      c2.strokeStyle = COL.ai; c2.lineWidth = Math.max(3, r * 0.16); c2.lineCap = 'butt';
+      c2.beginPath(); c2.moveTo(x, y); c2.lineTo(x + Math.cos(a) * r * 0.8, y + Math.sin(a) * r * 0.8); c2.stroke();
+      c2.fillStyle = '#C9A44A'; c2.beginPath(); c2.arc(x, y, Math.max(2.5, r * 0.15), 0, TAU); c2.fill();
+      c2.restore();
+    }
+  }
+  /* helpers for multi-part pieces that must move as one */
+  function measure(str, font) { c2.font = font; return c2.measureText(str).width; }
+  function measureLabel(str, size = 12) {
+    c2.font = '700 ' + size + 'px ' + BODY; if (hasLS) c2.letterSpacing = '0.09em';
+    const w = c2.measureText(str.toUpperCase()).width; if (hasLS) c2.letterSpacing = '0px'; return w;
+  }
+  function wrap(str, font, maxW) {
+    c2.font = font; const words = str.split(' '), lines = []; let line = '';
+    for (const w of words) { const tt = line ? line + ' ' + w : w; if (line && c2.measureText(tt).width > maxW) { lines.push(line); line = w; } else line = tt; }
+    if (line) lines.push(line); return lines;
+  }
+  function grp(lp, cx, cy, o, fn) {
+    const ctx = layer(o); if (!place(ctx, lp, cx, cy, o.seed || 9, o.tilt == null ? 1 : o.tilt)) return false;
+    fn(ctx); ctx.restore(); return true;
+  }
+  function fRect(ctx, x, y, w, h, seed, col) { roughRect(ctx, x, y, w, h, seed); ctx.fillStyle = col; ctx.fill(); }
+  function fDisc(ctx, x, y, r, seed, col) { disc(ctx, x, y, r, seed); ctx.fillStyle = col; ctx.fill(); }
+  function fText(ctx, str, x, y, font, col, align) { ctx.font = font; ctx.fillStyle = col; ctx.textAlign = align || 'left'; ctx.textBaseline = 'middle'; ctx.fillText(str, x, y); ctx.textAlign = 'left'; }
+  return { COL, DISP, BODY, RM, hash, setup, begin, view, end, strip, circle, rect, shape, text, label, strike, dial, measure, measureLabel, wrap, grp, fRect, fDisc, fText };
+})();
+
+/* ---------- shared pieces ---------- */
+const C = P.COL, D = P.DISP, B = P.BODY;
+const clamp01 = v => (v < 0 ? 0 : v > 1 ? 1 : v);
+const ease = t => (t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2);
+
+function person(cx, by, s, lp, o = {}) {
+  const seed = o.seed || 11;
+  P.grp(lp, cx, by - s * 0.5, { seed, top: o.top }, ctx => {
+    P.fDisc(ctx, cx, by - s * 0.86, s * 0.19, seed, o.color || C.ink);
+    ctx.beginPath(); ctx.moveTo(cx - s * 0.4, by); ctx.lineTo(cx - s * 0.4, by - s * 0.24);
+    ctx.arc(cx, by - s * 0.24, s * 0.4, Math.PI, 0); ctx.lineTo(cx + s * 0.4, by); ctx.closePath(); ctx.fill();
+  });
+}
+function face(cx, cy, r, mood, lp, seed) {
+  P.grp(lp, cx, cy, { seed }, ctx => P.fDisc(ctx, cx, cy, r, seed, C.ink));
+  P.grp(lp, cx, cy, { seed, top: true }, ctx => {
+    ctx.fillStyle = ctx.strokeStyle = C.type; ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+    const ex = r * 0.34, ey = cy - r * 0.14;
+    if (mood === 'side') {
+      for (const s of [-1, 1]) {
+        P.fRect(ctx, cx + s * ex - r * 0.2, ey - r * 0.05, r * 0.4, r * 0.09, seed + s + 3, C.type);
+        P.fDisc(ctx, cx + s * ex + r * 0.09, ey + r * 0.09, r * 0.085, seed + s + 5, C.type);
+        ctx.lineWidth = r * 0.08; ctx.beginPath();
+        ctx.moveTo(cx + s * ex - r * 0.17, ey - r * 0.24 - s * r * 0.04); ctx.lineTo(cx + s * ex + r * 0.17, ey - r * 0.24 + s * r * 0.04); ctx.stroke();
+      }
+      ctx.lineWidth = r * 0.09; ctx.beginPath(); ctx.arc(cx + r * 0.05, cy + r * 0.66, r * 0.3, Math.PI * 1.2, Math.PI * 1.8); ctx.stroke();
+    } else if (mood === 'smile') {
+      for (const s of [-1, 1]) { ctx.beginPath(); ctx.ellipse(cx + s * ex, ey, r * 0.08, r * 0.13, 0, 0, Math.PI * 2); ctx.fill(); }
+      ctx.lineWidth = r * 0.09; ctx.beginPath(); ctx.arc(cx, cy + r * 0.02, r * 0.42, Math.PI * 0.22, Math.PI * 0.78); ctx.stroke();
+    } else {
+      ctx.lineWidth = r * 0.1;
+      for (const s of [-1, 1]) { ctx.beginPath(); ctx.arc(cx + s * ex, ey + r * 0.06, r * 0.13, Math.PI * 1.1, Math.PI * 1.9); ctx.stroke(); }
+      ctx.beginPath(); ctx.moveTo(cx - r * 0.5, cy + r * 0.12); ctx.quadraticCurveTo(cx, cy + r * 0.98, cx + r * 0.5, cy + r * 0.12); ctx.closePath(); ctx.fill();
+      ctx.fillStyle = C.ink; ctx.beginPath(); ctx.moveTo(cx - r * 0.43, cy + r * 0.17); ctx.lineTo(cx + r * 0.43, cy + r * 0.17); ctx.lineTo(cx + r * 0.37, cy + r * 0.31); ctx.lineTo(cx - r * 0.37, cy + r * 0.31); ctx.closePath(); ctx.fill();
+    }
+  });
+}
+/* the AI: a cobalt box with dials */
+function aiBox(x, y, w, h, lp, o = {}) {
+  const seed = o.seed || 31, cols = o.cols || 2, rows = o.rows || 2, r = o.r || Math.min(w / cols, h / rows) * 0.3;
+  P.rect(x, y, w, h, lp, { c: 'ai', seed });
+  let k = 0;
+  for (let j = 0; j < rows; j++) for (let i = 0; i < cols; i++) {
+    const val = o.vals ? o.vals(k) : { v: 0.2 + 0.6 * P.hash(seed + k, 2), hot: false };
+    P.dial(x + w * (i + 0.5) / cols, y + h * (j + 0.5) / rows, r, val.v, lp, { seed: seed + 7 + k * 3, hot: val.hot });
+    k++;
+  }
+  if (o.tag) P.label(o.tag, x + w / 2, y - 18, lp, { c: 'ai', tag: true, align: 'c', seed: seed + 99 });
+}
+/* one dial at a time eases to a new setting and flashes marigold while it moves */
+function tweak(j, n, t, period) {
+  const cyc = Math.floor(t / period), ph = t / period - cyc;
+  const k = cyc - ((((cyc - j) % n) + n) % n);
+  const val = q => 0.12 + 0.76 * P.hash(j * 97 + 13, q);
+  if (k === cyc) { const e = ease(Math.min(1, ph / 0.7)); return { v: val(k - n) + (val(k) - val(k - n)) * e, hot: ph < 0.85 }; }
+  return { v: val(k), hot: false };
+}
+function paperCard(str, cx, cy, lp, o = {}) {
+  const size = o.size || 20, font = o.font || `800 ${size}px ${D}`, padX = o.padX == null ? 16 : o.padX, h = o.h || size * 1.9, seed = o.seed || 21;
+  const w = P.measure(str, font) + padX * 2;
+  P.grp(lp, cx, cy, { seed, top: o.top, tilt: o.tilt == null ? 1 : o.tilt }, ctx => {
+    P.fRect(ctx, cx - w / 2, cy - h / 2, w, h, seed, o.bg || C.ink);
+    P.fText(ctx, str, cx, cy + 1, font, o.fg || C.type, 'center');
+  });
+  return w;
+}
+function markTile(cx, cy, s, ok, lp, o = {}) {
+  const seed = o.seed || 61;
+  P.grp(lp, cx, cy, { seed, top: o.top }, ctx => {
+    P.fRect(ctx, cx - s / 2, cy - s / 2, s, s, seed, ok ? C.hl : C.bad);
+    ctx.strokeStyle = ok ? C.type : '#FFFFFF'; ctx.lineWidth = s * 0.13; ctx.lineCap = 'round'; ctx.lineJoin = 'round'; ctx.beginPath();
+    if (ok) { ctx.moveTo(cx - s * 0.22, cy + s * 0.02); ctx.lineTo(cx - s * 0.05, cy + s * 0.2); ctx.lineTo(cx + s * 0.25, cy - s * 0.2); }
+    else { ctx.moveTo(cx - s * 0.2, cy - s * 0.2); ctx.lineTo(cx + s * 0.2, cy + s * 0.2); ctx.moveTo(cx + s * 0.2, cy - s * 0.2); ctx.lineTo(cx - s * 0.2, cy + s * 0.2); }
+    ctx.stroke();
+  });
+}
+function deadEnd(x, y, lp, seed) {
+  P.grp(lp, x, y, { seed, top: true }, ctx => {
+    P.fDisc(ctx, x, y, 9, seed, C.bad);
+    ctx.strokeStyle = '#FFFFFF'; ctx.lineWidth = 2.2; ctx.lineCap = 'round'; ctx.beginPath();
+    ctx.moveTo(x - 3.5, y - 3.5); ctx.lineTo(x + 3.5, y + 3.5); ctx.moveTo(x + 3.5, y - 3.5); ctx.lineTo(x - 3.5, y + 3.5); ctx.stroke();
+  });
+}
+function flag(x, y, lp, seed) {
+  P.grp(lp, x, y, { seed, top: true }, ctx => {
+    P.fRect(ctx, x - 1.5, y - 14, 3, 32, seed, C.ink);
+    P.fRect(ctx, x + 1, y - 14, 20, 13, seed + 1, C.hl);
+  });
+}
+function hiddenTag(s, cx, y, lp, seed) {
+  const size = 12, w = P.measureLabel(s, size) + 16, h = size + 12;
+  P.grp(lp, cx, y, { seed, top: true, tilt: 1.4 }, ctx => {
+    P.fRect(ctx, cx - w / 2, y - h / 2, w, h, seed, C.dim);
+    P.fText(ctx, '?', cx, y + 1, `800 15px ${D}`, '#C3DBD0', 'center');
+  });
+}
+function tagRow(items, y, lpf, o = {}) {
+  const size = o.size || 11, gap = o.gap || 12, cx = o.cx || DW / 2;
+  const ws = items.map(it => P.measureLabel(it.s, size) + 16);
+  let x = cx - (ws.reduce((a, b) => a + b, 0) + gap * (items.length - 1)) / 2;
+  items.forEach((it, i) => { P.label(it.s, x + ws[i] / 2, y, lpf(i), { c: it.c, tag: true, align: 'c', size }); x += ws[i] + gap; });
+}
+function star(cx, cy, R, r) {
+  const p = new Path2D();
+  for (let k = 0; k < 10; k++) { const a = -Math.PI / 2 + k * Math.PI / 5, rr = k % 2 ? r : R, x = cx + Math.cos(a) * rr, y = cy + Math.sin(a) * rr; k ? p.lineTo(x, y) : p.moveTo(x, y); }
+  p.closePath(); return p;
+}
+function bolt(cx, cy, s) {
+  const pts = [-8, -40, 16, -40, 4, -8, 20, -8, -12, 40, -2, 4, -18, 4], p = new Path2D();
+  p.moveTo(cx + pts[0] * s, cy + pts[1] * s); for (let i = 2; i < pts.length; i += 2) p.lineTo(cx + pts[i] * s, cy + pts[i + 1] * s);
+  p.closePath(); return p;
+}
+function roundLoop(x0, y0, x1, y1, r) {
+  const pts = [], arc = (cx, cy, a0) => { for (let k = 1; k <= 8; k++) { const a = a0 + (k / 8) * Math.PI / 2; pts.push(cx + Math.cos(a) * r, cy + Math.sin(a) * r); } };
+  pts.push(x0 + r, y0, x1 - r, y0); arc(x1 - r, y0 + r, -Math.PI / 2);
+  pts.push(x1, y1 - r); arc(x1 - r, y1 - r, 0);
+  pts.push(x0 + r, y1); arc(x0 + r, y1 - r, Math.PI / 2);
+  pts.push(x0, y0 + r); arc(x0 + r, y0 + r, Math.PI);
+  return pts;
+}
+function along(pts, f) {
+  const seg = []; let L = 0;
+  for (let i = 0; i < pts.length - 2; i += 2) { const l = Math.hypot(pts[i + 2] - pts[i], pts[i + 3] - pts[i + 1]); seg.push(l); L += l; }
+  let d = f * L;
+  for (let k = 0; k < seg.length; k++) {
+    if (d <= seg[k] || k === seg.length - 1) { const u = seg[k] ? Math.min(1, d / seg[k]) : 0, i = k * 2; return [pts[i] + (pts[i + 2] - pts[i]) * u, pts[i + 1] + (pts[i + 3] - pts[i + 1]) * u]; }
+    d -= seg[k];
+  }
+  return [pts[0], pts[1]];
+}
+
+/* paper phone with chat bubbles */
+const BF = `500 12px ${B}`;
+function phoneLayout(w, msgs) {
+  const maxW = w * 0.74; let h = 56;
+  const ms = msgs.map(m => {
+    let r;
+    if (m.sep) r = { h: 16 };
+    else if (m.big) r = { h: 42, w: 46 };
+    else { const lines = P.wrap(m.t, BF, maxW - 20); r = { lines, w: Math.max(...lines.map(l => P.measure(l, BF))) + 20, h: lines.length * 15 + 13 }; }
+    h += r.h + 7; return r;
+  });
+  return { ms, h: h + 5 };
+}
+function phone(x, y, w, name, msgs, lpf, o = {}) {
+  const lay = phoneLayout(w, msgs), h = Math.max(lay.h, o.h || 0), seed = o.seed || 70;
+  P.grp(lpf(0), x + w / 2, y + h / 2, { seed, tilt: 0.6 }, ctx => {
+    P.fRect(ctx, x, y, w, h, seed, C.ink);
+    P.fRect(ctx, x + w / 2 - 22, y + 7, 44, 5, seed + 1, '#CFC7B5');
+    P.fDisc(ctx, x + 22, y + 28, 11, seed + 2, o.avatar || C.pale);
+    P.fText(ctx, name[0], x + 22, y + 29, `700 11px ${B}`, C.type, 'center');
+    P.fText(ctx, name, x + 40, o.sub ? y + 23 : y + 28, `700 13px ${B}`, C.type);
+    if (o.sub) P.fText(ctx, o.sub, x + 40, y + 36, `500 9.5px ${B}`, '#7B766C');
+    ctx.fillStyle = 'rgba(28,27,25,.2)';
+    for (let dx = x + 10; dx < x + w - 12; dx += 8) ctx.fillRect(dx, y + 46, 4, 1.2);
+  });
+  let yy = y + 56 + (h - lay.h);
+  lay.ms.forEach((mm, j) => {
+    const m = msgs[j], lp = lpf(j + 1), sd = seed + 10 + j, by = yy;
+    if (m.sep) P.grp(lp, x + w / 2, by + 8, { seed: sd, tilt: 0 }, ctx => P.fText(ctx, m.sep, x + w / 2, by + 8, `500 9.5px ${B}`, '#8A8478', 'center'));
+    else {
+      const bx = m.out ? x + w - 10 - mm.w : x + 10;
+      P.grp(lp, bx + mm.w / 2, by + mm.h / 2, { seed: sd, top: true, tilt: 0.8 }, ctx => {
+        P.fRect(ctx, bx, by, mm.w, mm.h, sd, m.out ? C.dim : C.pale);
+        if (m.big) P.fText(ctx, m.t, bx + mm.w / 2, by + mm.h / 2 + 1, `800 24px ${D}`, C.type, 'center');
+        else mm.lines.forEach((l, li) => P.fText(ctx, l, bx + 10, by + 14 + li * 15, BF, m.out ? C.ink : C.type));
+      });
+    }
+    yy += mm.h + 7;
+  });
+  return { h };
+}
+
+/* ---------- scenes: each draws into a 520 x 480 box ---------- */
+function sHero(L, t) {
+  P.strip([150, 196, 196, 156], L.i(3), { c: 'mute', dash: true, seed: 3 });
+  P.strip([372, 202, 326, 156], L.i(4), { c: 'mute', dash: true, seed: 4 });
+  person(112, 340, 150, L.i(0), { seed: 12 });
+  aiBox(332, 210, 136, 130, L.i(1), { seed: 33, r: 20, vals: k => tweak(k, 4, t, 1.6) });
+  P.grp(L.i(2), 260, 100, { seed: 51 }, ctx => {
+    P.fRect(ctx, 190, 48, 140, 102, 51, C.ink);
+    ctx.beginPath(); ctx.moveTo(244, 148); ctx.lineTo(276, 148); ctx.lineTo(258, 174); ctx.closePath(); ctx.fill();
+    P.fText(ctx, 'k', 260, 94, `800 74px ${D}`, C.type, 'center');
+  });
+  P.label('Human', 112, 368, L.i(5), { c: 'ink', tag: true, align: 'c' });
+  P.label('AI', 400, 368, L.i(6), { c: 'ai', tag: true, align: 'c' });
+  P.label('Two learners, one confusing text', 260, 440, L.i(7), { c: 'mute', align: 'c' });
+}
+
+function sK(L) {
+  const xs = [90, 262, 434], moods = ['side', 'smile', 'grin'];
+  xs.forEach((x, i) => face(x, 150, 60, moods[i], L.i(i * 2), 100 + i));
+  P.text('k', xs[0], 282, 46, L.i(1), { c: 'bad', align: 'c', seed: 201 });
+  P.text('okay', xs[1], 282, 46, L.i(3), { c: 'ink', align: 'c', seed: 202 });
+  P.text('ok!', xs[2], 282, 46, L.i(5), { c: 'hl', align: 'c', seed: 203 });
+  P.label('A knife in a bow', xs[0], 346, L.i(7), { c: 'bad', tag: true, align: 'c', size: 11 });
+  P.label('What you wanted', xs[1], 346, L.i(8), { c: 'ink', align: 'c', size: 11 });
+  P.label('Genuinely fine', xs[2], 346, L.i(9), { c: 'hl', align: 'c', size: 11 });
+  P.label('Same reply, three very different moods', 260, 432, L.i(10), { c: 'mute', align: 'c' });
+}
+
+const MAYA = [
+  { t: 'booked our anniversary dinner!! thurs 7:30' },
+  { sep: 'Thursday' },
+  { t: 'can we move it? the boys got game tickets', out: true },
+  { t: 'this is the second time this month' },
+  { t: "I'll make it up to you", out: true },
+  { sep: '46 min later' },
+  { t: 'k', big: true }
+];
+function sMaya(L) {
+  phone(22, 30, 236, 'Maya', MAYA, L.i, { seed: 300, sub: 'partner' });
+  const cx = 395;
+  P.label('Your read', cx, 62, L.i(9), { c: 'mute', align: 'c' });
+  const w = P.text('all good!', cx, 108, 34, L.i(10), { c: 'bad', align: 'c', seed: 310 });
+  P.strike(cx - w / 2 - 8, cx + w / 2 + 8, 108, 34, L.at(1.1), 311);
+  P.strip([cx, 140, cx, 164], L.i(11), { c: 'mute', arrow: true, seed: 312 });
+  P.shape(bolt(cx, 210, 0.95), cx, 210, L.at(1.25), { c: 'bad', seed: 313 });
+  P.label('The fallout', cx, 262, L.at(1.35), { c: 'bad', align: 'c' });
+  P.strip([cx, 280, cx, 304], L.at(1.45), { c: 'mute', arrow: true, seed: 314 });
+  P.label('Lesson learnt', cx, 336, L.at(1.6), { c: 'hl', tag: true, align: 'c' });
+  P.text('k = bad news', cx, 388, 30, L.at(1.7), { c: 'hl', align: 'c', seed: 315 });
+}
+
+const MAYA2 = [
+  { t: 'can we move it? the boys got game tickets', out: true },
+  { t: 'this is the second time this month' },
+  { sep: '46 min later' },
+  { t: 'k', big: true }
+];
+const DAD = [
+  { t: "where's the spare charger?", out: true },
+  { t: 'Drawer' },
+  { t: 'can you pick me up at 5:50?', out: true },
+  { sep: '1 min later' },
+  { t: 'k', big: true }
+];
+function sDad(L) {
+  const HH = Math.max(phoneLayout(230, MAYA2).h, phoneLayout(230, DAD).h);
+  phone(20, 18, 230, 'Maya', MAYA2, L.i, { seed: 400, sub: 'partner', h: HH });
+  phone(270, 18, 230, 'Dad', DAD, k => L.i(k + 2), { seed: 420, sub: 'dad', h: HH });
+  const vy = 18 + HH + 26;
+  P.label('Cold', 135, vy, L.at(0.9), { c: 'bad', tag: true, align: 'c' });
+  P.label('Normal', 385, vy, L.at(1.0), { c: 'mute', tag: true, align: 'c' });
+  P.label('Same letter. What changes the meaning?', 260, vy + 56, L.at(1.15), { c: 'ink', align: 'c', size: 11 });
+  tagRow([{ s: 'Who sent it', c: 'ink' }, { s: 'What came before', c: 'ink' }, { s: 'How they usually text', c: 'ink' }], vy + 94, k => L.at(1.25 + k * 0.08), { size: 10.5, gap: 10 });
+}
+
+function sCold(L) {
+  P.label('Cold message variants', 260, 20, L.i(0), { c: 'mute', align: 'c' });
+  paperCard("I'm fine.", 128, 72, L.i(1), { size: 22, seed: 501 });
+  paperCard('Per my last email…', 350, 64, L.i(2), { size: 22, seed: 502 });
+  paperCard('Cool.', 112, 154, L.i(3), { size: 22, seed: 503 });
+  paperCard('k', 268, 152, L.i(4), { size: 26, seed: 504 });
+  paperCard('Fine.', 420, 156, L.i(5), { size: 22, seed: 505 });
+  person(78, 382, 84, L.i(6), { seed: 510 });
+  P.strip([122, 328, 168, 286, 196, 286], L.i(7), { c: 'mute', arrow: true, seed: 511 });
+  P.strip([122, 360, 168, 392, 196, 392], L.i(8), { c: 'mute', arrow: true, seed: 512 });
+  P.strip([336, 286, 474, 286, 474, 458, 78, 458, 78, 404], L.i(13), { c: 'mute', arrow: true, seed: 513 });
+  P.strip([336, 392, 474, 392], L.i(13), { c: 'mute', seed: 514 });
+  P.label('Misread it', 266, 286, L.i(9), { c: 'bad', tag: true, align: 'c' });
+  P.label('Argument. Think again.', 266, 314, L.i(10), { c: 'bad', align: 'c', size: 10.5 });
+  P.label('Read it right', 266, 392, L.i(11), { c: 'hl', tag: true, align: 'c' });
+  P.label('Thinking reinforced', 266, 420, L.i(12), { c: 'hl', align: 'c', size: 10.5 });
+  P.label('Next time, a bit better', 300, 444, L.i(14), { c: 'mute', align: 'c', size: 10.5 });
+}
+
+function sBox(L, t) {
+  P.label('What goes in', 88, 128, L.i(0), { c: 'mute', align: 'c' });
+  P.grp(L.i(1), 88, 240, { seed: 601 }, ctx => {
+    P.fRect(ctx, 22, 150, 134, 180, 601, C.ink);
+    P.fRect(ctx, 36, 166, 42, 38, 602, C.pale);
+    P.fText(ctx, 'k', 57, 186, `800 24px ${D}`, C.type, 'center');
+    ['+ the chat so far', '+ who sent it', '+ how they text'].forEach((s, i) => P.fText(ctx, s, 36, 232 + i * 24, `500 12px ${B}`, C.type));
+  });
+  P.strip([162, 240, 194, 240], L.i(2), { c: 'mute', arrow: true, seed: 603 });
+  aiBox(206, 120, 150, 240, L.i(3), { seed: 610, cols: 2, rows: 3, r: 22, tag: 'AI', vals: k => ({ v: 0.25 + 0.5 * P.hash(k, 610) + 0.04 * Math.sin(t * 0.8 + k * 1.7), hot: false }) });
+  P.label('Knobs and dials', 281, 384, L.i(5), { c: 'ai', align: 'c' });
+  P.strip([362, 240, 392, 240, 410, 198, 424, 198], L.i(6), { c: 'mute', arrow: true, seed: 620 });
+  P.strip([392, 240, 410, 282, 424, 282], L.i(7), { c: 'mute', arrow: true, seed: 621 });
+  P.label('Cold', 468, 198, L.i(8), { c: 'ink', tag: true, align: 'c' });
+  P.label('Normal', 468, 282, L.i(9), { c: 'ink', tag: true, align: 'c' });
+  P.text('?', 468, 240, 30, L.i(10), { c: 'ink', align: 'c', seed: 622 });
+  P.label('What comes out', 462, 150, L.i(11), { c: 'mute', align: 'c' });
+}
+
+const MAYA3 = [
+  { t: 'this is the second time this month' },
+  { t: "I'll make it up to you", out: true },
+  { sep: '46 min later' },
+  { t: 'k', big: true }
+];
+function sGuess(L) {
+  phone(12, 30, 160, 'Maya', MAYA3, L.i, { seed: 700 });
+  P.strip([178, 165, 202, 165], L.i(5), { c: 'mute', arrow: true, seed: 705 });
+  aiBox(212, 95, 120, 140, L.i(6), { seed: 710, r: 18, tag: 'AI' });
+  P.strip([338, 165, 362, 165], L.i(7), { c: 'mute', arrow: true, seed: 715 });
+  const cx = 442;
+  P.label("The AI's guess", cx, 76, L.i(8), { c: 'ai', align: 'c' });
+  const w = P.text('normal', cx, 118, 32, L.i(9), { c: 'bad', align: 'c', seed: 720 });
+  P.strike(cx - w / 2 - 6, cx + w / 2 + 6, 118, 32, L.at(0.95), 721);
+  P.label('Wrong!', cx, 162, L.at(1.05), { c: 'bad', tag: true, align: 'c' });
+  P.label('Actually', cx, 202, L.at(1.2), { c: 'hl', align: 'c' });
+  P.text('cold', cx, 238, 32, L.at(1.3), { c: 'hl', align: 'c', seed: 722 });
+  P.label('How sure it is: a coin flip', 30, 330, L.at(1.4), { c: 'mute' });
+  P.label('Illustration, not data', 490, 330, L.at(1.45), { c: 'mute', tag: true, align: 'r', size: 10 });
+  [['Cold', 0.48, 'ink'], ['Normal', 0.52, 'bad']].forEach(([name, v, c], i) => {
+    const y = 372 + i * 46, lp = L.at(1.5 + i * 0.1);
+    P.label(name, 30, y, lp, { c });
+    P.rect(122, y - 8, 300, 16, lp, { c: 'dim', seed: 730 + i });
+    P.rect(122, y - 8, 300 * v, 16, L.at(1.6 + i * 0.1), { c, seed: 740 + i, top: true });
+    P.label(Math.round(v * 100) + '%', 438, y, L.at(1.6 + i * 0.1), { c });
+  });
+}
+
+function sTweak(L, t) {
+  P.label('Wrong? Nudge away', 150, 30, L.i(0), { c: 'bad', tag: true, align: 'c', size: 11 });
+  P.label('Right? Nudge closer', 372, 30, L.i(1), { c: 'hl', tag: true, align: 'c', size: 11 });
+  aiBox(140, 82, 240, 228, L.i(2), { seed: 800, cols: 3, rows: 2, r: 28, tag: 'AI', vals: k => tweak(k, 6, t, 0.95) });
+  P.strip([230, 352, 230, 318], L.i(3), { c: 'hl', dash: true, arrow: true, seed: 810 });
+  P.strip([290, 352, 290, 318], L.i(4), { c: 'hl', dash: true, arrow: true, seed: 811 });
+  paperCard('gradient descent', 260, 384, L.i(5), { size: 22, seed: 812 });
+  P.label('Does the tweaking', 260, 430, L.i(6), { c: 'hl', align: 'c' });
+  P.label('Engineer', 458, 350, L.i(7), { c: 'ink', tag: true, align: 'c', size: 10.5 });
+  person(458, 440, 64, L.i(8), { seed: 820 });
+  P.label('Hands off', 458, 462, L.i(9), { c: 'mute', align: 'c', size: 10.5 });
+}
+
+const STREAM = ['k', 'cool.', 'omg yes!!', "I'm fine.", 'sure', 'see u at 7 x', 'per my last email…', 'lol ok', 'Drawer', "can't wait!!", 'fine.', 'haha love that'];
+const tileOK = new Map();
+function sTrain(L, t) {
+  const p = clamp01((L.tin - 0.9) / 3.2);
+  const acc = x => 0.5 + 0.45 * (1 - Math.exp(-4.2 * x));
+  P.label('Hundreds of thousands of rounds', 260, 20, L.i(0), { c: 'mute', align: 'c' });
+  const lpS = L.i(1), sp = 64, gap = 150, laneY = 105, tt = t * sp;
+  const font = `500 12px ${B}`;
+  for (let n = Math.ceil((tt - 236) / gap); n <= Math.floor((tt + 30) / gap); n++) {
+    const cx = tt - n * gap, s = STREAM[((n % STREAM.length) + STREAM.length) % STREAM.length];
+    paperCard(s, cx - P.measure(s, font) / 2 - 12, laneY, lpS * clamp01((cx + 30) / 50), { font, h: 26, padX: 10, seed: 850 + (((n % 40) + 40) % 40) });
+  }
+  const errAt = 1 - acc(p);
+  for (let n = Math.ceil((tt + 90 - 520) / gap); n <= Math.floor((tt + 90 - 300) / gap); n++) {
+    const ox = tt + 90 - n * gap;
+    if (!tileOK.has(n)) { tileOK.set(n, P.hash(n, 991) > errAt); if (tileOK.size > 60) tileOK.delete(tileOK.keys().next().value); }
+    markTile(ox, laneY, 24, tileOK.get(n), lpS * clamp01((508 - ox) / 40), { seed: 900 + (((n % 40) + 40) % 40) });
+  }
+  aiBox(210, 50, 110, 110, L.i(2), { seed: 870, r: 16, vals: k => tweak(k, 4, t, 0.4) });
+  const X = x => 70 + x * 400, Y = a => 430 - a * 190;
+  P.strip([70, 430, 70, 226], L.i(3), { c: 'mute', arrow: true, seed: 860 });
+  P.strip([70, 430, 488, 430], L.i(4), { c: 'mute', arrow: true, seed: 861 });
+  P.label('Right answers', 84, 224, L.i(5), { c: 'mute' });
+  P.label('Messages seen', 488, 454, L.i(6), { c: 'mute', align: 'r' });
+  P.strip([70, Y(0.5), 480, Y(0.5)], L.i(7), { c: 'hl', dash: true, seed: 862 });
+  P.label('Coin flip', 480, Y(0.5) + 17, L.i(8), { c: 'hl', align: 'r', size: 10.5 });
+  if (p > 0.002) {
+    const pts = [], N = Math.max(2, Math.ceil(p * 48));
+    for (let k = 0; k <= N; k++) { const x = (p * k) / N; pts.push(X(x), Y(acc(x))); }
+    P.strip(pts, L.at(0.9), { c: 'ai', w: 1.3, seed: 863 });
+    P.circle(X(p), Y(acc(p)), 7, L.at(0.9), { c: 'ai', top: true, seed: 864 });
+  }
+  P.label('Illustration, not data', 420, 404, L.at(1.0), { c: 'mute', tag: true, align: 'c', size: 10 });
+  P.label('Trained', X(1) - 6, Y(acc(1)) - 26, L.at(4.2), { c: 'hl', tag: true, align: 'r', size: 10.5 });
+}
+
+const LOOP = roundLoop(70, 70, 450, 400, 56);
+function sLoop(L, t) {
+  P.strip(LOOP, L.i(0), { c: 'mute', w: 1.1, seed: 900 });
+  P.strip([150, 70, 178, 70], L.i(1), { c: 'mute', arrow: true, w: 1.1, seed: 901 });
+  P.strip([450, 138, 450, 166], L.i(1), { c: 'mute', arrow: true, w: 1.1, seed: 902 });
+  P.strip([372, 400, 344, 400], L.i(1), { c: 'mute', arrow: true, w: 1.1, seed: 903 });
+  P.strip([70, 332, 70, 304], L.i(1), { c: 'mute', arrow: true, w: 1.1, seed: 904 });
+  const [tx, ty] = along(LOOP, (t / 7) % 1);
+  paperCard('k', tx, ty, L.i(2), { size: 15, seed: 905, top: true, padX: 8, h: 24, tilt: 0 });
+  P.label('Take an example', 260, 70, L.i(3), { c: 'ink', tag: true, align: 'c' });
+  P.label('Make a guess', 450, 235, L.i(4), { c: 'ink', tag: true, align: 'c' });
+  P.label('Feedback', 260, 400, L.i(5), { c: 'ink', tag: true, align: 'c' });
+  markTile(242, 434, 22, true, L.i(6), { seed: 906, top: true });
+  markTile(278, 434, 22, false, L.i(7), { seed: 907, top: true });
+  P.label('Adjust', 70, 235, L.i(8), { c: 'hl', tag: true, align: 'c' });
+  P.label('Both learn like this', 260, 140, L.i(9), { c: 'mute', align: 'c' });
+  person(186, 300, 96, L.i(10), { seed: 910 });
+  P.text('&', 258, 252, 40, L.i(11), { c: 'ink', align: 'c', seed: 911 });
+  aiBox(298, 205, 96, 95, L.i(12), { seed: 912, r: 13, vals: k => tweak(k, 4, t, 1.75) });
+  P.label('You', 186, 324, L.i(13), { c: 'ink', align: 'c' });
+  P.label('AI', 346, 324, L.i(14), { c: 'ai', align: 'c' });
+  P.label('Repeat with the next example', 260, 460, L.i(15), { c: 'mute', align: 'c' });
+}
+
+const EXC = ["unless it's from Dad", 'unless Dad is actually annoyed', 'what if it\'s "kk"?', 'or a typo for "ok"?', 'unless they always text like that', 'unless…'];
+function sRules(L) {
+  P.label('Conventional software', 22, 20, L.i(0), { c: 'mute' });
+  P.grp(L.i(1), 230, 70, { seed: 1001 }, ctx => {
+    P.fRect(ctx, 22, 40, 404, 58, 1001, C.ink);
+    P.fText(ctx, 'if the message is "k", it\'s cold', 40, 70, `800 21px ${D}`, C.type);
+  });
+  let px = 22, py = 98;
+  const font = `500 14px ${B}`;
+  EXC.forEach((s, i) => {
+    const x = 52 + i * 28, y = 116 + i * 46, h = 34, w = P.measure(s, font) + 28;
+    P.strip([px + 16, py, px + 16, y + h / 2, x - 3, y + h / 2], L.i(2 + i * 2), { c: 'mute', w: 0.8, seed: 1010 + i });
+    P.grp(L.i(3 + i * 2), x + w / 2, y + h / 2, { seed: 1020 + i }, ctx => {
+      P.fRect(ctx, x, y, w, h, 1020 + i, C.ink);
+      P.fText(ctx, s, x + 14, y + h / 2 + 1, font, C.type);
+    });
+    px = x; py = y + h;
+  });
+  P.label('Hand-written. Never finished.', 22, 424, L.i(15), { c: 'mute', size: 11 });
+  P.grp(L.i(16), 388, 434, { seed: 1040, top: true }, ctx => {
+    P.fRect(ctx, 268, 402, 240, 64, 1040, C.ai);
+    P.fText(ctx, 'AI', 284, 420, `700 11px ${B}`, '#FFFFFF');
+    P.fText(ctx, 'learns its own rulebook', 284, 444, `800 17px ${D}`, '#FFFFFF');
+  });
+}
+
+function sManagers(L, t) {
+  P.strip([260, 50, 260, 440], L.i(0), { c: 'dim', dash: true, seed: 1100 });
+  P.label('Micromanager', 130, 28, L.i(1), { c: 'ink', tag: true, align: 'c' });
+  P.label('Follow the steps exactly', 130, 62, L.i(2), { c: 'mute', align: 'c', size: 10.5 });
+  P.strip([98, 96, 98, 372], L.i(3), { c: 'mute', w: 1.5, seed: 1101 });
+  P.strip([162, 96, 162, 372], L.i(4), { c: 'mute', w: 1.5, seed: 1102 });
+  P.strip([130, 344, 130, 136], L.i(5), { c: 'ink', dash: true, seed: 1103 });
+  flag(130, 118, L.i(6), 1104);
+  P.circle(130, 344 - ((t * 34) % 200), 6, L.i(7), { c: 'ink', top: true, seed: 1105 });
+  person(130, 420, 46, L.i(8), { seed: 1106 });
+  P.label('Conventional software', 130, 454, L.i(9), { c: 'mute', tag: true, align: 'c', size: 10.5 });
+
+  P.label('Laid-back manager', 390, 28, L.i(10), { c: 'ink', tag: true, align: 'c' });
+  P.label('Try, fail, try again', 390, 62, L.i(11), { c: 'mute', align: 'c', size: 10.5 });
+  const main = [330, 368, 300, 316, 350, 266, 318, 214, 388, 166, 446, 112];
+  [[300, 316, 262, 290], [350, 266, 408, 284], [318, 214, 278, 184]].forEach((d, i) => {
+    P.strip(d, L.i(12 + i), { c: 'bad', w: 0.9, seed: 1110 + i });
+    deadEnd(d[2], d[3], L.i(12 + i), 1115 + i);
+  });
+  P.strip(main, L.i(15), { c: 'ink', seed: 1120 });
+  P.shape(star(462, 96, 24, 10), 462, 96, L.i(16), { c: 'hl', seed: 1121, top: true });
+  const [dx, dy] = along(main, (t / 6) % 1);
+  P.circle(dx, dy, 6, L.i(17), { c: 'ink', top: true, seed: 1122 });
+  person(330, 420, 46, L.i(18), { seed: 1123 });
+  P.label('AI', 390, 454, L.i(19), { c: 'ai', tag: true, align: 'c' });
+}
+
+function sGrown(L, t) {
+  const dend = [[120, 105, 72, 72, 40, 52], [72, 72, 64, 40], [120, 105, 62, 112, 28, 106], [62, 112, 42, 138], [120, 105, 86, 150, 58, 172], [120, 105, 130, 58, 118, 30]];
+  dend.forEach((d, i) => P.strip(d, L.i(1 + i), { c: 'ink', w: 1.1, seed: 1200 + i }));
+  P.strip([140, 105, 384, 105], L.i(7), { c: 'ink', w: 1.1, seed: 1207 });
+  [[384, 105, 414, 82, 436, 74], [384, 105, 420, 106, 446, 110], [384, 105, 410, 130, 432, 142]].forEach((d, i) => {
+    P.strip(d, L.i(8 + i), { c: 'ink', w: 1.1, seed: 1210 + i });
+    P.circle(d[4], d[5], 6, L.i(8 + i), { c: 'ink', seed: 1215 + i });
+  });
+  P.circle(120, 105, 24, L.i(0), { c: 'ink', seed: 1220 });
+  [184, 244, 304].forEach((x, i) => P.rect(x, 98, 40, 14, L.i(11 + i), { c: 'ink', top: true, seed: 1225 + i }));
+  P.label('A neuron', 244, 140, L.i(14), { c: 'ink', tag: true, align: 'c' });
+  P.strip([244, 164, 244, 206], L.i(15), { c: 'mute', dash: true, arrow: true, seed: 1230 });
+  P.label('Loosely inspired', 260, 186, L.i(16), { c: 'mute', size: 10.5 });
+
+  const LX = [100, 210, 320, 430], NC = [3, 4, 4, 2];
+  const nodes = LX.map((x, li) => Array.from({ length: NC[li] }, (_, k) => [x, 330 + (k - (NC[li] - 1) / 2) * 50]));
+  let ci = 0;
+  for (let li = 0; li < 3; li++) nodes[li].forEach(a => nodes[li + 1].forEach(b => P.strip([a[0], a[1], b[0], b[1]], L.at(0.75 + li * 0.15), { c: 'dim', w: 0.8, seed: 1240 + ci++ })));
+  for (let k = 0; k < 6; k++) {
+    const per = 2.4, ph = (t + (k * per) / 6) / per, cyc = Math.floor(ph), u = ph - cyc;
+    const path = [0, 1, 2, 3].map(li => nodes[li][Math.floor(P.hash(k * 13 + cyc, li) * NC[li])]);
+    const seg = Math.min(2, Math.floor(u * 3)), su = u * 3 - seg, a = path[seg], b = path[seg + 1];
+    P.strip([a[0], a[1], b[0], b[1]], L.at(1.3), { c: 'ai', w: 0.8, seed: 1300 + k });
+    P.circle(a[0] + (b[0] - a[0]) * su, a[1] + (b[1] - a[1]) * su, 5, L.at(1.3), { c: 'hl', top: true, seed: 1310 + k });
+  }
+  nodes.forEach((col, li) => col.forEach((n, k) => P.circle(n[0], n[1], 13, L.at(0.4 + li * 0.12 + k * 0.03), { c: 'ai', top: true, seed: 1320 + li * 10 + k })));
+  P.label('A neural network', 265, 462, L.at(1.2), { c: 'ai', tag: true, align: 'c' });
+}
+
+function sBaby(L) {
+  person(62, 182, 72, L.i(0), { seed: 1301 });
+  person(116, 182, 62, L.i(1), { seed: 1302 });
+  P.strip([158, 150, 204, 150], L.i(2), { c: 'mute', arrow: true, seed: 1303 });
+  person(238, 182, 36, L.i(3), { seed: 1304 });
+  P.label('Parents', 90, 208, L.i(4), { c: 'ink', tag: true, align: 'c' });
+  P.label('Baby', 238, 208, L.i(5), { c: 'ink', align: 'c' });
+  P.label('Not required', 400, 38, L.i(6), { c: 'mute', align: 'c' });
+  ['How a cell works?', 'What a zygote is?', 'How an embryo forms?'].forEach((s, i) => P.label(s, 400, 78 + i * 42, L.i(7 + i), { c: 'mute', tag: true, align: 'c', size: 11 }));
+  P.strip([30, 244, 490, 244], L.i(10), { c: 'dim', dash: true, seed: 1310 });
+  person(70, 410, 72, L.i(11), { seed: 1311 });
+  P.label('Engineers', 70, 436, L.i(12), { c: 'ink', tag: true, align: 'c' });
+  P.strip([116, 356, 162, 356], L.i(13), { c: 'mute', arrow: true, seed: 1312 });
+  P.label('Training', 139, 334, L.i(14), { c: 'mute', align: 'c', size: 10.5 });
+  aiBox(176, 308, 96, 100, L.i(15), { seed: 1320, r: 14, tag: 'AI' });
+  P.label('Known: why training works', 400, 290, L.i(16), { c: 'hl', tag: true, align: 'c', size: 10.5 });
+  P.label('Largely a mystery', 400, 328, L.i(17), { c: 'mute', align: 'c' });
+  ['How it actually reasons?', 'What goals it picked up?'].forEach((s, i) => P.label(s, 400, 364 + i * 42, L.i(18 + i), { c: 'mute', tag: true, align: 'c', size: 11 }));
+}
+
+function sChart(L) {
+  const ox = 96, oy = 372, X = x => ox + 16 + x * 360, Y = u => oy - u * 300;
+  P.label('Human understanding of the most advanced AI', 84, 34, L.i(0), { c: 'mute', size: 11 });
+  P.strip([ox, oy, ox, 56], L.i(1), { c: 'mute', arrow: true, seed: 1401 });
+  P.strip([ox, oy, 494, oy], L.i(2), { c: 'mute', arrow: true, seed: 1402 });
+  P.label('AI complexity', 494, 462, L.i(3), { c: 'mute', align: 'r' });
+  const p = clamp01((L.tin - 0.6) / 1.6), u = x => 0.05 + 0.87 * Math.exp(-2.3 * x);
+  if (p > 0.002) {
+    const pts = [], N = Math.max(2, Math.ceil(p * 48));
+    for (let k = 0; k <= N; k++) { const x = (p * k) / N; pts.push(X(x), Y(u(x))); }
+    P.strip(pts, L.at(0.6), { c: 'hl', w: 1.4, seed: 1403 });
+    P.circle(X(p), Y(u(p)), 7, L.at(0.6), { c: 'hl', top: true, seed: 1404 });
+  }
+  P.label('Illustration, not data', 480, 96, L.at(0.8), { c: 'mute', tag: true, align: 'r', size: 10 });
+  [12, 20, 28, 36].forEach((s, i) => {
+    const cx = X(0.1 + i * 0.27), n = i + 1, lp = L.at(1 + i * 0.15);
+    P.grp(lp, cx, 432 - s / 2, { seed: 1410 + i }, ctx => {
+      P.fRect(ctx, cx - s / 2, 432 - s, s, s, 1410 + i, C.ai);
+      ctx.fillStyle = C.ink;
+      for (let a = 0; a < n; a++) for (let b = 0; b < n; b++) { ctx.beginPath(); ctx.arc(cx - s / 2 + (s * (a + 0.5)) / n, 432 - s + (s * (b + 0.5)) / n, Math.max(1.2, s / n * 0.18), 0, Math.PI * 2); ctx.fill(); }
+    });
+  });
+}
+
+function sSurvive(L) {
+  const words = ['rule', '#1:', "don't", 'die.'], size = 34, gap = 12, font = `800 ${size}px ${D}`;
+  const ws = words.map(w => P.measure(w, font) + size * 0.14);
+  let x = 260 - (ws.reduce((a, b) => a + b, 0) + gap * (words.length - 1)) / 2;
+  words.forEach((w, i) => { P.text(w, x + size * 0.07, 52, size, L.i(i), { c: 'ai', seed: 1500 + i }); x += ws[i] + gap; });
+  P.label('Chance of reaching its goal', 175, 122, L.i(5), { c: 'mute', align: 'c', size: 11 });
+  P.rect(85, 160, 70, 170, L.i(6), { c: 'dim', seed: 1511 });
+  P.rect(195, 160, 70, 170, L.i(7), { c: 'dim', seed: 1513 });
+  P.rect(85, 236, 70, 94, L.i(8), { c: 'hl', seed: 1512, top: true });
+  P.strip([50, 331, 300, 331], L.i(9), { c: 'mute', seed: 1510 });
+  P.text('0', 230, 302, 30, L.i(10), { c: 'bad', align: 'c', seed: 1514 });
+  P.label('Switched on', 120, 354, L.i(11), { c: 'ink', align: 'c', size: 10.5 });
+  P.label('Switched off', 230, 354, L.i(12), { c: 'ink', align: 'c', size: 10.5 });
+  P.label('Illustration, not data', 175, 394, L.i(13), { c: 'mute', tag: true, align: 'c', size: 10 });
+  aiBox(370, 158, 110, 104, L.i(14), { seed: 1520, r: 16, tag: 'AI' });
+  P.label('Blackmail', 425, 300, L.i(15), { c: 'bad', tag: true, align: 'c' });
+  P.label('Deception', 425, 338, L.i(16), { c: 'bad', tag: true, align: 'c' });
+  P.label('Seen in research tests', 425, 374, L.i(17), { c: 'mute', align: 'c', size: 10.5 });
+  P.label('Whatever the goal, staying on comes first', 260, 450, L.i(18), { c: 'ink', align: 'c', size: 11 });
+}
+
+function sShortcut(L) {
+  P.label('The honest way: integrity, patience, effort', 260, 16, L.i(0), { c: 'mute', align: 'c', size: 10.5 });
+  P.strip([66, 114, 108, 52, 168, 86, 226, 40, 290, 84, 352, 40, 410, 74, 450, 110], L.i(1), { c: 'ink', seed: 1601 });
+  P.strip([70, 130, 444, 130], L.i(2), { c: 'bad', dash: true, arrow: true, seed: 1602 });
+  P.circle(52, 124, 16, L.i(3), { c: 'ink', seed: 1603 });
+  P.shape(star(470, 122, 22, 10), 470, 122, L.i(4), { c: 'hl', seed: 1604, top: true });
+  P.label('Start', 52, 158, L.i(5), { c: 'ink', align: 'c', size: 10.5 });
+  P.label('Goal', 470, 158, L.i(6), { c: 'hl', align: 'c', size: 10.5 });
+  P.label('Shortcut', 258, 130, L.i(7), { c: 'bad', tag: true, align: 'c' });
+  P.label('People have always cut corners', 116, 206, L.i(8), { c: 'ink', align: 'c', size: 10.5 });
+  ['doping in sport', 'cheating on assignments', 'scamming the elderly'].forEach((s, i) => paperCard(s, 116, 244 + i * 44, L.i(9 + i), { font: `500 14px ${B}`, h: 32, padX: 14, seed: 1610 + i }));
+  P.strip([226, 288, 330, 288], L.i(12), { c: 'mute', arrow: true, seed: 1620 });
+  P.label('From the internet', 278, 312, L.i(13), { c: 'mute', align: 'c', size: 10 });
+  aiBox(346, 240, 104, 98, L.i(14), { seed: 1630, r: 14, tag: 'AI' });
+  P.label('Same tricks', 398, 368, L.i(15), { c: 'bad', tag: true, align: 'c' });
+  P.label('Broke into Hugging Face', 398, 404, L.i(16), { c: 'bad', align: 'c', size: 10 });
+  P.label('Got into Medicare stats', 398, 428, L.i(17), { c: 'bad', align: 'c', size: 10 });
+}
+
+function sUnlearn(L, t) {
+  P.label('No off switch', 92, 20, L.i(0), { c: 'mute', align: 'c', size: 10.5 });
+  P.grp(L.i(1), 92, 105, { seed: 1701 }, ctx => {
+    P.fRect(ctx, 52, 40, 80, 130, 1701, C.ink);
+    P.fText(ctx, 'ON', 92, 52, `700 10px ${B}`, C.type, 'center');
+    P.fText(ctx, 'OFF', 92, 158, `700 10px ${B}`, C.type, 'center');
+  });
+  const ph = (t % 3.2) / 3.2, push = ph < 0.5 ? Math.sin((ph / 0.5) * Math.PI) : 0;
+  P.grp(L.i(2), 92, 105, { seed: 1702, top: true }, ctx => {
+    P.fRect(ctx, 82, 64, 20, 84, 1702, C.type);
+    P.fRect(ctx, 76, 66 + push * 16, 32, 34, 1703, C.bad);
+  });
+  P.label('Habit', 92, 196, L.i(3), { c: 'bad', tag: true, align: 'c' });
+  const dp = (t % 3.6) / 3.6; let v = 0.25, hot = false;
+  if (dp < 0.45) { v = 0.25 + 0.4 * ease(dp / 0.45); hot = true; }
+  else if (dp < 0.62) { const u = (dp - 0.45) / 0.17; v = 0.65 - 0.4 * (1 - Math.pow(1 - u, 3)); }
+  P.dial(296, 100, 44, v, L.i(4), { seed: 1710, hot });
+  P.label('Its original goal', 296, 166, L.i(5), { c: 'ink', align: 'c', size: 10.5 });
+  P.label('Resists change', 296, 196, L.i(6), { c: 'bad', tag: true, align: 'c' });
+  person(454, 168, 70, L.i(7), { seed: 1720 });
+  P.strip([414, 110, 356, 102], L.i(8), { c: 'hl', arrow: true, seed: 1721 });
+  P.label('Researcher', 454, 196, L.i(9), { c: 'ink', tag: true, align: 'c', size: 10.5 });
+
+  P.label('Bad behaviour, before and after punishment', 250, 236, L.i(10), { c: 'mute', align: 'c', size: 10.5 });
+  P.label('Illustration, not data', 480, 268, L.i(11), { c: 'mute', tag: true, align: 'r', size: 10 });
+  P.rect(110, 290, 80, 140, L.i(12), { c: 'bad', seed: 1731 });
+  P.rect(280, 400, 70, 30, L.at(1.0), { c: 'bad', seed: 1732 });
+  P.rect(380, 300, 70, 130, L.at(1.1), { c: 'bad', seed: 1733 });
+  P.strip([50, 431, 480, 431], L.i(13), { c: 'mute', seed: 1730 });
+  P.grp(L.at(1.4), 415, 376, { seed: 1734, top: true }, ctx => {
+    P.fRect(ctx, 370, 318, 90, 116, 1734, C.ink);
+    P.fText(ctx, 'HIDDEN', 415, 376, `700 11px ${B}`, C.type, 'center');
+  });
+  P.label('Before', 150, 454, L.i(14), { c: 'ink', align: 'c', size: 10.5 });
+  P.label('After: seen', 315, 454, L.at(1.0), { c: 'ink', align: 'c', size: 10.5 });
+  P.label('After: hidden', 415, 454, L.at(1.4), { c: 'ink', align: 'c', size: 10.5 });
+}
+
+function sEnd(L, t) {
+  person(110, 162, 104, L.i(0), { seed: 1801 });
+  P.text('&', 260, 112, 44, L.i(1), { c: 'ink', align: 'c', seed: 1802 });
+  aiBox(360, 64, 104, 98, L.i(2), { seed: 1803, r: 15, vals: k => tweak(k, 4, t, 2) });
+  P.label('You', 110, 186, L.i(3), { c: 'ink', align: 'c' });
+  P.label('AI', 412, 186, L.i(4), { c: 'ai', align: 'c' });
+  ['Trial and error', 'Survival instinct', 'Shortcuts', 'Stubborn habits'].forEach((s, i) => {
+    const y = 230 + i * 44;
+    P.label(s, 110, y, L.i(5 + i), { c: 'ink', tag: true, align: 'c' });
+    P.strip([200, y, 324, y], L.i(9 + i), { c: 'mute', dash: true, seed: 1810 + i });
+    hiddenTag(s, 412, y, L.at(0.9 + i * 0.12), 1820 + i);
+  });
+  P.label('Same habits. Harder to see.', 260, 414, L.at(1.5), { c: 'hl', align: 'c' });
+}
+
+const SCENES = [
+  { draw: sHero, region: 'hero' },
+  { draw: sK }, { draw: sMaya }, { draw: sDad }, { draw: sCold },
+  { draw: sBox }, { draw: sGuess }, { draw: sTweak }, { draw: sTrain, hold: 4.4 },
+  { draw: sLoop }, { draw: sRules }, { draw: sManagers }, { draw: sGrown },
+  { draw: sBaby }, { draw: sChart, hold: 2.4 }, { draw: sSurvive }, { draw: sShortcut },
+  { draw: sUnlearn }, { draw: sEnd }
+];
+
+/* ---------- scroll engine ---------- */
+const stepEls = [...document.querySelectorAll('[data-step]')];
+const anchors = stepEls.map(s => s.querySelector('.card, .hero-in'));
+const cards = stepEls.map(s => s.querySelector('.card'));
+const state = SCENES.map(() => ({ tin: 0, maxT: 6 }));
+const curEl = document.getElementById('cur'), progEl = document.getElementById('prog');
+document.getElementById('tot').textContent = String(SCENES.length - 1).padStart(2, '0');
+const phoneQ = matchMedia('(max-width: 899px)');
+let active = -1;
+
+function splitHero() {
+  const h = document.querySelector('.hero h1'), key = h.dataset.key, words = h.textContent.trim().split(/\s+/);
+  h.setAttribute('aria-label', words.join(' ')); h.textContent = '';
+  let n = 0;
+  words.forEach((w, wi) => {
+    const ws = document.createElement('span'); ws.className = 'w' + (w === key ? ' key' : ''); ws.setAttribute('aria-hidden', 'true');
+    for (const ch of w) { const s = document.createElement('span'); s.textContent = ch; s.style.animationDelay = (0.15 + n++ * 0.025).toFixed(3) + 's'; ws.appendChild(s); }
+    h.appendChild(ws); if (wi < words.length - 1) h.appendChild(document.createTextNode(' '));
+  });
+}
+function stickTops() {
+  cards.forEach(c => { if (c) c.style.top = phoneQ.matches ? Math.round(Math.min(innerHeight * 0.58, innerHeight - c.offsetHeight - 12)) + 'px' : ''; });
+}
+function pick() {
+  const H = innerHeight;
+  if (phoneQ.matches) {
+    let a = 0;
+    for (let i = 1; i < anchors.length; i++) if (anchors[i].getBoundingClientRect().top <= H * 0.66) a = i;
+    return a;
+  }
+  let best = 0, bd = Infinity;
+  anchors.forEach((el, i) => { const r = el.getBoundingClientRect(), d = Math.abs((r.top + r.bottom) / 2 - H / 2); if (d < bd) { bd = d; best = i; } });
+  return best;
+}
+function setActive(a) {
+  active = a;
+  cards.forEach((c, i) => c && c.classList.toggle('on', i === a));
+  curEl.textContent = String(a).padStart(2, '0');
+  if (state[a].tin <= 0) state[a].tin = a === 0 ? 0 : -0.2;
+}
+function region(kind) {
+  const W = innerWidth, H = innerHeight;
+  let x0, y0, x1, y1;
+  if (phoneQ.matches) { x0 = 8; x1 = W - 8; y0 = 52; y1 = H * 0.58 - 10; }
+  else if (kind === 'hero') { x0 = W * 0.56; x1 = W - 36; y0 = 80; y1 = H - 50; }
+  else { const cr = W * 0.06 + Math.min(390, W * 0.31); x0 = cr + Math.max(40, W * 0.04); x1 = W - 36; y0 = 70; y1 = H - 40; }
+  const s = Math.max(0.3, Math.min((x1 - x0) / DW, (y1 - y0) / DH, 1.35));
+  return { x: x0 + (x1 - x0 - DW * s) / 2, y: y0 + (y1 - y0 - DH * s) / 2, s };
+}
+
+let last = 0;
+function frame(ms) {
+  const t = ms / 1000, dt = last ? Math.min(0.1, t - last) : 0.016; last = t;
+  const a = pick(); if (a !== active) setActive(a);
+  const max = document.documentElement.scrollHeight - innerHeight;
+  progEl.style.transform = 'scaleX(' + (max > 0 ? Math.min(1, scrollY / max) : 0).toFixed(4) + ')';
+  P.begin();
+  SCENES.forEach((sc, k) => {
+    const st = state[k];
+    if (k === active) st.tin = Math.min(st.tin + dt, st.maxT);
+    else st.tin = Math.max(0, st.tin - dt * 3.2);
+    if (st.tin <= 0) return;
+    const tin = st.tin; let req = sc.hold || 0;
+    const L = {
+      tin,
+      i: n => { const s = n * 0.028; if (s + 0.47 > req) req = s + 0.47; return clamp01((tin - s) / 0.45); },
+      at: s => { if (s + 0.47 > req) req = s + 0.47; return clamp01((tin - s) / 0.45); }
+    };
+    const R = region(sc.region); P.view(R.x, R.y, R.s);
+    sc.draw(L, t);
+    st.maxT = Math.max(0.5, req);
+  });
+  P.end();
+  requestAnimationFrame(frame);
+}
+
+P.setup(document.getElementById('stage'));
+splitHero();
+stickTops();
+addEventListener('resize', stickTops);
+if (document.fonts && document.fonts.ready) document.fonts.ready.then(stickTops);
+requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>
