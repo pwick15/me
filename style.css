@@ -241,6 +241,48 @@ img {
 }
 .qa-a a {
   color: var(--fg);
+  text-underline-offset: 3px;
+}
+.qa-a p,
+.qa-a ul,
+.qa-a ol {
+  margin: 0 0 10px;
+}
+.qa-a > :last-child {
+  margin-bottom: 0;
+}
+.qa-a p.h {
+  margin: 14px 0 6px;
+  font-weight: 600;
+  color: var(--fg);
+}
+.qa-a > p.h:first-child {
+  margin-top: 0;
+}
+.qa-a ul,
+.qa-a ol {
+  padding-left: 20px;
+}
+.qa-a li {
+  margin: 4px 0;
+  padding-left: 2px;
+}
+.qa-a li::marker {
+  color: var(--mute);
+}
+.qa-a li.sub {
+  margin-left: 18px;
+  list-style-type: circle;
+}
+.qa-a b {
+  font-weight: 600;
+  color: var(--fg);
+}
+.qa-a code {
+  font: 500 13px/1 var(--mono);
+  padding: 2px 5px;
+  border-radius: 4px;
+  background: #f0eee8;
 }
 .qa-a.err {
   color: #c92a2a;

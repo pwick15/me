@@ -115,16 +115,74 @@ function escapeHTML(text) {
     .replace(/"/g, "&quot;");
 }
 
-// Light markdown: bold, italics, links, line breaks
-function renderMarkdown(text) {
+// Inline markdown: code, links, bold, italics (input is escaped first)
+function renderInline(text) {
   return escapeHTML(text)
-    .replace(/\*\*(.*?)\*\*/g, "<b>$1</b>")
-    .replace(/\*(.*?)\*/g, "<i>$1</i>")
+    .replace(/`([^`]+)`/g, "<code>$1</code>")
     .replace(
-      /\[(.*?)\]\(((?:https?:\/\/|mailto:)[^\s)]+)\)/g,
+      /\[([^\]]+)\]\(((?:https?:\/\/|mailto:)[^\s)]+)\)/g,
       '<a href="$2" target="_blank" rel="noopener">$1</a>',
     )
-    .replace(/\n/g, "<br>");
+    .replace(/\*\*(?=\S)(.+?)\*\*/g, "<b>$1</b>")
+    .replace(/__(?=\S)(.+?)__/g, "<b>$1</b>")
+    .replace(/(^|[^*\w])\*(?=\S)([^*]+?)\*(?!\w)/g, "$1<i>$2</i>")
+    .replace(/(^|[^_\w])_(?=\S)([^_]+?)_(?!\w)/g, "$1<i>$2</i>");
+}
+
+// Block markdown: paragraphs, headings, bullet and numbered lists
+function renderMarkdown(text) {
+  const out = [];
+  let para = [];
+  let list = null; // { tag: "ul" | "ol", items: [] }
+
+  const flushPara = () => {
+    if (para.length) out.push(`<p>${para.map(renderInline).join("<br>")}</p>`);
+    para = [];
+  };
+  const flushList = () => {
+    if (list) {
+      out.push(
+        `<${list.tag}>${list.items
+          .map((it) => `<li${it.sub ? ' class="sub"' : ""}>${renderInline(it.text)}</li>`)
+          .join("")}</${list.tag}>`,
+      );
+    }
+    list = null;
+  };
+
+  for (const raw of text.replace(/\r/g, "").split("\n")) {
+    const line = raw.replace(/\s+$/, "");
+    const heading = line.match(/^\s*#{1,6}\s+(.*)$/);
+    const bullet = line.match(/^(\s*)[-*•]\s+(.*)$/);
+    const numbered = line.match(/^(\s*)\d+[.)]\s+(.*)$/);
+
+    if (!line.trim()) {
+      flushPara();
+      flushList();
+    } else if (heading) {
+      flushPara();
+      flushList();
+      out.push(`<p class="h">${renderInline(heading[1])}</p>`);
+    } else if (bullet || numbered) {
+      const m = bullet || numbered;
+      const tag = bullet ? "ul" : "ol";
+      const sub = m[1].length >= 2;
+      flushPara();
+      // A nested item keeps the parent list; a top-level item of a new type starts one
+      if (list && list.tag !== tag && !sub) flushList();
+      if (!list) list = { tag, items: [] };
+      list.items.push({ text: m[2], sub });
+    } else if (list && /^\s{2,}\S/.test(raw)) {
+      // Continuation line of the previous list item
+      list.items[list.items.length - 1].text += " " + line.trim();
+    } else {
+      flushList();
+      para.push(line.trim());
+    }
+  }
+  flushPara();
+  flushList();
+  return out.join("");
 }
 
 // The page's own text, sent to the chatbot as context
