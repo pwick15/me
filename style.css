@@ -104,10 +104,20 @@ img {
   color: var(--fg);
   font-weight: 500;
 }
-.nav-links a.blog span {
-  margin-left: 2px;
-  font-size: 0.85em;
+.nav-links a.blog .ext {
+  margin-left: 3px;
   color: #1f6b52;
+}
+
+.ext {
+  display: inline-block;
+  width: 0.62em;
+  height: 0.62em;
+  margin-left: 0.28em;
+  vertical-align: 0.04em;
+  background-color: currentColor;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' fill='none' stroke='black' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 9L9 3M4.5 3H9v4.5'/%3E%3C/svg%3E") center / contain no-repeat;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' fill='none' stroke='black' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 9L9 3M4.5 3H9v4.5'/%3E%3C/svg%3E") center / contain no-repeat;
 }
 
 /* ---------- hero ---------- */
