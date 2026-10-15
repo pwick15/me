@@ -63,7 +63,6 @@ document.addEventListener("DOMContentLoaded", () => {
       prompt.classList.add(`prompt-${index + 1}`);
     });
   }
-
 });
 
 // ==========================================
@@ -700,53 +699,53 @@ function focusChat(event) {
 
 // SKILLS AUTO-ROTATING TABS
 document.addEventListener("DOMContentLoaded", () => {
-  const tabs = document.querySelectorAll('.tab-btn');
-  const panels = document.querySelectorAll('.skill-panel');
-  const widget = document.getElementById('skills-widget');
-  
+  const tabs = document.querySelectorAll(".tab-btn");
+  const panels = document.querySelectorAll(".skill-panel");
+  const widget = document.getElementById("skills-widget");
+
   if (!widget || tabs.length === 0) return;
 
   let currentIndex = 0;
   let autoRotateInterval;
   const ROTATE_TIME = 6000;
-  
+
   function activateTab(index, manual = false) {
-    tabs.forEach(t => {
-      t.classList.remove('active', 'animating');
+    tabs.forEach((t) => {
+      t.classList.remove("active", "animating");
       void t.offsetWidth;
     });
-    panels.forEach(p => p.classList.remove('active'));
-    
-    tabs[index].classList.add('active');
-    if (!manual) tabs[index].classList.add('animating');
-    const targetId = tabs[index].getAttribute('data-target');
-    document.getElementById(targetId).classList.add('active');
+    panels.forEach((p) => p.classList.remove("active"));
+
+    tabs[index].classList.add("active");
+    if (!manual) tabs[index].classList.add("animating");
+    const targetId = tabs[index].getAttribute("data-target");
+    document.getElementById(targetId).classList.add("active");
     currentIndex = index;
   }
-  
+
   function startAutoRotate() {
     stopAutoRotate();
-    tabs[currentIndex].classList.add('animating');
+    tabs[currentIndex].classList.add("animating");
     autoRotateInterval = setInterval(() => {
       let nextIndex = (currentIndex + 1) % tabs.length;
       activateTab(nextIndex);
     }, ROTATE_TIME);
   }
-  
+
   function stopAutoRotate() {
     clearInterval(autoRotateInterval);
-    tabs.forEach(t => t.classList.remove('animating'));
+    tabs.forEach((t) => t.classList.remove("animating"));
   }
-  
+
   tabs.forEach((tab, index) => {
-    tab.addEventListener('click', () => {
+    tab.addEventListener("click", () => {
       activateTab(index, true);
       stopAutoRotate();
     });
   });
-  
-  widget.addEventListener('mouseenter', stopAutoRotate);
-  widget.addEventListener('mouseleave', startAutoRotate);
-  
+
+  widget.addEventListener("mouseenter", stopAutoRotate);
+  widget.addEventListener("mouseleave", startAutoRotate);
+
   startAutoRotate();
 });
