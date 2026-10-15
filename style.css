@@ -250,7 +250,6 @@ nav#desktop-nav {
 
 section {
   padding: 100px 8% 60px;
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -281,7 +280,7 @@ section {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
+  min-height: clamp(500px, 75vh, 800px);
   padding-top: 60px;
   position: relative;
 }
