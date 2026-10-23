@@ -1,7 +1,8 @@
 /* punjaya.com
    1. Nav: highlight the section in view
    2. Timeline visuals: animate in when they scroll into view
-   3. Ask AI: rotating example questions + chat with the portfolio chatbot
+   3. Tools: expand an app's details under its row
+   4. Ask AI: rotating example questions + chat with the portfolio chatbot
 */
 
 const CONFIG = {
@@ -20,7 +21,8 @@ const EXAMPLE_QUESTIONS = [
 // 1. NAV
 // ==========================================
 document.addEventListener("DOMContentLoaded", () => {
-  const links = [...document.querySelectorAll(".nav-links a")];
+  // Only in-page links; the Blog link points off-site
+  const links = [...document.querySelectorAll('.nav-links a[href^="#"]')];
   const targets = links
     .map((a) => document.querySelector(a.getAttribute("href")))
     .filter(Boolean);
@@ -66,7 +68,47 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 // ==========================================
-// 3. ASK AI
+// 3. TOOLS: open one app's details under its row
+// ==========================================
+document.addEventListener("DOMContentLoaded", () => {
+  const grid = document.querySelector(".tools");
+  if (!grid) return;
+  const tools = [...grid.querySelectorAll(".tool")];
+  const picks = tools.map((t) => t.querySelector(".tool-pick"));
+  // Grid order: tools on even slots, so an open panel can sit on the odd slot after its row
+  tools.forEach((t, i) => (t.style.order = i * 2));
+
+  const panelOf = (pick) => document.getElementById(pick.getAttribute("aria-controls"));
+
+  // Rows are measured with the panel hidden, so it can't push tiles around
+  function place() {
+    const open = picks.find((p) => p.getAttribute("aria-expanded") === "true");
+    if (!open) return;
+    const panel = panelOf(open);
+    panel.hidden = true;
+    const top = open.parentElement.offsetTop;
+    const rowEnd = tools.filter((t) => t.offsetTop === top).pop();
+    panel.style.order = tools.indexOf(rowEnd) * 2 + 1;
+    panel.hidden = false;
+  }
+
+  picks.forEach((pick) =>
+    pick.addEventListener("click", () => {
+      const opening = pick.getAttribute("aria-expanded") !== "true";
+      picks.forEach((p) => {
+        p.setAttribute("aria-expanded", "false");
+        panelOf(p).hidden = true;
+      });
+      if (!opening) return;
+      pick.setAttribute("aria-expanded", "true");
+      place();
+    }),
+  );
+  window.addEventListener("resize", place);
+});
+
+// ==========================================
+// 4. ASK AI
 // ==========================================
 let chatHistory = [];
 let busy = false;
