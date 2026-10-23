@@ -100,11 +100,11 @@ img {
   color: var(--fg);
   font-weight: 500;
 }
-.nav-links a.blog {
+.nav-links a.out {
   color: var(--fg);
   font-weight: 500;
 }
-.nav-links a.blog .ext {
+.nav-links a.out .ext {
   margin-left: 3px;
   color: #1f6b52;
 }
@@ -565,6 +565,22 @@ section {
   object-fit: cover;
   object-position: 50% 10%;
   border-radius: 4px;
+}
+
+.hub-btn {
+  display: inline-flex;
+  align-items: center;
+  margin-top: 8px;
+  padding: 12px 20px;
+  border-radius: 999px;
+  background: var(--fg);
+  color: var(--bg);
+  font: 500 15px/1 var(--sans);
+  text-decoration: none;
+  transition: background 0.15s;
+}
+.hub-btn:hover {
+  background: #1f6b52;
 }
 
 /* tools I built: a grid of apps, each opening a detail panel under its row.
