@@ -230,84 +230,229 @@
                 </div>
               </article>
 
-              <!-- Composure -->
-              <article class="entry" style="--c: #6e9a00; --t: #a9e34b">
+              <!-- Tools I built: each tile opens its detail panel below its row (script.js, section 3) -->
+              <article class="entry" style="--c: #1f6b52">
                 <div class="meta label">
-                  <span class="kind">Product</span>
-                  <span>Oct 2026</span>
-                  <span class="wip">In progress</span>
+                  <span class="kind">Software</span>
+                  <span>2026</span>
+                  <span class="live">Live</span>
                 </div>
-                <h4>Composure</h4>
-                <p class="org">A calmer way through a crowded week</p>
-                <p class="why">
-                  Some days there's too much in my head. Task apps let you dump
-                  it all, then leave you staring at one long, flat list.
-                </p>
+                <h4>Tools I couldn't find, so I built them</h4>
+                <p class="org">The alternatives were paid, or didn't exist</p>
                 <p>
-                  Composure adds a method between the dump and the doing: empty
-                  your head, sort everything on an Eisenhower matrix, lock what
-                  matters into the week, then work through today in timed focus
-                  sessions.
+                  All of them are free and private by default. Where it can, your
+                  data stays in your browser, and there's no account to make.
                 </p>
-                <div class="media">
-                  <div class="v v-comp" aria-hidden="true">
-                    <div class="vco-steps">
-                      <span><kbd>⇧1</kbd>Dump</span><span class="on"><kbd>⇧2</kbd>Sort</span><span><kbd>⇧3</kbd>Plan</span><span><kbd>⇧4</kbd>Today</span>
-                    </div>
-                    <div class="vco-body">
-                      <div class="vco-card"><small>Thought 4 of 12</small>Book the car service<em>30m</em></div>
-                      <div class="vco-grid">
-                        <div><kbd>Q</kbd>Urgent · important</div>
-                        <div><kbd>W</kbd>Important · not urgent</div>
-                        <div><kbd>A</kbd>Urgent · not important</div>
-                        <div><kbd>S</kbd>Neither</div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="elinks">
-                  <a href="https://composure-dpt.pages.dev/" target="_blank" rel="noopener">Try the beta<span class="ext" aria-hidden="true"></span></a>
-                  <a href="https://github.com/pwick15/composure" target="_blank" rel="noopener">Code<span class="ext" aria-hidden="true"></span></a>
-                </div>
-              </article>
 
-              <!-- Draw Greenr -->
-              <article class="entry" style="--c: #5c940d">
-                <div class="meta label">
-                  <span class="kind">Product</span>
-                  <span>Sep 2026</span>
-                  <span class="wip">In progress</span>
-                </div>
-                <h4>Draw Greenr</h4>
-                <p class="org">Garden and landscape planner</p>
-                <p class="why">
-                  I couldn't find a free garden planner that let me use my own
-                  plants and artwork, so I built one.
-                </p>
-                <p>
-                  Draw beds, paths and lawns to scale, drop in plants and
-                  furniture, or upload your own images. It stays smooth with a
-                  thousand objects on the page.
-                </p>
-                <div class="media bare">
-                  <div class="v v-greenr" aria-hidden="true">
-                    <svg viewBox="0 0 320 170" preserveAspectRatio="xMidYMid slice">
-                      <rect x="0" y="0" width="320" height="170" class="g-lawn" />
-                      <path d="M0 120 C 70 112, 120 138, 190 120 S 290 96, 320 104 L320 130 C 290 122, 240 146, 190 146 S 70 140, 0 146Z" class="g-path" />
-                      <rect x="214" y="18" width="84" height="56" class="g-deck" />
-                      <line x1="222" y1="18" x2="222" y2="74" class="g-board" /><line x1="233" y1="18" x2="233" y2="74" class="g-board" /><line x1="244" y1="18" x2="244" y2="74" class="g-board" /><line x1="255" y1="18" x2="255" y2="74" class="g-board" /><line x1="266" y1="18" x2="266" y2="74" class="g-board" /><line x1="277" y1="18" x2="277" y2="74" class="g-board" /><line x1="288" y1="18" x2="288" y2="74" class="g-board" />
-                      <rect x="20" y="22" width="120" height="30" rx="4" class="g-bed" />
-                      <circle cx="34" cy="37" r="7" class="g-shrub" /><circle cx="56" cy="37" r="9" class="g-shrub" /><circle cx="78" cy="37" r="7" class="g-shrub" /><circle cx="100" cy="37" r="9" class="g-shrub" /><circle cx="122" cy="37" r="7" class="g-shrub" />
-                      <circle cx="170" cy="62" r="30" class="g-tree" /><circle cx="160" cy="54" r="12" class="g-tree2" />
-                      <circle cx="60" cy="88" r="16" class="g-tree" />
-                      <g class="g-sel"><rect x="138" y="30" width="64" height="64" /><circle cx="138" cy="30" r="3" /><circle cx="202" cy="30" r="3" /><circle cx="138" cy="94" r="3" /><circle cx="202" cy="94" r="3" /></g>
-                      <text x="300" y="162" text-anchor="end" class="g-scale">— 2 m</text>
-                    </svg>
+                <div class="tools">
+                  <!-- Composure -->
+                  <div class="tool" style="--c: #6e9a00; --t: #a9e34b">
+                    <button class="tool-pick" type="button" aria-expanded="false" aria-controls="tool-composure">
+                      <span class="tool-thumb" aria-hidden="true">
+                        <svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid slice">
+                          <rect width="320" height="200" class="tt-bg" />
+                          <g transform="translate(20 16)">
+                            <rect width="62" height="20" rx="10" class="tt-soft" /><text x="31" y="14" text-anchor="middle" class="tt-mute">Dump</text>
+                            <rect x="70" width="62" height="20" rx="10" class="tt-a" /><text x="101" y="14" text-anchor="middle" class="tt-ink">Sort</text>
+                            <rect x="140" width="62" height="20" rx="10" class="tt-soft" /><text x="171" y="14" text-anchor="middle" class="tt-mute">Plan</text>
+                            <rect x="210" width="70" height="20" rx="10" class="tt-soft" /><text x="245" y="14" text-anchor="middle" class="tt-mute">Today</text>
+                          </g>
+                          <g transform="translate(20 50)">
+                            <rect width="136" height="62" rx="6" class="tt-soft2" /><text x="10" y="18" class="tt-ink">Do</text>
+                            <rect x="10" y="28" width="96" height="9" rx="3" class="tt-bg" /><rect x="10" y="42" width="70" height="9" rx="3" class="tt-bg" />
+                            <rect x="144" width="136" height="62" rx="6" class="tt-soft" /><text x="154" y="18" class="tt-ink">Schedule</text>
+                            <rect x="154" y="28" width="84" height="9" rx="3" class="tt-bg" />
+                            <rect y="70" width="136" height="62" rx="6" class="tt-soft" /><text x="10" y="88" class="tt-mute">Someone else's</text>
+                            <rect x="144" y="70" width="136" height="62" rx="6" class="tt-soft" /><text x="154" y="88" class="tt-mute">Let go</text>
+                            <rect x="154" y="98" width="60" height="9" rx="3" class="tt-bg" />
+                          </g>
+                        </svg>
+                      </span>
+                      <span class="tool-name">Composure</span>
+                      <span class="tool-head">A calmer way through a crowded week</span>
+                    </button>
+                    <div class="elinks tool-links">
+                      <a href="https://composure-dpt.pages.dev/" target="_blank" rel="noopener">Open<span class="ext" aria-hidden="true"></span></a>
+                      <a href="https://github.com/pwick15/composure" target="_blank" rel="noopener">Code<span class="ext" aria-hidden="true"></span></a>
+                    </div>
+                  </div>
+                  <div class="tool-detail" id="tool-composure" style="--c: #6e9a00; --t: #a9e34b" hidden>
+                    <p class="why">
+                      Some days there's too much in my head. Task apps let you
+                      dump it all, then leave you staring at one long, flat list.
+                    </p>
+                    <p>
+                      Composure adds a method between the dump and the doing:
+                      empty your head, sort everything on an Eisenhower matrix,
+                      lock what matters into the week, then work through today in
+                      timed focus sessions.
+                    </p>
+                  </div>
+
+                  <!-- Ideas on Ideas -->
+                  <div class="tool" style="--c: #6741d9; --t: #9775fa">
+                    <button class="tool-pick" type="button" aria-expanded="false" aria-controls="tool-ideas">
+                      <span class="tool-thumb" aria-hidden="true">
+                        <svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid slice">
+                          <rect width="320" height="200" class="tt-bg" />
+                          <g class="tt-a-s">
+                            <path d="M160 100 C 120 100, 110 46, 70 46" /><path d="M160 100 C 120 100, 110 154, 70 154" />
+                            <path d="M160 100 C 200 100, 210 40, 250 40" /><path d="M160 100 C 200 100, 220 100, 252 100" /><path d="M160 100 C 200 100, 210 160, 250 160" />
+                          </g>
+                          <path d="M70 46 C 70 60, 70 90, 70 154" class="tt-ghost" />
+                          <rect x="112" y="84" width="96" height="32" rx="16" class="tt-a" /><text x="160" y="104" text-anchor="middle" class="tt-on">Side project</text>
+                          <rect x="20" y="34" width="84" height="24" rx="6" class="tt-soft2" /><text x="62" y="50" text-anchor="middle" class="tt-ink">Who's it for?</text>
+                          <rect x="20" y="142" width="84" height="24" rx="6" class="tt-soft" /><text x="62" y="158" text-anchor="middle" class="tt-ink">Cut half</text>
+                          <rect x="224" y="28" width="84" height="24" rx="6" class="tt-soft" /><text x="266" y="44" text-anchor="middle" class="tt-ink">Opposite?</text>
+                          <rect x="224" y="88" width="84" height="24" rx="6" class="tt-soft2" /><text x="266" y="104" text-anchor="middle" class="tt-ink">Make it a game</text>
+                          <rect x="224" y="148" width="84" height="24" rx="6" class="tt-soft" /><text x="266" y="164" text-anchor="middle" class="tt-mute">+ spark</text>
+                        </svg>
+                      </span>
+                      <span class="tool-name">Ideas on Ideas</span>
+                      <span class="tool-head">A brainstorming canvas you never need the mouse for</span>
+                    </button>
+                    <div class="elinks tool-links">
+                      <a href="https://ideas-on-ideas.pages.dev/" target="_blank" rel="noopener">Open<span class="ext" aria-hidden="true"></span></a>
+                      <a href="https://github.com/pwick15/ideas-on-ideas" target="_blank" rel="noopener">Code<span class="ext" aria-hidden="true"></span></a>
+                    </div>
+                  </div>
+                  <div class="tool-detail" id="tool-ideas" style="--c: #6741d9; --t: #9775fa" hidden>
+                    <p class="why">
+                      Judging an idea too early kills the ones that would have
+                      come after it.
+                    </p>
+                    <p>
+                      Branch out one keystroke at a time, pull a provocation when
+                      you run dry, then come back later to rate, cut and keep the
+                      best. The design follows brainstorming research from Osborn,
+                      de Bono and Koestler.
+                    </p>
+                  </div>
+
+                  <!-- Draw Greenr -->
+                  <div class="tool" style="--c: #5c940d">
+                    <button class="tool-pick" type="button" aria-expanded="false" aria-controls="tool-greenr">
+                      <span class="tool-thumb" aria-hidden="true">
+                        <svg viewBox="0 0 320 170" preserveAspectRatio="xMidYMid slice">
+                          <rect x="0" y="0" width="320" height="170" class="g-lawn" />
+                          <path d="M0 120 C 70 112, 120 138, 190 120 S 290 96, 320 104 L320 130 C 290 122, 240 146, 190 146 S 70 140, 0 146Z" class="g-path" />
+                          <rect x="214" y="18" width="84" height="56" class="g-deck" />
+                          <line x1="222" y1="18" x2="222" y2="74" class="g-board" /><line x1="233" y1="18" x2="233" y2="74" class="g-board" /><line x1="244" y1="18" x2="244" y2="74" class="g-board" /><line x1="255" y1="18" x2="255" y2="74" class="g-board" /><line x1="266" y1="18" x2="266" y2="74" class="g-board" /><line x1="277" y1="18" x2="277" y2="74" class="g-board" /><line x1="288" y1="18" x2="288" y2="74" class="g-board" />
+                          <rect x="20" y="22" width="120" height="30" rx="4" class="g-bed" />
+                          <circle cx="34" cy="37" r="7" class="g-shrub" /><circle cx="56" cy="37" r="9" class="g-shrub" /><circle cx="78" cy="37" r="7" class="g-shrub" /><circle cx="100" cy="37" r="9" class="g-shrub" /><circle cx="122" cy="37" r="7" class="g-shrub" />
+                          <circle cx="170" cy="62" r="30" class="g-tree" /><circle cx="160" cy="54" r="12" class="g-tree2" />
+                          <circle cx="60" cy="88" r="16" class="g-tree" />
+                          <g class="g-sel"><rect x="138" y="30" width="64" height="64" /><circle cx="138" cy="30" r="3" /><circle cx="202" cy="30" r="3" /><circle cx="138" cy="94" r="3" /><circle cx="202" cy="94" r="3" /></g>
+                        </svg>
+                      </span>
+                      <span class="tool-name">Draw Greenr</span>
+                      <span class="tool-head">Garden and landscape planner</span>
+                    </button>
+                    <div class="elinks tool-links">
+                      <a href="https://draw-greenr.pages.dev/" target="_blank" rel="noopener">Open<span class="ext" aria-hidden="true"></span></a>
+                      <a href="https://github.com/pwick15/draw-greenr" target="_blank" rel="noopener">Code<span class="ext" aria-hidden="true"></span></a>
+                    </div>
+                  </div>
+                  <div class="tool-detail" id="tool-greenr" style="--c: #5c940d" hidden>
+                    <p class="why">
+                      I couldn't find a free garden planner that let me use my own
+                      plants and artwork, so I built one.
+                    </p>
+                    <p>
+                      Draw beds, paths and lawns to scale, drop in plants and
+                      furniture, or upload your own images. It stays smooth with a
+                      thousand objects on the page.
+                    </p>
+                  </div>
+
+                  <!-- SyncZone -->
+                  <div class="tool" style="--c: #0c8599; --t: #3bc9db">
+                    <button class="tool-pick" type="button" aria-expanded="false" aria-controls="tool-sync">
+                      <span class="tool-thumb" aria-hidden="true">
+                        <svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid slice">
+                          <defs><pattern id="tt-stripe" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="3" height="6" fill="#1098ad" opacity=".28" /></pattern></defs>
+                          <rect width="320" height="200" class="tt-bg" />
+                          <text x="58" y="22" text-anchor="middle" class="tt-mute">Mon</text><text x="112" y="22" text-anchor="middle" class="tt-mute">Tue</text><text x="166" y="22" text-anchor="middle" class="tt-mute">Wed</text><text x="220" y="22" text-anchor="middle" class="tt-mute">Thu</text><text x="274" y="22" text-anchor="middle" class="tt-mute">Fri</text>
+                          <g class="tt-line">
+                            <line x1="32" x2="302" y1="32" y2="32" /><line x1="32" x2="302" y1="52" y2="52" /><line x1="32" x2="302" y1="72" y2="72" /><line x1="32" x2="302" y1="92" y2="92" />
+                            <line x1="32" x2="302" y1="112" y2="112" /><line x1="32" x2="302" y1="132" y2="132" /><line x1="32" x2="302" y1="152" y2="152" /><line x1="32" x2="302" y1="172" y2="172" />
+                          </g>
+                          <text x="26" y="36" text-anchor="end" class="tt-mute">9am</text><text x="26" y="76" text-anchor="end" class="tt-mute">11am</text><text x="26" y="116" text-anchor="end" class="tt-mute">1pm</text><text x="26" y="156" text-anchor="end" class="tt-mute">3pm</text>
+                          <g opacity=".9">
+                            <rect x="34" y="52" width="4" height="80" fill="#e8590c" /><rect x="40" y="72" width="4" height="80" fill="#7048e8" />
+                            <rect x="88" y="32" width="4" height="60" fill="#e8590c" /><rect x="94" y="52" width="4" height="100" fill="#7048e8" />
+                            <rect x="142" y="92" width="4" height="60" fill="#e8590c" /><rect x="148" y="72" width="4" height="40" fill="#7048e8" />
+                            <rect x="196" y="52" width="4" height="40" fill="#e8590c" />
+                            <rect x="250" y="32" width="4" height="120" fill="#e8590c" /><rect x="256" y="52" width="4" height="60" fill="#7048e8" />
+                          </g>
+                          <rect x="48" y="62" width="34" height="10" fill="url(#tt-stripe)" /><rect x="48" y="72" width="34" height="60" class="tt-a" opacity=".75" /><rect x="48" y="132" width="34" height="10" fill="url(#tt-stripe)" />
+                          <rect x="102" y="52" width="34" height="40" class="tt-a" opacity=".75" />
+                          <rect x="264" y="52" width="34" height="60" class="tt-a" opacity=".75" />
+                          <rect x="262" y="70" width="38" height="24" rx="3" fill="none" stroke="#171717" stroke-width="1.5" />
+                        </svg>
+                      </span>
+                      <span class="tool-name">SyncZone</span>
+                      <span class="tool-head">Find a meeting time across time zones</span>
+                    </button>
+                    <div class="elinks tool-links">
+                      <a href="https://synczone.pages.dev/" target="_blank" rel="noopener">Open<span class="ext" aria-hidden="true"></span></a>
+                      <a href="https://github.com/pwick15/synczone" target="_blank" rel="noopener">Code<span class="ext" aria-hidden="true"></span></a>
+                    </div>
+                  </div>
+                  <div class="tool-detail" id="tool-sync" style="--c: #0c8599; --t: #3bc9db" hidden>
+                    <p class="why">
+                      Finding one hour that works across three time zones
+                      shouldn't take a week of messages.
+                    </p>
+                    <p>
+                      Share a link and everyone paints when they're free in their
+                      own time. It ranks the windows where people overlap, then
+                      locks one in and hands you the calendar invite.
+                    </p>
+                  </div>
+
+                  <!-- Yema -->
+                  <div class="tool" style="--c: #2b5c9e">
+                    <button class="tool-pick" type="button" aria-expanded="false" aria-controls="tool-yema">
+                      <span class="tool-thumb" aria-hidden="true">
+                        <svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid slice">
+                          <rect width="320" height="200" fill="#faf8f3" />
+                          <line x1="14" x2="306" y1="100" y2="100" stroke="#171717" stroke-width="1" />
+                          <path d="M44 128 C 70 128, 80 60, 108 56" class="tt-blue-s" /><path d="M108 56 C 140 52, 150 150, 186 146" class="tt-brick-s" />
+                          <path d="M186 146 C 220 140, 226 44, 262 40" class="tt-blue-s" />
+                          <circle cx="44" cy="128" r="6" class="tt-brick" />
+                          <circle cx="108" cy="56" r="8" class="tt-blue" />
+                          <rect x="179" y="139" width="14" height="14" rx="2" class="tt-brick" />
+                          <circle cx="262" cy="40" r="9" class="tt-blue" />
+                          <circle cx="232" cy="78" r="5" class="tt-blue" opacity=".6" />
+                          <circle cx="150" cy="122" r="5" class="tt-brick" opacity=".6" />
+                          <circle cx="262" cy="150" r="9" class="tt-ghost" /><path d="M262 141 L262 52" class="tt-ghost" />
+                          <text x="16" y="20" class="tt-mute">fortune</text><text x="16" y="190" class="tt-mute">misfortune</text>
+                          <text x="306" y="20" text-anchor="end" class="tt-mute">then · now</text>
+                        </svg>
+                      </span>
+                      <span class="tool-name">Yema 野马</span>
+                      <span class="tool-head">A journal of what led to what</span>
+                    </button>
+                    <div class="elinks tool-links">
+                      <a href="https://yema.punjaya.com/" target="_blank" rel="noopener">Open<span class="ext" aria-hidden="true"></span></a>
+                      <a href="https://github.com/pwick15/yema" target="_blank" rel="noopener">Code<span class="ext" aria-hidden="true"></span></a>
+                    </div>
+                  </div>
+                  <div class="tool-detail" id="tool-yema" style="--c: #2b5c9e" hidden>
+                    <p class="why">
+                      Bad luck has a way of turning into the best thing that
+                      happened to you. I wanted somewhere to watch that happen.
+                    </p>
+                    <p>
+                      Plot moments on a timeline of fortune and misfortune, thread
+                      causes to their effects, and keep how each one felt then
+                      beside how it looks now.
+                    </p>
                   </div>
                 </div>
                 <div class="elinks">
-                  <a href="https://draw-greenr.pages.dev/" target="_blank" rel="noopener">Try the beta<span class="ext" aria-hidden="true"></span></a>
-                  <a href="https://github.com/pwick15/draw-greenr" target="_blank" rel="noopener">Code<span class="ext" aria-hidden="true"></span></a>
+                  <a href="https://tools.punjaya.com" target="_blank" rel="noopener">tools.punjaya.com<span class="ext" aria-hidden="true"></span></a>
                 </div>
               </article>
 
