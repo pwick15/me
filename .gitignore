@@ -33,3 +33,6 @@ archive/
 # Working files (source material, design prototypes)
 sup/
 prototypes/
+
+# Resume source, drafts and notes (only the public PDF in assets/documents is published)
+resume/
