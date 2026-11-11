@@ -2,6 +2,10 @@
 
 Static site (`index.html`, `style.css`, `script.js`, `blog/`) plus the "Ask an AI" chatbot backend in `backend/` (Cloud Run + Gemini, see `backend/README.md`).
 
+## Releasing CSS and JS changes
+
+The host tells browsers to cache `style.css` and `script.js` for 4 hours. When you change either, bump the `?v=` on its tag in `index.html`, so returning visitors don't get new HTML with old styles.
+
 ## Chatbot coverage check (mandatory)
 
 Run a **coverage check** whenever a change adds or edits a project, role, claim, essay or link on the site. The task isn't done until it passes.

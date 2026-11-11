@@ -364,34 +364,43 @@ img {
   padding: 0;
 }
 
-/* "Read its instructions" under the ask box */
+/* "How it's instructed": a quiet label under the ask box, opening the chatbot's prompt */
 .rules {
   max-width: 520px;
-  margin-top: 12px;
+  margin-top: 14px;
 }
 .rules summary {
-  display: inline;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: 18px; /* lines up with the sparkle in the ask box */
   list-style: none;
-  font-size: 13.5px;
-  color: var(--mute);
   cursor: pointer;
+  transition: color 0.15s;
 }
 .rules summary::-webkit-details-marker {
   display: none;
 }
-.rules summary u {
-  color: var(--fg);
-  text-decoration-color: #c9c5bb;
-  text-underline-offset: 3px;
-  text-decoration-thickness: 1.5px;
-  white-space: nowrap;
+/* same chevron as the tool tiles */
+.rules summary::after {
+  content: "";
+  width: 5px;
+  height: 5px;
+  border-right: 1.5px solid currentColor;
+  border-bottom: 1.5px solid currentColor;
+  transform: translateY(-2px) rotate(45deg);
+  transition: transform 0.2s;
 }
-.rules summary:hover u {
-  text-decoration-color: var(--fg);
+.rules[open] summary::after {
+  transform: translateY(1px) rotate(-135deg);
+}
+.rules summary:hover,
+.rules[open] summary {
+  color: var(--fg);
 }
 .rules summary:focus-visible {
   outline: 2px solid var(--fg);
-  outline-offset: 3px;
+  outline-offset: 4px;
   border-radius: 2px;
 }
 .rules-panel {
@@ -402,19 +411,29 @@ img {
   border-radius: 16px;
   animation: tool-in 0.2s ease-out;
 }
+.rules-lead {
+  margin: 0;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--line);
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: var(--mute);
+}
 .rules-body {
   max-height: 320px;
   overflow-y: auto;
-  margin: 10px 0 12px;
+  margin: 12px 0;
   font-size: 14.5px;
   line-height: 1.55;
   color: var(--fg2);
 }
 .rules-body p,
-.rules-body ul {
+.rules-body ul,
+.rules-body ol {
   margin: 0 0 10px;
 }
-.rules-body ul {
+.rules-body ul,
+.rules-body ol {
   padding-left: 20px;
 }
 .rules-body li {
@@ -433,7 +452,6 @@ img {
   padding-top: 10px;
   border-top: 1px solid var(--line);
   font-size: 13px;
-  color: var(--mute);
 }
 .rules-foot a {
   color: var(--fg);

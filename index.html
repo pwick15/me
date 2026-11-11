@@ -24,7 +24,7 @@
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&family=Bricolage+Grotesque:opsz,wght@12..96,700..800&family=Figtree:wght@400;700&display=swap"
     />
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="style.css?v=20261111" />
     <script>
       document.documentElement.classList.add("js");
     </script>
@@ -83,12 +83,14 @@
             </div>
           </div>
           <details class="rules" id="rules">
-            <summary>It's told to be honest about my gaps and my strengths. <u>Read its instructions</u></summary>
+            <summary class="label">How it's instructed</summary>
             <div class="rules-panel">
-              <span class="label">Exactly what the chatbot is told</span>
+              <p class="rules-lead">
+                It's told to be honest about my gaps and my strengths. This is
+                the exact text, and it also reads my CV and this page.
+              </p>
               <div class="rules-body" id="rules-body" aria-live="polite"></div>
               <p class="rules-foot">
-                It also gets my CV and the text of this page.
                 <a href="https://github.com/pwick15/me/blob/main/backend/src/prompt.md" target="_blank" rel="noopener">Source on GitHub<span class="ext" aria-hidden="true"></span></a>
               </p>
             </div>
@@ -815,6 +817,6 @@
       <footer>© 2026 Punjaya Wickramasinghe</footer>
     </main>
 
-    <script src="script.js"></script>
+    <script src="script.js?v=20261111"></script>
   </body>
 </html>
