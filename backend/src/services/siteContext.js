@@ -37,6 +37,15 @@ function htmlToText(html) {
   const main = html.match(/<main\b[\s\S]*?<\/main>/i)?.[0] ?? html;
   let s = dropElements(main, /<(script|style|svg|form|template)\b[^>]*>/i);
   s = dropElements(s, /<(\w+)\b[^>]*\baria-hidden="true"[^>]*>/i); // decorative mockups
+  // Keep where links go, so the chatbot can point visitors to essays, apps and papers
+  s = s.replace(/<a\b[^>]*?\bhref="([^"]+)"[^>]*>([\s\S]*?)<\/a>/gi, (m, href, text) => {
+    if (href.startsWith("#")) return text;
+    try {
+      return `${text} (${new URL(href.replace(/&amp;/g, "&"), config.siteUrl).href.replace(/^mailto:/, "")})`;
+    } catch {
+      return text;
+    }
+  });
   return s
     .replace(/<!--[\s\S]*?-->/g, "")
     .replace(/<(br|\/p|\/h[1-6]|\/li|\/div|\/section|\/article|\/summary)\b[^>]*>/gi, "\n")
