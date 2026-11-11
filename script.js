@@ -10,10 +10,14 @@ const CONFIG = {
     "https://portfolio-chatbot-963557792569.us-central1.run.app/api/chat",
 };
 
+// The chatbot's published instructions (backend/src/prompt.md)
+const PROMPT_URL = CONFIG.API_ENDPOINT.replace(/\/chat$/, "/prompt");
+
 const EXAMPLE_QUESTIONS = [
   "What is Punji working on right now?",
+  "Is he a fit for a junior ML engineer role?",
   "What has he built with drones?",
-  "Why does he care about AI safety?",
+  "What would he be weakest at?",
   "Could he build a website for my business?",
 ];
 
@@ -227,21 +231,26 @@ function renderMarkdown(text) {
   return out.join("");
 }
 
-// The page's own text, sent to the chatbot as context
-function scrapeWebsiteContent() {
-  let contentText =
-    "Note: this website is more up to date than the CV. Where they disagree (current roles, dates, projects), trust the website. " +
-    "Punjaya goes by Punji. 'Since <date>' means it is ongoing now.\n\n";
-  document.querySelectorAll("main section").forEach((section) => {
-    const clone = section.cloneNode(true);
-    clone
-      .querySelectorAll("button, script, style, input, svg, form, .chat, [aria-hidden='true']")
-      .forEach((el) => el.remove());
-    const text = clone.innerText.replace(/\s+/g, " ").trim();
-    if (text) contentText += `Section: ${section.id.toUpperCase()}\n${text}\n\n`;
+// "Read its instructions": fetch the live prompt the first time it's opened
+document.addEventListener("DOMContentLoaded", () => {
+  const rules = document.getElementById("rules");
+  const body = document.getElementById("rules-body");
+  if (!rules || !body) return;
+  let loaded = false;
+  rules.addEventListener("toggle", async () => {
+    if (!rules.open || loaded) return;
+    loaded = true;
+    body.innerHTML = '<span class="dots"><i></i><i></i><i></i></span>';
+    try {
+      const response = await fetch(PROMPT_URL);
+      if (!response.ok) throw new Error(response.status);
+      body.innerHTML = renderMarkdown(await response.text());
+    } catch (error) {
+      loaded = false; // try again next time it's opened
+      body.innerHTML = "<p>Couldn't load them just now. They're on GitHub, linked below.</p>";
+    }
   });
-  return contentText.trim();
-}
+});
 
 async function sendMessage(query) {
   if (busy || !query) return;
@@ -267,14 +276,16 @@ async function sendMessage(query) {
     const response = await fetch(CONFIG.API_ENDPOINT, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        message: query,
-        history: chatHistory,
-        webContext: scrapeWebsiteContent(),
-      }),
+      // The server reads the site itself, so only the conversation goes up
+      body: JSON.stringify({ message: query, history: chatHistory }),
     });
     if (!response.ok) {
-      throw new Error(response.status === 429 ? "RATE_LIMIT" : "API_ERROR");
+      const error = new Error(response.status === 429 ? "RATE_LIMIT" : "API_ERROR");
+      // Limit messages (429, or 503 when the daily ceiling is hit) come from the server
+      if (response.status === 429 || response.status === 503) {
+        error.userMessage = await response.json().then((d) => d.error, () => "");
+      }
+      throw error;
     }
     const data = await response.json();
     const reply = data.reply || "No response received.";
@@ -291,9 +302,10 @@ async function sendMessage(query) {
     console.error("Chat error:", error);
     answer.classList.add("err");
     answer.textContent =
-      error.message === "RATE_LIMIT"
+      error.userMessage ||
+      (error.message === "RATE_LIMIT"
         ? "That's the question limit for now (it keeps the bots out). Try again in 10 minutes, or just email me."
-        : "Sorry, I couldn't reach the chatbot. Try again in a moment, or email me directly.";
+        : "Sorry, I couldn't reach the chatbot. Try again in a moment, or email me directly.");
   } finally {
     busy = false;
     button.disabled = false;

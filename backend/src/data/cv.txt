@@ -1,12 +1,7 @@
-Here is the extracted and structured content of your CV, formatted cleanly in Markdown to optimize it for Retrieval-Augmented Generation (RAG) and semantic search parsing.
-
----
-
 # Punjaya Wickramasinghe
 
 ## Contact Information
 * **Role:** Mechatronics Engineer
-* **Phone:** +61 421 164 985
 * **Email:** punjayawick@gmail.com
 * **LinkedIn:** [linkedin.com/in/punjaya]
 * **GitHub:** [github.com/pwick15]
@@ -175,19 +170,15 @@ Here is the extracted and structured content of your CV, formatted cleanly in Ma
 
 ## References
 
+Contact details are available on request. Email Punji to ask.
+
 * **Darcy Slevin**
 * Software Lead / Supervisor at Geodrones Australia
-* Phone: +61 421 839 200
-* Email: darcy.slevin@gmail.com
 
 
 * **Dr. Marcus Chacos**
 * CEO at Provolution Health (Soccer coach, known for 10+ years)
-* Phone: +61 497 552 919
-* Email: marcus@genw.space
 
 
 * **Dr. Pieter Van Goor**
 * Postdoc Researcher at Twente University (Honours project supervisor)
-* Phone: +61 488 039 219
-* Email: p.ch.vangoor@utwente.nl

@@ -1,0 +1,10 @@
+# What `gcloud run deploy --source .` uploads to Cloud Build. Keep secrets and local installs out.
+.gcloudignore
+.git
+.gitignore
+.env
+.env.*
+!.env.example
+node_modules/
+npm-debug.log
+.DS_Store

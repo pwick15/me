@@ -82,6 +82,17 @@
               <button type="button" id="chat-clear">Clear</button>
             </div>
           </div>
+          <details class="rules" id="rules">
+            <summary>It's told to be honest about my gaps and my strengths. <u>Read its instructions</u></summary>
+            <div class="rules-panel">
+              <span class="label">Exactly what the chatbot is told</span>
+              <div class="rules-body" id="rules-body" aria-live="polite"></div>
+              <p class="rules-foot">
+                It also gets my CV and the text of this page.
+                <a href="https://github.com/pwick15/me/blob/main/backend/src/prompt.md" target="_blank" rel="noopener">Source on GitHub<span class="ext" aria-hidden="true"></span></a>
+              </p>
+            </div>
+          </details>
         </div>
 
         <figure class="hero-photo">
@@ -753,11 +764,21 @@
                 Outside work: football (Visca Barça), running, tennis, board
                 games, and walking up mountains at sunrise.
               </p>
-              <p class="stack">
+              <div class="stack">
                 <span class="label">Tools I reach for</span>
-                Python · C++ · TypeScript · PyTorch · LangChain · Inspect ·
-                ROS · Docker · STM32 · Altium
-              </p>
+                <ul>
+                  <li><img src="./assets/icons/tech-python-color.svg" alt="" width="30" height="30" loading="lazy" />Python</li>
+                  <li><img src="./assets/icons/tech-cpp.svg" alt="" width="30" height="30" loading="lazy" />C++</li>
+                  <li><img src="./assets/icons/tech-typescript.svg" alt="" width="30" height="30" loading="lazy" />TypeScript</li>
+                  <li><img src="./assets/icons/tech-docker.svg" alt="" width="30" height="30" loading="lazy" />Docker</li>
+                  <li><img src="./assets/icons/tech-pytorch.svg" alt="" width="30" height="30" loading="lazy" />PyTorch</li>
+                  <li><img src="./assets/icons/tech-langchain.svg" alt="" width="30" height="30" loading="lazy" />LangChain</li>
+                  <li><img src="./assets/icons/tech-inspect.svg" alt="" width="30" height="30" loading="lazy" />Inspect</li>
+                  <li><img src="./assets/icons/tech-ros.svg" alt="" width="30" height="30" loading="lazy" />ROS</li>
+                  <li><img src="./assets/icons/tech-stm32-sm.png" alt="" width="30" height="30" loading="lazy" />STM32</li>
+                  <li><img src="./assets/icons/tech-altium-sm.png" alt="" width="30" height="30" loading="lazy" />Altium</li>
+                </ul>
+              </div>
             </div>
           </div>
         </section>
