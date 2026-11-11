@@ -19,7 +19,7 @@ Here is the extracted and structured content of your CV, formatted cleanly in Ma
 ## Current Work (2026)
 
 * Goes by "Punji".
-* **AI control research** (BlueDot Impact Technical AI Safety Project, since Oct 2026): a like-for-like comparison of AI control methods, scored on safety, usefulness and cost, then research into what to do once a model is caught.
+* **AI control research** (BlueDot Impact Technical AI Safety Project, Oct to Nov 2026, with Anusha Asim and Marnick Vandecauter): "Catching AI sabotage on a budget". Tested 13 AI models as monitors for spotting backdoors hidden in AI-written code (500 problems from ControlArena's APPS setting), and priced every run. With a 2% audit budget, Sonnet 5.5 caught 87.6% of backdoors and Haiku 5.5 at xhigh reasoning caught 85.1% for about a fifth of the cost. At 1% or less, Sonnet leads by 12 to 27 points. Price was a poor guide to monitor quality, and more reasoning raised catch rates for 6 of 8 models. Also sent a fix to ControlArena. Code: github.com/pwick15/taisp-control-budgets
 * **Writing** (since Sep 2026): The Pivot's Archive on Substack (thepivotsarchive.substack.com), explaining AI to non-technical readers, with cut-paper interactive versions at blog.punjaya.com.
 * **Pivotr Studio** (pivotr.studio): his web design studio for small businesses. No ongoing fees, and one free build a month for a non-profit.
 * **Composure** (Oct 2026): a brain-dump, Eisenhower-matrix prioritisation, weekly planning and focus-session app. composure-dpt.pages.dev

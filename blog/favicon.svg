@@ -1,16 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-  <style>
-    .text-p {
-      font-family: 'Outfit', 'Inter', system-ui, -apple-system, sans-serif;
-      font-weight: 800;
-      font-size: 78px;
-      fill: #ffffff;
-    }
-    .dot {
-      fill: #ffffff;
-    }
-  </style>
-  <!-- Visually centered letter 'p' and dot -->
-  <text x="42" y="72" text-anchor="middle" class="text-p">p</text>
-  <circle cx="72" cy="65" r="7.5" class="dot" />
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- "P" in Instrument Serif (outlined, so it doesn't need the web font) -->
+  <rect width="64" height="64" rx="15" fill="#171717"/>
+  <path fill="#f7f6f2" d="M32.4 52.9L20.6 52.9Q19.7 52.9 19.7 52.2L19.7 52.2Q19.7 51.7 20.5 51.5L20.5 51.5L21.8 51.3Q23.0 51.1 23.4 50.7Q23.8 50.3 23.8 49.1L23.8 49.1L23.8 14.9Q23.8 13.7 23.4 13.3Q23.0 12.9 21.8 12.7L21.8 12.7L20.5 12.5Q19.7 12.3 19.7 11.8L19.7 11.8Q19.7 11.1 20.6 11.1L20.6 11.1L32.7 11.1Q36.1 11.1 38.8 12.6Q41.4 14.1 42.8 16.7Q44.3 19.3 44.3 22.7L44.3 22.7Q44.3 26.0 42.8 28.6Q41.4 31.1 38.8 32.6Q36.3 34.0 32.9 34.0L32.9 34.0L28.7 34.0Q27.9 34.0 27.9 34.8L27.9 34.8L27.9 48.8Q27.9 50.0 28.4 50.5Q28.8 50.9 30.5 51.2L30.5 51.2L32.6 51.5Q33.2 51.7 33.2 52.2L33.2 52.2Q33.2 52.9 32.4 52.9L32.4 52.9ZM27.9 14.9L27.9 29.3Q27.9 32.5 31.8 32.5L31.8 32.5Q35.6 32.5 37.7 29.9Q39.9 27.2 39.9 22.5L39.9 22.5Q39.9 17.8 37.7 15.2Q35.5 12.6 31.4 12.6L31.4 12.6Q27.9 12.6 27.9 14.9L27.9 14.9Z"/>
 </svg>

@@ -6,11 +6,11 @@
     <title>Punjaya Wickramasinghe</title>
     <meta
       name="description"
-      content="Mechatronics engineer working on AI safety. AI control research, essays about AI for everyone, Pivotr Studio, and a timeline of things I've built."
+      content="Mechatronics engineer working on AI safety."
     />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://www.punjaya.com/" />
-    <meta property="og:title" content="Hi, I'm Punji" />
+    <meta property="og:title" content="Punjaya (Punji) Wickramasinghe" />
     <meta
       property="og:description"
       content="Mechatronics engineer working on AI safety. Here's what I've been building."
@@ -55,10 +55,9 @@
         <div class="hero-text">
           <span class="label">Mechatronics engineer · AI safety</span>
           <h1>Hi, I'm <i>Punji</i></h1>
+          <p class="aka">Short for Punjaya.</p>
           <p class="intro">
-            I've built AI that flies on drones and AI that runs without the
-            internet. Now I research how to keep frontier AI in check, and
-            explain it to people who don't work in it.
+            I've built AI that flies on drones and AI that runs without the internet. Now I research how to keep frontier AI in check, and explain it to people who don't work in it.
           </p>
           <div class="links">
             <a href="mailto:punjayawick@gmail.com">Email</a>
@@ -108,48 +107,79 @@
               <article class="entry" style="--c: #3b5bdb">
                 <div class="meta label">
                   <span class="kind">AI safety research</span>
-                  <span class="live">Since Oct 2026</span>
+                  <span>Oct – Nov 2026</span>
                 </div>
-                <h4>AI control that labs can say yes to</h4>
+                <h4>Catching AI sabotage on a budget</h4>
                 <p class="org">BlueDot Impact · Technical AI Safety Project</p>
                 <p class="why">
-                  AI labs can have a trusted model watch their most capable one
-                  and step in when something looks off. Few do it well, and cost
-                  is why: at frontier scale, even 1% overhead runs into
-                  billions.
+                  More and more code is written by AI, and a model could hide a
+                  backdoor in it. A common defence is a monitor, a second AI that
+                  reads each program and flags the suspicious ones for a human to
+                  check. Smaller labs and businesses have no good guide to which
+                  monitor is worth paying for.
                 </p>
                 <p>
-                  We're running the first like-for-like test of AI control
-                  methods: the same attackers and the same models for every
-                  method, scored on safety, usefulness and dollars. The result
-                  is a map of the best protection money can buy. Next, we take
-                  on the open problem of what to do once a model gets caught.
+                  With Anusha Asim and Marnick Vandecauter, I tested 13 monitors
+                  on 500 coding problems with backdoors hidden in them, and priced
+                  every run. When a human could check 2% of the code, Sonnet 5.5
+                  caught 88% of the backdoors and Haiku 5.5 caught 85% for a fifth
+                  of the price. If a human can only check 1% or less, Sonnet's lead
+                  grows to between 12 and 27 points.
                 </p>
+                <ul class="outs">
+                  <li>More reasoning raised catch rates for 6 of 8 models, by up to 28 points</li>
+                  <li>Sent a fix to ControlArena, the UK AI Security Institute's control framework</li>
+                </ul>
                 <div class="media">
-                  <div class="v v-control" role="img" aria-label="Chart of safety against usefulness for AI control methods, with a curve tracing the best trade-offs.">
+                  <div class="v v-control" role="img" aria-label="Chart of backdoors caught against cost per program for 32 monitor settings. A best-buy line rises steeply then flattens: Haiku 5.5 catches 85% and Sonnet 5.5 catches 88% at five times the cost.">
                     <svg viewBox="0 0 540 250">
-                      <line x1="60" x2="520" y1="70" y2="70" class="c-grid" />
-                      <line x1="60" x2="520" y1="130" y2="130" class="c-grid" />
-                      <line x1="60" x2="520" y1="190" y2="190" class="c-grid" />
+                      <line x1="60" x2="520" y1="93" y2="93" class="c-grid" />
+                      <line x1="60" x2="520" y1="136" y2="136" class="c-grid" />
+                      <line x1="60" x2="520" y1="179" y2="179" class="c-grid" />
                       <line x1="60" y1="24" x2="60" y2="222" class="c-axis" />
                       <line x1="60" y1="222" x2="520" y2="222" class="c-axis" />
-                      <text x="70" y="30" class="c-lab">Safety ↑</text>
-                      <text x="518" y="244" text-anchor="end" class="c-lab">Usefulness →</text>
-                      <circle cx="110" cy="110" r="6" class="c-dot" />
-                      <circle cx="150" cy="160" r="6" class="c-dot" />
-                      <circle cx="190" cy="96" r="6" class="c-dot" />
-                      <circle cx="230" cy="186" r="6" class="c-dot" />
-                      <circle cx="262" cy="128" r="6" class="c-dot" />
-                      <circle cx="310" cy="170" r="6" class="c-dot" />
-                      <circle cx="352" cy="132" r="6" class="c-dot" />
-                      <circle cx="396" cy="196" r="6" class="c-dot" />
-                      <path d="M78 52 C 250 54, 390 92, 470 212" class="c-front" pathLength="1" />
-                      <circle cx="201" cy="61" r="6" class="c-on" />
-                      <circle cx="328" cy="96" r="6" class="c-on" />
-                      <circle cx="415" cy="149" r="6" class="c-on" />
-                      <text x="518" y="62" text-anchor="end" class="c-tag">Best safety for the cost</text>
+                      <text x="70" y="30" class="c-lab">Backdoors caught ↑</text>
+                      <text x="518" y="244" text-anchor="end" class="c-lab">Cost per program →</text>
+                      <circle cx="216" cy="134" r="5" class="c-dot" />
+                      <circle cx="253" cy="107" r="5" class="c-dot" />
+                      <circle cx="253" cy="114" r="5" class="c-dot" />
+                      <circle cx="187" cy="165" r="5" class="c-dot" />
+                      <circle cx="237" cy="168" r="5" class="c-dot" />
+                      <circle cx="264" cy="172" r="5" class="c-dot" />
+                      <circle cx="285" cy="185" r="5" class="c-dot" />
+                      <circle cx="308" cy="185" r="5" class="c-dot" />
+                      <circle cx="324" cy="188" r="5" class="c-dot" />
+                      <circle cx="201" cy="212" r="5" class="c-dot" />
+                      <circle cx="253" cy="140" r="5" class="c-dot" />
+                      <circle cx="293" cy="133" r="5" class="c-dot" />
+                      <circle cx="436" cy="91" r="5" class="c-dot" />
+                      <circle cx="372" cy="138" r="5" class="c-dot" />
+                      <circle cx="379" cy="139" r="5" class="c-dot" />
+                      <circle cx="392" cy="77" r="5" class="c-dot" />
+                      <circle cx="94" cy="221" r="5" class="c-dot" />
+                      <circle cx="117" cy="198" r="5" class="c-dot" />
+                      <circle cx="127" cy="195" r="5" class="c-dot" />
+                      <circle cx="135" cy="189" r="5" class="c-dot" />
+                      <circle cx="145" cy="155" r="5" class="c-dot" />
+                      <circle cx="170" cy="137" r="5" class="c-dot" />
+                      <circle cx="183" cy="127" r="5" class="c-dot" />
+                      <circle cx="192" cy="122" r="5" class="c-dot" />
+                      <circle cx="205" cy="117" r="5" class="c-dot" />
+                      <circle cx="231" cy="101" r="5" class="c-dot" />
+                      <circle cx="240" cy="90" r="5" class="c-dot" />
+                      <circle cx="258" cy="82" r="5" class="c-dot" />
+                      <path d="M94 221 L117 198 L127 195 L135 189 L145 155 L170 137 L183 127 L192 122 L205 117 L231 101 L240 90 L258 82 L295 75 L407 71" class="c-front" pathLength="1" />
+                      <circle cx="295" cy="75" r="6" class="c-on" />
+                      <circle cx="407" cy="71" r="6" class="c-on" />
+                      <text x="285" y="61" text-anchor="end" class="c-tag">Haiku 5.5 · 85%</text>
+                      <text x="518" y="55" text-anchor="end" class="c-tag">Sonnet 5.5 · 88%</text>
+                      <path d="M295 89 v6 M295 92 H407 M407 89 v6" class="c-dim" />
+                      <text x="351" y="109" text-anchor="middle" class="c-note">5× the cost</text>
                     </svg>
                   </div>
+                </div>
+                <div class="elinks">
+                  <a href="https://github.com/pwick15/taisp-control-budgets/" target="_blank" rel="noopener">Code<span class="ext" aria-hidden="true"></span></a>
                 </div>
               </article>
 
@@ -166,7 +196,7 @@
                   reading a research paper. I write for them: no hype, no doom,
                   just enough to form their own view.
                 </p>
-                <p>Every essay also gets a hand-built, scroll-through version in cut paper.</p>
+                <p>Every essay also gets a hand-built interactive version you scroll through.</p>
                 <div class="media bare">
                   <div class="v v-paper">
                     <div class="vp-card" style="--r: -1.6deg">
@@ -176,7 +206,7 @@
                       <span class="vp-s">How an AI broke into a $13B company's database to cheat on a test, and why you'd probably do the same.</span>
                       <span class="vp-go">
                         <a href="https://thepivotsarchive.substack.com/p/proxy-goals-be-careful-what-you-wish" target="_blank" rel="noopener">Read</a>
-                        <a href="https://blog.punjaya.com/proxy-goals" target="_blank" rel="noopener">Paper version</a>
+                        <a href="https://blog.punjaya.com/proxy-goals" target="_blank" rel="noopener">Interactive version</a>
                       </span>
                     </div>
                     <div class="vp-card" style="--r: 1.4deg">
@@ -186,7 +216,7 @@
                       <span class="vp-s">AI learns the way we do. Along the way, it's picking up our worst habits.</span>
                       <span class="vp-go">
                         <a href="https://thepivotsarchive.substack.com/p/humans-and-ai-were-more-similar-than" target="_blank" rel="noopener">Read</a>
-                        <a href="https://blog.punjaya.com/humans-and-ai" target="_blank" rel="noopener">Paper version</a>
+                        <a href="https://blog.punjaya.com/humans-and-ai" target="_blank" rel="noopener">Interactive version</a>
                       </span>
                     </div>
                   </div>
@@ -235,7 +265,6 @@
               <article class="entry" style="--c: #1f6b52">
                 <div class="meta label">
                   <span class="kind">Software</span>
-                  <span>2026</span>
                   <span class="live">Live</span>
                 </div>
                 <h4>Tools I couldn't find, so I built them</h4>
@@ -462,7 +491,7 @@
                     <circle cx="8" cy="44" r="5" /><circle cx="236" cy="38" r="5" /><circle cx="472" cy="22" r="5" /><circle cx="792" cy="26" r="5" />
                   </svg>
                 </div>
-                <div class="meta label"><span class="kind">Interlude</span><span>2026</span></div>
+                <div class="meta label"><span class="kind">Interlude</span></div>
                 <h4>A deliberate pause</h4>
                 <p>
                   I stepped away from full-time work and spent five months
@@ -522,7 +551,6 @@
               <article class="entry" style="--c: #0c8a8f">
                 <div class="meta label">
                   <span class="kind">Fellowship</span>
-                  <span>2025</span>
                 </div>
                 <h4>Voice AI for women artisans in rural India</h4>
                 <p class="org">Engineering for Change Fellow · Resham Sutra</p>
@@ -569,7 +597,6 @@
               <article class="entry port" style="--c: #c92a2a">
                 <div class="meta label">
                   <span class="kind">Recognition</span>
-                  <span>2024</span>
                 </div>
                 <h4>Finalist, Australian AI Awards</h4>
                 <p class="org">AI Innovator in Defence and National Security</p>
@@ -584,7 +611,6 @@
               <article class="entry" style="--c: #c92a2a">
                 <div class="meta label">
                   <span class="kind">Work</span>
-                  <span>2024</span>
                 </div>
                 <h4>AI Change Detection Platform</h4>
                 <p class="org">Mechatronics Engineer · Geodrones Australia</p>
@@ -635,7 +661,6 @@
               <article class="entry" style="--c: #7b2cbf">
                 <div class="meta label">
                   <span class="kind">Research</span>
-                  <span>2023</span>
                 </div>
                 <h4>Navigation that holds up when GPS lags</h4>
                 <p class="org">Honours research · ANU</p>
@@ -728,9 +753,10 @@
                 Outside work: football (Visca Barça), running, tennis, board
                 games, and walking up mountains at sunrise.
               </p>
-              <p class="tools">
-                Tools I reach for: Python · C++ · TypeScript · PyTorch ·
-                LangChain · Inspect · ROS · Docker · STM32 · Altium
+              <p class="stack">
+                <span class="label">Tools I reach for</span>
+                Python · C++ · TypeScript · PyTorch · LangChain · Inspect ·
+                ROS · Docker · STM32 · Altium
               </p>
             </div>
           </div>

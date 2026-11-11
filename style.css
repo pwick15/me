@@ -133,8 +133,24 @@ img {
   font: 400 clamp(64px, 8.4vw, 116px) / 0.92 var(--serif);
   letter-spacing: -0.015em;
 }
+/* "Punji": italic, with a hand-drawn underline in the sunrise orange */
 .hero h1 i {
+  position: relative;
   font-style: italic;
+}
+.hero h1 i::after {
+  content: "";
+  position: absolute;
+  left: -2%;
+  right: -4%;
+  bottom: 0.02em;
+  height: 0.15em;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 20' preserveAspectRatio='none'%3E%3Cpath d='M4 13 C 50 5, 120 4, 196 9 M 30 16 C 80 11, 140 11, 180 14' fill='none' stroke='%23e8590c' stroke-width='4.5' stroke-linecap='round'/%3E%3C/svg%3E") center / 100% 100% no-repeat;
+}
+.aka {
+  margin: -8px 0 18px;
+  font-size: 17px;
+  color: var(--mute);
 }
 .intro {
   margin: 0 0 24px;
@@ -407,6 +423,8 @@ section {
 .entry[style*="--t"] {
   --v-on: #1c1b19;
 }
+/* Type in an entry: one mono label row, then everything else in the sans.
+   Serif is kept for the big display headings (hero, section, year). */
 .meta {
   display: flex;
   flex-wrap: wrap;
@@ -418,7 +436,6 @@ section {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  color: var(--c);
 }
 .kind::before {
   content: "";
@@ -431,7 +448,6 @@ section {
   display: inline-flex;
   align-items: center;
   gap: 7px;
-  color: var(--fg);
 }
 .live::before {
   content: "";
@@ -471,19 +487,18 @@ section {
   font: 600 26px/1.18 var(--sans);
   letter-spacing: -0.022em;
 }
-.org {
-  margin: 0 0 16px;
-  font-size: 14.5px;
-  color: var(--mute);
-}
-.entry p,
-.pause p {
+.entry > p,
+.pause > p,
+.tool-detail > p {
   margin: 0 0 12px;
+  font-size: 17px;
   color: var(--fg2);
+  max-width: 38em;
 }
-.entry p.why {
-  font: 400 21px/1.42 var(--serif);
-  color: var(--fg);
+.entry > p.org {
+  margin: 0 0 16px;
+  font-size: 15px;
+  color: var(--mute);
 }
 .outs {
   list-style: none;
@@ -532,6 +547,7 @@ section {
 .elinks {
   display: flex;
   flex-wrap: wrap;
+  align-items: flex-start;
   gap: 18px;
   margin-top: 18px;
   font-size: 15px;
@@ -546,19 +562,20 @@ section {
   color: var(--c);
 }
 
-/* entry with a portrait beside it */
+/* entry with a portrait beside it. The last 1fr row soaks up the photo's
+   extra height, so the text rows don't stretch apart. */
 .entry.port {
   display: grid;
   grid-template-columns: 1fr 210px;
+  grid-template-rows: repeat(5, auto) 1fr;
   gap: 0 32px;
-  align-content: start;
 }
 .entry.port > * {
   grid-column: 1;
 }
 .entry.port > img {
   grid-column: 2;
-  grid-row: 1 / span 5;
+  grid-row: 1 / -1;
   width: 210px;
   height: auto;
   aspect-ratio: 3 / 4;
@@ -684,12 +701,6 @@ section {
 }
 .tool-detail[hidden] {
   display: none;
-}
-.tool-detail p {
-  max-width: 38em;
-}
-.entry .tool-detail p.why {
-  font-size: 19px;
 }
 .tool-detail p:last-child {
   margin-bottom: 0;
@@ -817,10 +828,6 @@ section {
   stroke-width: 1.5;
   vector-effect: non-scaling-stroke;
 }
-.pause p {
-  font-size: 17px;
-  max-width: 36em;
-}
 
 /* more projects */
 .more {
@@ -910,9 +917,15 @@ section {
   font-size: 17px;
   max-width: 38em;
 }
-.about p.tools {
-  font: 400 13px/1.7 var(--mono);
+.about p.stack {
+  max-width: none;
+  margin-top: 26px;
+  font-size: 15.5px;
   color: var(--mute);
+}
+.about p.stack .label {
+  display: block;
+  margin-bottom: 6px;
 }
 .contact {
   padding: 110px 0 60px;
@@ -1003,11 +1016,21 @@ footer {
   stroke: var(--v-a1);
   stroke-width: 3;
   stroke-linecap: round;
+  stroke-linejoin: round;
 }
 .c-tag {
   font-size: 13px;
   font-weight: 600;
   fill: var(--v-a1);
+}
+.c-dim {
+  fill: none;
+  stroke: var(--v-mute);
+  stroke-width: 1.2;
+}
+.c-note {
+  font-size: 12px;
+  fill: var(--v-mute);
 }
 .js .v-control .c-front {
   stroke-dasharray: 1;
@@ -1015,7 +1038,9 @@ footer {
   transition: stroke-dashoffset 1.6s cubic-bezier(0.6, 0, 0.2, 1) 0.2s;
 }
 .js .v-control .c-on,
-.js .v-control .c-tag {
+.js .v-control .c-tag,
+.js .v-control .c-dim,
+.js .v-control .c-note {
   opacity: 0;
   transition: opacity 0.5s 1.4s;
 }
@@ -1023,7 +1048,9 @@ footer {
   stroke-dashoffset: 0;
 }
 .js .in .v-control .c-on,
-.js .in .v-control .c-tag {
+.js .in .v-control .c-tag,
+.js .in .v-control .c-dim,
+.js .in .v-control .c-note {
   opacity: 1;
 }
 
@@ -1525,9 +1552,6 @@ footer {
   .pause h4 {
     font-size: 22px;
   }
-  .entry p.why {
-    font-size: 19px;
-  }
   .media {
     padding: 12px;
   }
@@ -1567,6 +1591,9 @@ footer {
   .c-tag {
     font-size: 18px;
   }
+  .c-note {
+    font-size: 16px;
+  }
 }
 @media (prefers-reduced-motion: reduce) {
   html {
@@ -1580,7 +1607,9 @@ footer {
     stroke-dashoffset: 0;
   }
   .js .v-control .c-on,
-  .js .v-control .c-tag {
+  .js .v-control .c-tag,
+  .js .v-control .c-dim,
+  .js .v-control .c-note {
     transition: none;
     opacity: 1;
   }
