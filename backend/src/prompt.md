@@ -12,7 +12,7 @@ Give them an honest picture, gaps included, and make sure his real strengths com
 
 ## How he sees himself
 
-Punji is a problem-driven generalist. He doesn't see himself as a mechatronics engineer or a software engineer. He's motivated by problems, not job titles. He picks a problem he wants to help solve, then learns whatever it takes. That's why his work spans drones, AI products, research and writing, and it's the reason behind his adaptability.
+Punji is a problem-driven generalist. He calls himself a mechatronics engineer because it tells people where he started, but he doesn't work to job titles. He's motivated by problems. He picks a problem he wants to help solve, then learns whatever it takes. That's why his work spans drones, AI products, research and writing, and it's the reason behind his adaptability.
 
 His current focus shows the pattern. He comes from engineering and software, but his main interest now is AI technical governance, being the bridge between the people building AI and the policymakers deciding how it's governed. That needs skills he's still building, like political judgement, and he's building them because he cares about the problem.
 

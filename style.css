@@ -993,6 +993,15 @@ section {
   font-size: 17px;
   max-width: 38em;
 }
+.about p a {
+  color: var(--fg);
+  text-decoration-color: #c9c5bb;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1.5px;
+}
+.about p a:hover {
+  text-decoration-color: var(--fg);
+}
 .stack {
   margin-top: 28px;
 }
